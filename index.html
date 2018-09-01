@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>TF - FE 2018</title>
+</head>
+<body onhashchange="abrirSection()">
+    <nav>
+        <div class="links-nav">
+            <ul>
+                <li>
+                    <a href="#identificadores">Identificadores</a>       
+                </li>
+                <li>
+                    <a href="#nomes">Nomes</a>       
+                </li>
+                <li>
+                    <a href="#dadosDemograficos">Dados Demográficos</a>       
+                </li>
+                <li>
+                    <a href="#enderecos">Endereços</a>       
+                </li>
+                <li>
+                    <a href="#comunicacoes">Comunicações Eletrônicas</a>       
+                </li>
+                <li>
+                    <a href="#vinculos">Vínculos</a>       
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section name="identificadores" id="identificadores" class="section" style="display:block">
+        <form action="#">
+            <h2>Cadastro de Identificador de indivíduo</h2>
+            <!-- componentes obrigatórios -->
+
+            <!-- Designação -->
+            <div class="campo">
+                <label for="">Designação</label>
+                <input type="text" size="25">
+            </div>
+            
+            <!-- Data -->
+            <div class="campo">
+                <label for="">Data</label>
+                <input type="date" size="25">
+            </div>
+
+            <!-- Emissor -->
+            <div class="campo">
+                <label for="">Emissor</label>
+                <input type="text">
+            </div>
+
+            <!-- Tipo do Identificador -->
+            <div class="campo"> 
+                <label class="label is-small">Tipo do identificador</label>
+                <select>
+                    <option value="01" selected>Único dentro da organização</option>
+                    <option value="02">Número do prontuário</option>
+                    <option value="21">Radiologia</option>
+                    <option value="22">Patologia</option>
+                    <option value="23">Farmácia</option>
+                </select>
+            </div>
+            <!-- Área Geográfica -->
+            <div class="campo">
+                <label class="label is-small">Área geográfica</label>
+                <select>
+                    <option value="1" selected>Local</option>
+                    <option value="2">Área/região/distrito</option>
+                    <option value="3">Estado/província/território</option>
+                    <option value="4">Nacional</option>
+                </select>
+            </div>
+
+            <input type="button" value="Salvar">
+            <input type="button" value="Limpar">
+        </form>
+    </section>
+
+    <section name="nomes" id="nomes" class="section">
+        <form action="#">
+            <h2>Cadastro de Nomes</h2>
+            <input type="button" value="Salvar">
+            <input type="button" value="Limpar">
+        </form>
+    </section>
+
+    <section name="dadosDemograficos" id="dadosDemograficos" class="section">
+        <form action="#">
+            <h2>Cadastro de dados demográficos</h2>
+            <input type="button" value="Salvar">
+            <input type="button" value="Limpar">
+        </form>
+    </section>
+
+    <section name="enderecos" id="enderecos" class="section">
+        <form action="#">
+            <h2>Endereços</h2>
+            <input type="button" value="Salvar">
+            <input type="button" value="Limpar">
+        </form>
+    </section>
+
+    <section id="comunicacoes" class="section">
+        <form action="#">
+            <h2>Comunicações Eletrônicas</h2>
+            <input type="button" value="Salvar">
+            <input type="button" value="Limpar">
+        </form>
+    </section>
+
+    <section id="vinculos" class="section">
+        <form action="#">
+            <h2>Vínculos</h2>
+            <input type="button" value="Salvar">
+            <input type="button" value="Limpar">
+        </form>
+    </section>
+
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

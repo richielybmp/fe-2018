@@ -1,0 +1,9 @@
+.section{
+    display: none;
+    width: 500px;
+    height: 600px;
+}
+
+.campo {
+    margin: 15px;
+}
