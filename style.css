@@ -3,15 +3,22 @@ h1, h3 {
     padding: 15px;
 }
 
-section > span {
+form > legend, .caixa span {
     margin: 20px 0 20px 0;
     display: block;
     font-size: 30px;
 }
 
+.caixa span {
+    margin: 10px 0 10px 0;
+    display: block;
+    font-size: 20px;
+}
+
 .caixa {
-    border: 1px solid rgba(0,0,0,.1);
+    /* border: 1px solid rgba(0,0,0,.1); */
     padding: 15px;
+    margin-top: 30px;
 }
 
 .opcional {

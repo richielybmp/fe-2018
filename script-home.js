@@ -28,6 +28,13 @@ function carregueEstados(callback) {
     });
 });
 
+function controlaHabilitacaoInputs(id, ehDisabled){
+    var inputsDoForm = Array.from(document.querySelectorAll("#" + id + " input"));
+    // Desabilita todos inputs
+    for (input in inputsDoForm){
+        inputsDoForm[input].disabled = ehDisabled;
+    }
+}
 
 const tipoIdentificador = document.getElementById('selectTipoIdentificador');
 tipoIdentificador.addEventListener('change', mostreFormularios);
@@ -41,6 +48,8 @@ function mostreFormularios(){
     // javascript puro
     for (el in Array.from(formsOpicionais)){
         formsOpicionais[el].style.display = "none";
+        var id = formsOpicionais[el].id;
+        controlaHabilitacaoInputs(id, true);
     }
     // jQuery
     //formsOpicionais.hide();
@@ -53,13 +62,16 @@ function mostreFormularios(){
             elemento.style.display = "block";
             // jQuery
             //$(elemento).show();
+            controlaHabilitacaoInputs("form-ctps", false);
             break;
         case '11':
             var elemento = document.getElementById("form-tEleitor");
             elemento.style.display = "block";
+            controlaHabilitacaoInputs("form-tEleitor", false);
             break;
         case '12':
             var elemento = document.getElementById("form-certidao");
+            controlaHabilitacaoInputs("form-certidao", false);
             elemento.style.display = "block";
             break;
         default:

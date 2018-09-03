@@ -42,7 +42,7 @@
             </ul>
 
             <!-- Seções controladas pela nav -->
-            <div class="tab-content" id="myTabContent">
+            <div class="tab-content" id="conteudo">
                 <!-- Home -->
                 <section class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <span>Página inicial - Identificação dos indivíduos em saúde</span>
@@ -51,22 +51,22 @@
                 <!-- Identificadores -->
                 <section class="tab-pane fade" id="identificadores" role="tabpanel" aria-labelledby="identificadores-tab">
                     <!-- Início do formulário - IDENTIFICAÇÂO -->
-                    <span>Cadastro de identificadores do paciente</span> 
                     <form action="" method="post">
-                        <!-- Designação -->
+                        <legend>Cadastro de identificadores do paciente</legend> 
+                           <!-- Designação -->
                         <div class="form-group">   
                             <label for="lbDesignacao">Designação</label>
-                            <input class="form-control col-md-6" type="text">
+                            <input class="form-control col-md-6" type="text" required>
                         </div>
 
                         <div class="row">
                             <!-- Tipo do identificador -->
                             <div class="form-group col-md-6">
                                 <label for="lbTipoIdentificador">Tipo do identificador</label>
-                                <select name="selectTipoIdentificador" id="selectTipoIdentificador" class="form-control">
+                                <select name="selectTipoIdentificador" id="selectTipoIdentificador" class="form-control" required>
                                     <option value="01" selected>Único dentro da organização</option>
                                     <option value="02">Número do prontuário</option>
-                                    <option value="10">CTPS</option>
+                                    <option value="10">Carteira de Trabalho e Previdência Social</option>
                                     <option value="11">Titulo Eleitoral</option>
                                     <option value="12">Certidão de Nascimento, Casamento, Divórcio</option>
                                     <option value="21">Radiologia</option>
@@ -77,7 +77,7 @@
                             <!-- Área geográfica -->
                             <div class="form-group col-md-6">   
                                 <label for="">Área Geográfica</label>
-                                <select class="form-control">
+                                <select class="form-control" required>
                                     <option value="1" selected>Local</option>
                                     <option value="2">Área/região/distrito</option>
                                     <option value="3">Estado/província/território</option>
@@ -90,31 +90,34 @@
                             <!-- Emissor -->
                             <div class="col-md-6">   
                                 <label for="lbEmissor">Emissor</label>
-                                <input class="form-control" type="text">
+                                <input class="form-control" type="text" required>
                             </div>
                             <!-- Data de emissão -->
                             <div class="col-md-4">   
                                 <label for="lbDataEmissao">Data da emissão</label>
-                                <input class="form-control" type="date">
+                                <input class="form-control" type="date" required>
                             </div>
                         </div>
 
-                        <hr>
                         
+                        <!-- CAMPOS OPCIONAIS -->
                         <!-- Carteira de trabalho e Previdência Social -->
                         <div id="form-ctps" class="caixa opcional">
                             <span>Carteira de trabalho</span>
+                            <hr>
                             <div class="row">
                                 <!-- Série -->
                                 <div class="col-md-3">   
                                     <label for="lbSerie">Série</label>
-                                    <input class="form-control" type="number">
+                                    <input class="form-control" type="number"  min="0" disabled required>
                                 </div>
 
                                 <!-- Estado -->
                                 <div class="col-md-4">   
                                     <label for="lbEstado">Estado</label>
-                                    <select name="selectEstado" id="selectEstado" class="form-control"></select>
+                                    <!-- Para preencher os estados, estamos utilizando o arquivo 'estados.json' -->
+                                    <input list="selectEstado" name="estados" class="form-control" disabled required>
+                                    <datalist id="selectEstado"></datalist>
                                 </div>
                             </div>
                         </div>
@@ -122,6 +125,8 @@
                         <!-- Certidão -->
                         <div id="form-certidao" class="caixa opcional">
                             <!-- Tipo da certidão -->
+                            <span>Certidão</span>
+                            <hr>
                             <div class="form-group">   
                                 <label for="lbTipoDaCertidao">Tipo da certidão</label>
                                 <select class="form-control col-md-12">
@@ -140,19 +145,19 @@
                                 <!-- Livro -->
                                 <div class="col-md-4">   
                                     <label for="lbLivro">Livro</label>
-                                    <input class="form-control" type="number">
+                                    <input class="form-control" type="number" min="0">
                                 </div>
 
                                 <!-- Folha -->
                                 <div class="col-md-4">   
                                     <label for="lbFolha">Folha</label>
-                                    <input class="form-control" type="number">
+                                    <input class="form-control" type="number" min="0">
                                 </div>
 
                                 <!-- Termo -->
                                 <div class="col-md-4">   
                                     <label for="lbTermo">Termo</label>
-                                    <input class="form-control" type="number">
+                                    <input class="form-control" type="number" min="0">
                                 </div>
                             </div>
                         </div>
@@ -160,17 +165,18 @@
                         <!-- Título eleitoral -->
                         <div id="form-tEleitor" class="caixa opcional">
                             <span>Título eleitoral</span>
+                            <hr>
                             <div class="row">
                                 <!-- Seção eleitoral -->
                                 <div class="col-md-6">   
                                     <label for="lbSecao">Seção eleitoral</label>
-                                    <input class="form-control" type="number">
+                                    <input class="form-control" type="number" min="0">
                                 </div>
 
                                 <!-- Zona eleitoral -->
                                 <div class="col-md-6">   
                                     <label for="lbZona">Zona eleitoral</label>
-                                    <input class="form-control" type="number">
+                                    <input class="form-control" type="number" min="0">
                                 </div>
                             </div>
                         </div>
@@ -184,27 +190,107 @@
                 
                 <!-- Nomes -->
                 <section class="tab-pane fade" id="nomes" role="tabpanel" aria-labelledby="nomes-tab">
-                    <span>Cadastro de Nomes do paciente</span>
+                    <form action="">
+                        <legend>Cadastro de Nomes do paciente</legend>
+                        
+                        <br /><br />    
+                        <input type="submit" value="Salvar" />
+                        <input type="reset" value="Limpar"/>
+                    </form>
                 </section>
                 
                 <!-- Dados demográficos -->
                 <section class="tab-pane fade" id="dadosDem" role="tabpanel" aria-labelledby="dadosDem-tab">
-                    <span>Cadastro de dados demográficos do paciente</span>
+                    <form action="">
+                        <legend>Cadastro de dados demográficos do paciente</legend>
+                        
+                        <br /><br />    
+                        <input type="submit" value="Salvar" />
+                        <input type="reset" value="Limpar"/>
+                    </form>
                 </section>
                 
                 <!-- Endereços -->
                 <section class="tab-pane fade" id="enderecos" role="tabpanel" aria-labelledby="enderecos-tab">
-                    <span>Cadastro de endereços do paciente</span>
+                    <form action="">
+                        <legend>Cadastro de endereços do paciente</legend>
+                        
+                        <br /><br />    
+                        <input type="submit" value="Salvar" />
+                        <input type="reset" value="Limpar"/>
+                    </form>
                 </section>
                 
                 <!-- Comunicações eletrônicas -->
                 <section class="tab-pane fade" id="comunicacoes" role="tabpanel" aria-labelledby="comunicacoes-tab">
-                    <span>Cadastro de contatos do paciente</span>
+                    <form action="">
+                        <legend>Cadastro de contatos do paciente</legend>
+
+                        <br /><br />    
+                        <input type="submit" value="Salvar" />
+                        <input type="reset" value="Limpar"/>
+                    </form>
                 </section>
                 
                 <!-- Vínculos -->
                 <section class="tab-pane fade" id="vinculos" role="tabpanel" aria-labelledby="vinculos-tab">
-                    <span>Cadastro de vínculos do paciente</span>
+                     <!-- Início do formulário - IDENTIFICAÇÂO -->
+                     <form action="">
+                        <legend>Cadastro de vínculos do paciente</legend>
+                        
+                        <div class="row">
+                            <!-- Identificador -->
+                            <div class="col-md-3">   
+                                <label for="lbIdentificador">Identificador</label>
+                                <input class="form-control" type="text">
+                            </div>
+
+                            <!-- Tipo de relacionamento -->
+                            <div class="col-md-3">
+                                <label for="lbRelacionamento">Relacionamento</label>
+                                <select class="form-control">
+                                    <option value="7" selected="">Avó materna</option>
+                                    <option value="8">Avô materno</option>
+                                    <option value="22">Cônjuge/companheiro(a)</option>
+                                    <option value="23">Irmão</option>
+                                    <option value="24">Irmã</option>
+                                    <option value="25">Meio-irmão</option>
+                                    <option value="26">Meio-irmã</option>
+                                    <option value="27">Irmãos</option>
+                                    <option value="28">Criança</option>
+                                    <option value="29">Filha</option>
+                                    <option value="36">Avó paterna</option>
+                                    <option value="37">Avô paterno</option>
+                                    <option value="38">Tio materno</option>
+                                    <option value="40">Tio paterno</option>
+                                    <option value="41">Tia paterna</option>
+                                    <option value="189">Recém-nascido</option>
+                                    <option value="254">Pais</option>
+                                    <option value="262">Mãe adotiva</option>
+                                    <option value="263">Pai adotivo</option>
+                                    <option value="264">Responsável</option>
+                                    <option value="265">Coabitante</option>
+                                    <option value="939">Tia materna</option>
+                                </select>
+                            </div>
+
+                            <!-- Data Inicial -->
+                            <div class="col-md-3">
+                                <label for="lbDataInicial">Data inicial</label>
+                                <input type="date" name="dtInicialRelacionamento" id="dtInicialRelacionamento" class="form-control">
+                            </div>
+                            <!-- Data Final -->
+                            <div class="col-md-3">
+                                <label for="lbDataInicial">Data final</label>
+                                <input type="date" name="dtFinalRelacionamento" id="dtFinalRelacionamento" class="form-control">
+                            </div>
+                        </div>
+                       
+                       
+                        <br /><br />    
+                        <input type="submit" value="Salvar" />
+                        <input type="reset" value="Limpar"/>
+                    </form>
                 </section>
             </div>
 
