@@ -3,7 +3,7 @@ h1, h3 {
     padding: 15px;
 }
 
-form > legend, .caixa span {
+#home > span, form > legend, .caixa span, .localizar {
     margin: 20px 0 20px 0;
     display: block;
     font-size: 30px;
@@ -23,4 +23,25 @@ form > legend, .caixa span {
 
 .opcional {
     display: none;
+}
+
+.localizar form{
+    max-width: 320px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0 20px 0;
+}
+
+td, th {
+    border: 1px solid #a9a9a9;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
 }

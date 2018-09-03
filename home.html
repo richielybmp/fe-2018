@@ -46,6 +46,53 @@
                 <!-- Home -->
                 <section class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <span>Página inicial - Identificação dos indivíduos em saúde</span>
+                    <div>
+                        <div class="localizar">
+                            <form>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Localizar...">
+                                    <span class="mdi mdi-magnify"></span>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">Localizar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <input class="btn btn-primary" type="button" value="Novo cadastro" onclick="iniciarCadastro()">
+                        
+                        <table>
+                            <tr>
+                                <th>Identificador</th>
+                                <th>Nome</th>
+                                <th>Ações</th>
+                            </tr>
+                            <tr>
+                                <td>123</td>
+                                <td>Maria Anders</td>
+                                <td>
+                                    <input class="btn btn-danger" type="button" value="Remover">
+                                    <input class="btn btn-info" type="button" value="Atualizar">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>456</td>
+                                <td>Francisco Chang</td>
+                                <td>
+                                    <input class="btn btn-danger" type="button" value="Remover">
+                                    <input class="btn btn-info" type="button" value="Atualizar">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>789</td>
+                                <td>Roland Mendel</td>
+                                <td>
+                                    <input class="btn btn-danger" type="button" value="Remover">
+                                    <input class="btn btn-info" type="button" value="Atualizar">
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
                 </section>
                 
                 <!-- Identificadores -->
@@ -53,12 +100,6 @@
                     <!-- Início do formulário - IDENTIFICAÇÂO -->
                     <form action="" method="post">
                         <legend>Cadastro de identificadores do paciente</legend> 
-                           <!-- Designação -->
-                        <div class="form-group">   
-                            <label for="lbDesignacao">Designação</label>
-                            <input class="form-control col-md-6" type="text" required>
-                        </div>
-
                         <div class="row">
                             <!-- Tipo do identificador -->
                             <div class="form-group col-md-6">
@@ -85,6 +126,13 @@
                                 </select>
                             </div>
                         </div>
+                        
+                        <!-- Designação -->
+                        <div class="form-group">   
+                            <label for="lbDesignacao">Designação</label>
+                            <input class="form-control col-md-6" type="text" required>
+                        </div>
+
 
                         <div class="row">
                             <!-- Emissor -->
@@ -182,8 +230,9 @@
                         </div>
 
                         <br /><br />    
-                        <input type="submit" value="Salvar" />
-                        <input type="reset" value="Limpar"/>
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar"/>
+                        <input class="btn btn-warning" type="button" value="Cancelar"/>
                     </form>
                 
                 </section>
@@ -194,8 +243,9 @@
                         <legend>Cadastro de Nomes do paciente</legend>
                         
                         <br /><br />    
-                        <input type="submit" value="Salvar" />
-                        <input type="reset" value="Limpar"/>
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar"/>
+                        <input class="btn btn-warning" type="button" value="Cancelar"/>
                     </form>
                 </section>
                 
@@ -205,8 +255,9 @@
                         <legend>Cadastro de dados demográficos do paciente</legend>
                         
                         <br /><br />    
-                        <input type="submit" value="Salvar" />
-                        <input type="reset" value="Limpar"/>
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar"/>
+                        <input class="btn btn-warning" type="button" value="Cancelar"/>
                     </form>
                 </section>
                 
@@ -216,8 +267,9 @@
                         <legend>Cadastro de endereços do paciente</legend>
                         
                         <br /><br />    
-                        <input type="submit" value="Salvar" />
-                        <input type="reset" value="Limpar"/>
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar"/>
+                        <input class="btn btn-warning" type="button" value="Cancelar"/>
                     </form>
                 </section>
                 
@@ -227,8 +279,9 @@
                         <legend>Cadastro de contatos do paciente</legend>
 
                         <br /><br />    
-                        <input type="submit" value="Salvar" />
-                        <input type="reset" value="Limpar"/>
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar"/>
+                        <input class="btn btn-warning" type="button" value="Cancelar"/>
                     </form>
                 </section>
                 
@@ -288,8 +341,9 @@
                        
                        
                         <br /><br />    
-                        <input type="submit" value="Salvar" />
-                        <input type="reset" value="Limpar"/>
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar"/>
+                        <input class="btn btn-warning" type="button" value="Cancelar"/>
                     </form>
                 </section>
             </div>

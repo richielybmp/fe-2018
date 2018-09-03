@@ -1,3 +1,7 @@
+function iniciarCadastro(){
+    document.querySelector('#minhaTab > .nav-item #identificadores-tab').click();
+}
+
 function carregueEstados(callback) {   
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
