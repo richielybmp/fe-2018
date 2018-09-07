@@ -2,10 +2,14 @@ function iniciarCadastro(){
     document.querySelector('#minhaTab > .nav-item #identificadores-tab').click();
 }
 
-function carregueEstados(callback) {   
+function cancelarCadastro(){
+    document.querySelector('#minhaTab > .nav-item #home-tab').click();
+}
+
+function carregueJson(fileName, callback) {   
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'estados.json', true);
+    xobj.open('GET', fileName, true);
     xobj.onreadystatechange = function () {
           if (xobj.readyState == 4 && xobj.status == "200") {
             callback(xobj.responseText);
@@ -14,7 +18,7 @@ function carregueEstados(callback) {
     xobj.send(null);  
  }
 
- carregueEstados(function(response) {
+ carregueJson('estados.json', function(response) {
     // Na resposta do carregueEstados, é realizado um callback com a responseText.
     // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
     var estados = JSON.parse(response);
@@ -62,10 +66,7 @@ function mostreFormularios(){
     switch(valor){
         case '10':
             var elemento = document.getElementById("form-ctps");
-            // javascript puro
             elemento.style.display = "block";
-            // jQuery
-            //$(elemento).show();
             controlaHabilitacaoInputs("form-ctps", false);
             break;
         case '11':
@@ -81,4 +82,186 @@ function mostreFormularios(){
         default:
           break;
     }
+}
+
+function buscarRegistroIdentificador(){
+    document.getElementById('tabela-registros-indicadores').style.display = "table";
+}
+
+var quantidadeDeSelects = 0;
+
+function mostrarNovoCadastroDeVinculos(){
+    //document.querySelector(".regiao-vinculos > div").style.display="block";
+
+    // criar várias entradas para vínculos
+    var regiaoVinculos = document.getElementById("regiao-vinculos");
+    
+    var divVinculo = document.createElement('div');
+    divVinculo.className = "vinculo";
+
+    // divRow
+    var divRow = document.createElement('div');
+    divRow.className = "row";
+
+    //Identificador
+    var divIdentificador = document.createElement('div');
+    divIdentificador.className = "col-md-3";
+    var labelIdentificador = document.createElement('label');
+    labelIdentificador.htmlFor = "lbIdentificador";
+    labelIdentificador.innerHTML="Identificador";
+    var inputIdentificador = document.createElement('input');
+    inputIdentificador.className = "form-control";
+    inputIdentificador.type = "text";
+
+    divIdentificador.appendChild(labelIdentificador);
+    divIdentificador.appendChild(inputIdentificador);
+
+    // Relacionamento
+    var divRelacionamento = document.createElement('div');
+    divRelacionamento.className = "col-md-3";
+    var labelRelacionamento = document.createElement('label');
+    labelRelacionamento.htmlFor = "lbRelacionamento";
+    labelRelacionamento.innerHTML="Relacionamento";
+    var seletorDeRelacionamento = document.createElement('select');
+
+    seletorDeRelacionamento.id = "selectRelacionamentos_" + quantidadeDeSelects;
+    seletorDeRelacionamento.className = "form-control relacionamentos";
+
+    divRelacionamento.appendChild(labelRelacionamento);
+    divRelacionamento.appendChild(seletorDeRelacionamento);
+
+    carregueJson('relacionamentos.json', function(response) {
+        // Na resposta do carregueEstados, é realizado um callback com a responseText.
+        // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
+        var relacionamentos = JSON.parse(response);
+    
+        // Select 'estados'
+        var elRelacionamentos = document.getElementById(seletorDeRelacionamento.id);
+    
+        // Para cada item no objeto Estados, vamos criar uma <option> e adicionar no 'select'
+        relacionamentos.Relacionamentos.forEach(estado => {
+            //console.log(estado);
+            var option = document.createElement("option");
+            option.text = estado.nome;  // Goiás
+            option.value = estado.codigo; // GO
+            elRelacionamentos.appendChild(option);
+        });
+        quantidadeDeSelects++;
+    });
+
+    // Data Inicio
+    var divDataInicio = document.createElement('div');
+    divDataInicio.className = "col-md-3";
+    var labelDataInicio = document.createElement('label');
+    labelDataInicio.htmlFor = "lbDataInicio";
+    labelDataInicio.innerHTML="Data inicial";
+    var inputDataInicio = document.createElement('input');
+    inputDataInicio.id = "dtInicio";
+    inputDataInicio.name = "dtInicio";
+    inputDataInicio.className = "form-control";
+    inputDataInicio.type = "date";
+
+    divDataInicio.appendChild(labelDataInicio);
+    divDataInicio.appendChild(inputDataInicio);
+
+    // Data final
+    var divDataFim = document.createElement('div');
+    divDataFim.className = "col-md-3";
+    var labelDataFim = document.createElement('label');
+    labelDataFim.htmlFor = "lbDataFim";
+    labelDataFim.innerHTML="Data final";
+    var inputDataFim = document.createElement('input');
+    inputDataFim.id = "dtFinal";
+    inputDataFim.name = "dtFinal";
+    inputDataFim.className = "form-control";
+    inputDataFim.type = "date";
+
+    divDataFim.appendChild(labelDataFim);
+    divDataFim.appendChild(inputDataFim);
+    // ------------------------------------------------
+    divRow.appendChild(divIdentificador);
+    divRow.appendChild(divRelacionamento);
+    divRow.appendChild(divDataInicio);
+    divRow.appendChild(divDataFim);
+    // ------------------------------------------------
+    
+    // divAcoes
+    var divAcoes = document.createElement('div');
+    divAcoes.className = "acoes";
+    var btnSalvar = document.createElement('input');
+    btnSalvar.className="btn btn-success";
+    btnSalvar.value = "Salvar";
+    btnSalvar.type = "";
+    btnSalvar.onclick = (evt) =>{
+        $(evt.target).closest(".vinculo").find(".row input,select").prop('disabled', true);
+        $(evt.target).hide();
+        $(evt.target).closest(".acoes").find("#btnCancelar").hide();
+        $(evt.target).closest(".acoes").find("#btnEditar").show();
+        $(evt.target).closest(".acoes").find("#btnExcluir").show();
+    };
+    var btnCancelar = document.createElement('input');
+    btnCancelar.id = "btnCancelar";
+    btnCancelar.className="btn btn-warning";
+    btnCancelar.value = "Cancelar";
+    btnCancelar.type = "submit";
+    btnCancelar.onclick = (evt) =>{
+        $(evt.target).closest(".vinculo").remove();
+    };
+    var btnEditar = document.createElement('input');
+    btnEditar.id = "btnEditar";
+    btnEditar.className="btn btn-primary";
+    btnEditar.value = "Editar";
+    btnEditar.type = "submit";
+    btnEditar.style.display = "none";
+    var btnExcluir = document.createElement('input');
+    btnExcluir.id = "btnExcluir";
+    btnExcluir.className="btn btn-danger";
+    btnExcluir.value = "Excluir";
+    btnExcluir.type = "reset";
+    btnExcluir.style.display = "none";
+    btnExcluir.onclick = (evt) =>{
+        $(evt.target).closest(".vinculo").remove();
+    };
+
+    divAcoes.appendChild(btnSalvar);
+    divAcoes.appendChild(btnCancelar);
+    divAcoes.appendChild(btnEditar);
+    divAcoes.appendChild(btnExcluir);
+
+    divVinculo.appendChild(divRow);
+    divVinculo.appendChild(divAcoes);
+
+    regiaoVinculos.appendChild(divVinculo);
+
+    console.log(regiaoVinculos);
+
+    //         <!-- Tipo de relacionamento -->
+    //         <div class="col-md-3">
+    //             <label for="lbRelacionamento">Relacionamento</label>
+    //             <select class="form-control">
+    //                 <option value="7" selected="">Avó materna</option>
+    //                 <option value="8">Avô materno</option>
+    //                 <option value="22">Cônjuge/companheiro(a)</option>
+    //                 <option value="23">Irmão</option>
+    //                 <option value="24">Irmã</option>
+    //                 <option value="25">Meio-irmão</option>
+    //                 <option value="26">Meio-irmã</option>
+    //                 <option value="27">Irmãos</option>
+    //                 <option value="28">Criança</option>
+    //                 <option value="29">Filha</option>
+    //                 <option value="36">Avó paterna</option>
+    //                 <option value="37">Avô paterno</option>
+    //                 <option value="38">Tio materno</option>
+    //                 <option value="40">Tio paterno</option>
+    //                 <option value="41">Tia paterna</option>
+    //                 <option value="189">Recém-nascido</option>
+    //                 <option value="254">Pais</option>
+    //                 <option value="262">Mãe adotiva</option>
+    //                 <option value="263">Pai adotivo</option>
+    //                 <option value="264">Responsável</option>
+    //                 <option value="265">Coabitante</option>
+    //                 <option value="939">Tia materna</option>
+    //             </select>
+    //         </div>
+
 }

@@ -48,20 +48,20 @@
                     <span>Página inicial - Identificação dos indivíduos em saúde</span>
                     <div>
                         <div class="localizar">
-                            <form>
+
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Localizar...">
+                                    <input type="text" class="form-control" placeholder="Buscar...">
                                     <span class="mdi mdi-magnify"></span>
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">Localizar</button>
+                                        <button class="btn btn-primary" onclick="buscarRegistroIdentificador()">Buscar</button>
                                     </div>
                                 </div>
-                            </form>
+
                         </div>
                         <input class="btn btn-primary" type="button" value="Novo cadastro" onclick="iniciarCadastro()">
                         
-                        <table>
-                            <tr>
+                        <table id="tabela-registros-indicadores">
+                            <tr class="trHeader">
                                 <th>Identificador</th>
                                 <th>Nome</th>
                                 <th>Ações</th>
@@ -100,11 +100,10 @@
                     <!-- Início do formulário - IDENTIFICAÇÂO -->
                     <form action="" method="post">
                         <legend>Cadastro de identificadores do paciente</legend> 
-                        <div class="row">
                             <!-- Tipo do identificador -->
-                            <div class="form-group col-md-6">
+                            <div class="form-group">
                                 <label for="lbTipoIdentificador">Tipo do identificador</label>
-                                <select name="selectTipoIdentificador" id="selectTipoIdentificador" class="form-control" required>
+                                <select name="selectTipoIdentificador" id="selectTipoIdentificador" class="form-control col-md-6" required>
                                     <option value="01" selected>Único dentro da organização</option>
                                     <option value="02">Número do prontuário</option>
                                     <option value="10">Carteira de Trabalho e Previdência Social</option>
@@ -116,16 +115,15 @@
                                 </select>
                             </div>
                             <!-- Área geográfica -->
-                            <div class="form-group col-md-6">   
+                            <div class="form-group">   
                                 <label for="">Área Geográfica</label>
-                                <select class="form-control" required>
+                                <select class="form-control col-md-6" required>
                                     <option value="1" selected>Local</option>
                                     <option value="2">Área/região/distrito</option>
                                     <option value="3">Estado/província/território</option>
                                     <option value="4">Nacional</option>
                                 </select>
                             </div>
-                        </div>
                         
                         <!-- Designação -->
                         <div class="form-group">   
@@ -232,7 +230,7 @@
                         <br /><br />    
                         <input class="btn btn-primary" type="submit" value="Salvar" />
                         <input class="btn btn-light" type="reset" value="Limpar"/>
-                        <input class="btn btn-warning" type="button" value="Cancelar"/>
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
                     </form>
                 
                 </section>
@@ -245,7 +243,7 @@
                         <br /><br />    
                         <input class="btn btn-primary" type="submit" value="Salvar" />
                         <input class="btn btn-light" type="reset" value="Limpar"/>
-                        <input class="btn btn-warning" type="button" value="Cancelar"/>
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
                     </form>
                 </section>
                 
@@ -257,7 +255,7 @@
                         <br /><br />    
                         <input class="btn btn-primary" type="submit" value="Salvar" />
                         <input class="btn btn-light" type="reset" value="Limpar"/>
-                        <input class="btn btn-warning" type="button" value="Cancelar"/>
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
                     </form>
                 </section>
                 
@@ -269,7 +267,7 @@
                         <br /><br />    
                         <input class="btn btn-primary" type="submit" value="Salvar" />
                         <input class="btn btn-light" type="reset" value="Limpar"/>
-                        <input class="btn btn-warning" type="button" value="Cancelar"/>
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
                     </form>
                 </section>
                 
@@ -281,7 +279,7 @@
                         <br /><br />    
                         <input class="btn btn-primary" type="submit" value="Salvar" />
                         <input class="btn btn-light" type="reset" value="Limpar"/>
-                        <input class="btn btn-warning" type="button" value="Cancelar"/>
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
                     </form>
                 </section>
                 
@@ -291,51 +289,60 @@
                      <form action="">
                         <legend>Cadastro de vínculos do paciente</legend>
                         
-                        <div class="row">
-                            <!-- Identificador -->
-                            <div class="col-md-3">   
-                                <label for="lbIdentificador">Identificador</label>
-                                <input class="form-control" type="text">
-                            </div>
+                        <input class="btn btn-primary" type="button" value="Adicionar Vínculo" onclick="mostrarNovoCadastroDeVinculos()">
+                        <div id="regiao-vinculos">
+                            <div class="vinculo" style="display:none;">
+                                <div class="row">
+                                    <!-- Identificador -->
+                                    <div class="col-md-3">   
+                                        <label for="lbIdentificador">Identificador</label>
+                                        <input class="form-control" type="text">
+                                    </div>
 
-                            <!-- Tipo de relacionamento -->
-                            <div class="col-md-3">
-                                <label for="lbRelacionamento">Relacionamento</label>
-                                <select class="form-control">
-                                    <option value="7" selected="">Avó materna</option>
-                                    <option value="8">Avô materno</option>
-                                    <option value="22">Cônjuge/companheiro(a)</option>
-                                    <option value="23">Irmão</option>
-                                    <option value="24">Irmã</option>
-                                    <option value="25">Meio-irmão</option>
-                                    <option value="26">Meio-irmã</option>
-                                    <option value="27">Irmãos</option>
-                                    <option value="28">Criança</option>
-                                    <option value="29">Filha</option>
-                                    <option value="36">Avó paterna</option>
-                                    <option value="37">Avô paterno</option>
-                                    <option value="38">Tio materno</option>
-                                    <option value="40">Tio paterno</option>
-                                    <option value="41">Tia paterna</option>
-                                    <option value="189">Recém-nascido</option>
-                                    <option value="254">Pais</option>
-                                    <option value="262">Mãe adotiva</option>
-                                    <option value="263">Pai adotivo</option>
-                                    <option value="264">Responsável</option>
-                                    <option value="265">Coabitante</option>
-                                    <option value="939">Tia materna</option>
-                                </select>
-                            </div>
+                                    <!-- Tipo de relacionamento -->
+                                    <div class="col-md-3">
+                                        <label for="lbRelacionamento">Relacionamento</label>
+                                        <select class="form-control">
+                                            <option value="7" selected="">Avó materna</option>
+                                            <option value="8">Avô materno</option>
+                                            <option value="22">Cônjuge/companheiro(a)</option>
+                                            <option value="23">Irmão</option>
+                                            <option value="24">Irmã</option>
+                                            <option value="25">Meio-irmão</option>
+                                            <option value="26">Meio-irmã</option>
+                                            <option value="27">Irmãos</option>
+                                            <option value="28">Criança</option>
+                                            <option value="29">Filha</option>
+                                            <option value="36">Avó paterna</option>
+                                            <option value="37">Avô paterno</option>
+                                            <option value="38">Tio materno</option>
+                                            <option value="40">Tio paterno</option>
+                                            <option value="41">Tia paterna</option>
+                                            <option value="189">Recém-nascido</option>
+                                            <option value="254">Pais</option>
+                                            <option value="262">Mãe adotiva</option>
+                                            <option value="263">Pai adotivo</option>
+                                            <option value="264">Responsável</option>
+                                            <option value="265">Coabitante</option>
+                                            <option value="939">Tia materna</option>
+                                        </select>
+                                    </div>
 
-                            <!-- Data Inicial -->
-                            <div class="col-md-3">
-                                <label for="lbDataInicial">Data inicial</label>
-                                <input type="date" name="dtInicialRelacionamento" id="dtInicialRelacionamento" class="form-control">
-                            </div>
-                            <!-- Data Final -->
-                            <div class="col-md-3">
-                                <label for="lbDataInicial">Data final</label>
-                                <input type="date" name="dtFinalRelacionamento" id="dtFinalRelacionamento" class="form-control">
+                                    <!-- Data Inicial -->
+                                    <div class="col-md-3">
+                                        <label for="lbDataInicial">Data inicial</label>
+                                        <input type="date" name="dtInicialRelacionamento" id="dtInicialRelacionamento" class="form-control">
+                                    </div>
+                                    <!-- Data Final -->
+                                    <div class="col-md-3">
+                                        <label for="lbDataInicial">Data final</label>
+                                        <input type="date" name="dtFinalRelacionamento" id="dtFinalRelacionamento" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="acoes">
+                                    <input class="btn btn-primary" type="submit" value="Editar" />
+                                    <input class="btn btn-danger" type="reset" value="Excluir"/>
+                                </div>
                             </div>
                         </div>
                        
@@ -343,7 +350,7 @@
                         <br /><br />    
                         <input class="btn btn-primary" type="submit" value="Salvar" />
                         <input class="btn btn-light" type="reset" value="Limpar"/>
-                        <input class="btn btn-warning" type="button" value="Cancelar"/>
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
                     </form>
                 </section>
             </div>

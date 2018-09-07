@@ -1,0 +1,26 @@
+{
+    "Relacionamentos": [
+        {"nome": "Avó materna", "codigo": 7},
+        {"nome": "Avô materno", "codigo": 8},
+        {"nome": "Cônjuge/companheiro(a)", "sigla": 22},
+        {"nome": "Irmão", "codigo": 23},
+        {"nome": "Irmã", "codigo": 24},
+        {"nome": "Meio-irmão", "codigo": 25},
+        {"nome": "Meio-irmã", "codigo": 26},
+        {"nome": "Irmãos", "codigo": 27},
+        {"nome": "Criança", "codigo": 28},
+        {"nome": "Filha", "codigo": 29},
+        {"nome": "Avó paterna", "codigo": 36},
+        {"nome": "Avô paterno", "codigo": 37},
+        {"nome": "Tio materno", "codigo": 38},
+        {"nome": "Tio paterno", "codigo": 40},
+        {"nome": "Tia paterna", "codigo": 41},
+        {"nome": "Recém-nascido", "codigo": 189},
+        {"nome": "Pais", "codigo": 254},
+        {"nome": "Mãe adotiva", "codigo": 262},
+        {"nome": "Pai adotivo", "codigo": 263},
+        {"nome": "Responsável", "codigo": 264},
+        {"nome": "Coabitante", "codigo": 265},
+        {"nome": "Tia materna", "codigo": 939}
+    ]
+}
