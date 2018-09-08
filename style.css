@@ -42,10 +42,6 @@ td, th {
     padding: 8px;
 }
 
-/* tr:nth-child(even) {
-    background-color: #dddddd;
-} */
-
 tr:hover:not(.trHeader) {
     background-color:#f5f5f5;
 }

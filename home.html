@@ -4,42 +4,46 @@
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+    <meta name="authors" content="Richiely Batista, Felipe Maciel, Anderson Messias, Igor Emílio">
+    <meta name="description" content="Implementação de “portal” para cadastro de identificadores de indivíduos em saúde (pacientes). Norma ABNT NBR 15985:2011">
+    <title>Cadastro de Pacientes - ABNT 15985</title>
+    <link rel="shortcut icon" href="favicon.png">
+     <!-- Bootstrap e CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Portal Saúde</title>
   </head>
   <body>
         <div class="container">
-            <!-- Apresentação do portal -->
-            <h1>ABNT NBR 15985:2011</h1>
-            <h3>Identificação dos indivíduos em saúde</h3>
+            <section class="header">
+                <!-- Apresentação do portal -->
+                <h1>ABNT NBR 15985:2011</h1>
+                <h3>Identificação dos indivíduos em saúde</h3>
 
-            <!-- Nav de controle das abas do portal -->
-            <ul class="nav nav-tabs" id="minhaTab" role="tablist">
-                <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" id="identificadores-tab" data-toggle="tab" href="#identificadores" role="tab" aria-controls="identificadores" aria-selected="false">Identificadores</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" id="nomes-tab" data-toggle="tab" href="#nomes" role="tab" aria-controls="nomes" aria-selected="false">Nomes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="dadosDem-tab" data-toggle="tab" href="#dadosDem" role="tab" aria-controls="dadosDem" aria-selected="false">Dados demográficos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="enderecos-tab" data-toggle="tab" href="#enderecos" role="tab" aria-controls="enderecos" aria-selected="false">Endereços</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="comunicacoes-tab" data-toggle="tab" href="#comunicacoes" role="tab" aria-controls="comunicacoes" aria-selected="false">Comunicações eletrônicas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="vinculos-tab" data-toggle="tab" href="#vinculos" role="tab" aria-controls="vinculos" aria-selected="false">Vínculos</a>
-                </li>
-            </ul>
+                <!-- Nav de controle das abas do portal -->
+                <ul class="nav nav-tabs" id="minhaTab" role="tablist">
+                    <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" id="identificadores-tab" data-toggle="tab" href="#identificadores" role="tab" aria-controls="identificadores" aria-selected="false">Identificadores</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" id="nomes-tab" data-toggle="tab" href="#nomes" role="tab" aria-controls="nomes" aria-selected="false">Nomes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="dadosDem-tab" data-toggle="tab" href="#dadosDem" role="tab" aria-controls="dadosDem" aria-selected="false">Dados demográficos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="enderecos-tab" data-toggle="tab" href="#enderecos" role="tab" aria-controls="enderecos" aria-selected="false">Endereços</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="comunicacoes-tab" data-toggle="tab" href="#comunicacoes" role="tab" aria-controls="comunicacoes" aria-selected="false">Comunicações eletrônicas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="vinculos-tab" data-toggle="tab" href="#vinculos" role="tab" aria-controls="vinculos" aria-selected="false">Vínculos</a>
+                    </li>
+                </ul>
+            </section>
 
             <!-- Seções controladas pela nav -->
             <div class="tab-content" id="conteudo">

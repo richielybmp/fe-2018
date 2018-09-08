@@ -1,24 +1,21 @@
+/****** IDENTIFICADORES ******/
+// Método responsável por mostrar a aba de cadstro de identificadores.
 function iniciarCadastro(){
     document.querySelector('#minhaTab > .nav-item #identificadores-tab').click();
 }
 
+// Método responsável por mostrar a aba home.
 function cancelarCadastro(){
     document.querySelector('#minhaTab > .nav-item #home-tab').click();
 }
 
-function carregueJson(fileName, callback) {   
-    var xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json");
-    xobj.open('GET', fileName, true);
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            callback(xobj.responseText);
-          }
-    };
-    xobj.send(null);  
- }
+// Método responsável por exibir a tabela de resultado dos registros da pesquisa de indicadores.
+function buscarRegistroIdentificador(){
+    document.getElementById('tabela-registros-indicadores').style.display = "table";
+}
 
- carregueJson('estados.json', function(response) {
+// Chamada de método responsável por carregar a combo de Estados.
+carregueJson('estados.json', function(response) {
     // Na resposta do carregueEstados, é realizado um callback com a responseText.
     // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
     var estados = JSON.parse(response);
@@ -36,6 +33,11 @@ function carregueJson(fileName, callback) {
     });
 });
 
+// Listener responsável por tratar quando uma opção do Tipo de Identificador for selecionada.
+const tipoIdentificador = document.getElementById('selectTipoIdentificador');
+tipoIdentificador.addEventListener('change', mostreFormularios);
+
+// Método responsável por controlar a habilitação de campos.
 function controlaHabilitacaoInputs(id, ehDisabled){
     var inputsDoForm = Array.from(document.querySelectorAll("#" + id + " input"));
     // Desabilita todos inputs
@@ -44,14 +46,12 @@ function controlaHabilitacaoInputs(id, ehDisabled){
     }
 }
 
-const tipoIdentificador = document.getElementById('selectTipoIdentificador');
-tipoIdentificador.addEventListener('change', mostreFormularios);
-
+// Método responsável por exibição dos formulários opcionais.
 function mostreFormularios(){
     var valor = this.value;
-
+    
     var formsOpicionais = document.querySelectorAll('#identificadores .opcional');
-
+    
     // Esconder todas as regiões opcionais
     // javascript puro
     for (el in Array.from(formsOpicionais)){
@@ -61,7 +61,7 @@ function mostreFormularios(){
     }
     // jQuery
     //formsOpicionais.hide();
-
+    
     // Mostrar a região selecionada no select
     switch(valor){
         case '10':
@@ -80,29 +80,28 @@ function mostreFormularios(){
             elemento.style.display = "block";
             break;
         default:
-          break;
+            break;
     }
 }
-
-function buscarRegistroIdentificador(){
-    document.getElementById('tabela-registros-indicadores').style.display = "table";
-}
-
-var quantidadeDeSelects = 0;
-
+/****** IDENTIFICADORES - FIM ******/
+    
+/****** VÍNCULOS ******/
+var quantidadeDeSelectsRelacionamento = 0;
+    
+//Método responsável por gerar html para cadastro de novos vinculos.
 function mostrarNovoCadastroDeVinculos(){
     //document.querySelector(".regiao-vinculos > div").style.display="block";
-
+    
     // criar várias entradas para vínculos
     var regiaoVinculos = document.getElementById("regiao-vinculos");
     
     var divVinculo = document.createElement('div');
     divVinculo.className = "vinculo";
-
+    
     // divRow
     var divRow = document.createElement('div');
     divRow.className = "row";
-
+    
     //Identificador
     var divIdentificador = document.createElement('div');
     divIdentificador.className = "col-md-3";
@@ -112,10 +111,10 @@ function mostrarNovoCadastroDeVinculos(){
     var inputIdentificador = document.createElement('input');
     inputIdentificador.className = "form-control";
     inputIdentificador.type = "text";
-
+    
     divIdentificador.appendChild(labelIdentificador);
     divIdentificador.appendChild(inputIdentificador);
-
+    
     // Relacionamento
     var divRelacionamento = document.createElement('div');
     divRelacionamento.className = "col-md-3";
@@ -123,21 +122,21 @@ function mostrarNovoCadastroDeVinculos(){
     labelRelacionamento.htmlFor = "lbRelacionamento";
     labelRelacionamento.innerHTML="Relacionamento";
     var seletorDeRelacionamento = document.createElement('select');
-
-    seletorDeRelacionamento.id = "selectRelacionamentos_" + quantidadeDeSelects;
+    
+    seletorDeRelacionamento.id = "selectRelacionamentos_" + quantidadeDeSelectsRelacionamento;
     seletorDeRelacionamento.className = "form-control relacionamentos";
 
     divRelacionamento.appendChild(labelRelacionamento);
     divRelacionamento.appendChild(seletorDeRelacionamento);
-
+    
     carregueJson('relacionamentos.json', function(response) {
         // Na resposta do carregueEstados, é realizado um callback com a responseText.
         // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
         var relacionamentos = JSON.parse(response);
-    
+        
         // Select 'estados'
         var elRelacionamentos = document.getElementById(seletorDeRelacionamento.id);
-    
+        
         // Para cada item no objeto Estados, vamos criar uma <option> e adicionar no 'select'
         relacionamentos.Relacionamentos.forEach(estado => {
             //console.log(estado);
@@ -146,15 +145,17 @@ function mostrarNovoCadastroDeVinculos(){
             option.value = estado.codigo; // GO
             elRelacionamentos.appendChild(option);
         });
-        quantidadeDeSelects++;
+        quantidadeDeSelectsRelacionamento++;
     });
 
     // Data Inicio
     var divDataInicio = document.createElement('div');
     divDataInicio.className = "col-md-3";
+    
     var labelDataInicio = document.createElement('label');
     labelDataInicio.htmlFor = "lbDataInicio";
     labelDataInicio.innerHTML="Data inicial";
+    
     var inputDataInicio = document.createElement('input');
     inputDataInicio.id = "dtInicio";
     inputDataInicio.name = "dtInicio";
@@ -167,9 +168,11 @@ function mostrarNovoCadastroDeVinculos(){
     // Data final
     var divDataFim = document.createElement('div');
     divDataFim.className = "col-md-3";
+    
     var labelDataFim = document.createElement('label');
     labelDataFim.htmlFor = "lbDataFim";
     labelDataFim.innerHTML="Data final";
+    
     var inputDataFim = document.createElement('input');
     inputDataFim.id = "dtFinal";
     inputDataFim.name = "dtFinal";
@@ -188,6 +191,7 @@ function mostrarNovoCadastroDeVinculos(){
     // divAcoes
     var divAcoes = document.createElement('div');
     divAcoes.className = "acoes";
+    
     var btnSalvar = document.createElement('input');
     btnSalvar.className="btn btn-success";
     btnSalvar.value = "Salvar";
@@ -199,6 +203,7 @@ function mostrarNovoCadastroDeVinculos(){
         $(evt.target).closest(".acoes").find("#btnEditar").show();
         $(evt.target).closest(".acoes").find("#btnExcluir").show();
     };
+    
     var btnCancelar = document.createElement('input');
     btnCancelar.id = "btnCancelar";
     btnCancelar.className="btn btn-warning";
@@ -207,12 +212,14 @@ function mostrarNovoCadastroDeVinculos(){
     btnCancelar.onclick = (evt) =>{
         $(evt.target).closest(".vinculo").remove();
     };
+    
     var btnEditar = document.createElement('input');
     btnEditar.id = "btnEditar";
     btnEditar.className="btn btn-primary";
     btnEditar.value = "Editar";
     btnEditar.type = "submit";
     btnEditar.style.display = "none";
+    
     var btnExcluir = document.createElement('input');
     btnExcluir.id = "btnExcluir";
     btnExcluir.className="btn btn-danger";
@@ -265,3 +272,19 @@ function mostrarNovoCadastroDeVinculos(){
     //         </div>
 
 }
+/****** VÍNCULOS - FIM ******/
+
+/****** UTILITÁRIOS ******/
+// Método responsável por ler arquivo json.
+function carregueJson(fileName, callback) {   
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', fileName, true);
+    xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            callback(xobj.responseText);
+          }
+    };
+    xobj.send(null);  
+ }
+ /****** UTILITÁRIOS - FIM ******/
