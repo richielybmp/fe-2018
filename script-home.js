@@ -15,7 +15,7 @@ function buscarRegistroIdentificador(){
 }
 
 // Chamada de método responsável por carregar a combo de Estados.
-carregueJson('estados.json', function(response) {
+carregueJson('./json/estados.json', function(response) {
     // Na resposta do carregueEstados, é realizado um callback com a responseText.
     // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
     var estados = JSON.parse(response);
@@ -53,14 +53,11 @@ function mostreFormularios(){
     var formsOpicionais = document.querySelectorAll('#identificadores .opcional');
     
     // Esconder todas as regiões opcionais
-    // javascript puro
     for (el in Array.from(formsOpicionais)){
         formsOpicionais[el].style.display = "none";
         var id = formsOpicionais[el].id;
         controlaHabilitacaoInputs(id, true);
     }
-    // jQuery
-    //formsOpicionais.hide();
     
     // Mostrar a região selecionada no select
     switch(valor){
@@ -95,41 +92,28 @@ function mostrarNovoCadastroDeVinculos(){
     // criar várias entradas para vínculos
     var regiaoVinculos = document.getElementById("regiao-vinculos");
     
-    var divVinculo = document.createElement('div');
-    divVinculo.className = "vinculo";
+    var divVinculo = criarComponenteHtmlDinamico({ tag: 'div', className:'vinculo' });
     
     // divRow
-    var divRow = document.createElement('div');
-    divRow.className = "row";
-    
+    var divRow = criarComponenteHtmlDinamico({ tag: 'div', className:'row' });
+
     //Identificador
-    var divIdentificador = document.createElement('div');
-    divIdentificador.className = "col-md-3";
-    var labelIdentificador = document.createElement('label');
-    labelIdentificador.htmlFor = "lbIdentificador";
-    labelIdentificador.innerHTML="Identificador";
-    var inputIdentificador = document.createElement('input');
-    inputIdentificador.className = "form-control";
-    inputIdentificador.type = "text";
+    var divIdentificador = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
+    var labelIdentificador = criarComponenteHtmlDinamico({ tag: 'label', id:'', className:'', name:'', innerHTML:'Identificador', htmlFor:'lbIdentificador', type:'' });
+    var inputIdentificador = criarComponenteHtmlDinamico({ tag: 'input', className:'form-control', innerHTML:'Identificador', htmlFor:'lbIdentificador', type:'text' });
     
     divIdentificador.appendChild(labelIdentificador);
     divIdentificador.appendChild(inputIdentificador);
     
     // Relacionamento
-    var divRelacionamento = document.createElement('div');
-    divRelacionamento.className = "col-md-3";
-    var labelRelacionamento = document.createElement('label');
-    labelRelacionamento.htmlFor = "lbRelacionamento";
-    labelRelacionamento.innerHTML="Relacionamento";
-    var seletorDeRelacionamento = document.createElement('select');
-    
-    seletorDeRelacionamento.id = "selectRelacionamentos_" + quantidadeDeSelectsRelacionamento;
-    seletorDeRelacionamento.className = "form-control relacionamentos";
+    var divRelacionamento = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
+    var labelRelacionamento = criarComponenteHtmlDinamico({ tag: 'label', innerHTML:'Relacionamento', htmlFor:'lbRelacionamento' }); 
+    var seletorDeRelacionamento = criarComponenteHtmlDinamico({ tag: 'select', id:'selectRelacionamentos_' + quantidadeDeSelectsRelacionamento, className:'form-control relacionamentos' });
 
     divRelacionamento.appendChild(labelRelacionamento);
     divRelacionamento.appendChild(seletorDeRelacionamento);
     
-    carregueJson('relacionamentos.json', function(response) {
+    carregueJson('./json/relacionamentos.json', function(response) {
         // Na resposta do carregueEstados, é realizado um callback com a responseText.
         // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
         var relacionamentos = JSON.parse(response);
@@ -149,35 +133,21 @@ function mostrarNovoCadastroDeVinculos(){
     });
 
     // Data Inicio
-    var divDataInicio = document.createElement('div');
-    divDataInicio.className = "col-md-3";
+    var divDataInicio = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
     
-    var labelDataInicio = document.createElement('label');
-    labelDataInicio.htmlFor = "lbDataInicio";
-    labelDataInicio.innerHTML="Data inicial";
+    var labelDataInicio = criarComponenteHtmlDinamico({ tag: 'label', htmlFor:'lbDataInicio', innerHTML:'Data inicial' });
     
-    var inputDataInicio = document.createElement('input');
-    inputDataInicio.id = "dtInicio";
-    inputDataInicio.name = "dtInicio";
-    inputDataInicio.className = "form-control";
-    inputDataInicio.type = "date";
+    var inputDataInicio = criarComponenteHtmlDinamico({ tag: 'input', id:'dtInicio', className:'form-control', name:'dtInicio', type:'date' });
 
     divDataInicio.appendChild(labelDataInicio);
     divDataInicio.appendChild(inputDataInicio);
 
     // Data final
-    var divDataFim = document.createElement('div');
-    divDataFim.className = "col-md-3";
+    var divDataFim = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
     
-    var labelDataFim = document.createElement('label');
-    labelDataFim.htmlFor = "lbDataFim";
-    labelDataFim.innerHTML="Data final";
+    var labelDataFim =  criarComponenteHtmlDinamico({ tag: 'label', htmlFor:'lbDataFim', innerHTML:'Data final' });
     
-    var inputDataFim = document.createElement('input');
-    inputDataFim.id = "dtFinal";
-    inputDataFim.name = "dtFinal";
-    inputDataFim.className = "form-control";
-    inputDataFim.type = "date";
+    var inputDataFim = criarComponenteHtmlDinamico({ tag: 'input', id:'dtFinal', className:'form-control', name:'dtFinal', type:'date' });
 
     divDataFim.appendChild(labelDataFim);
     divDataFim.appendChild(inputDataFim);
@@ -189,42 +159,43 @@ function mostrarNovoCadastroDeVinculos(){
     // ------------------------------------------------
     
     // divAcoes
-    var divAcoes = document.createElement('div');
-    divAcoes.className = "acoes";
+    var divAcoes = criarComponenteHtmlDinamico({ tag: 'div', className:'acoes' });
     
-    var btnSalvar = document.createElement('input');
-    btnSalvar.className="btn btn-success";
-    btnSalvar.value = "Salvar";
-    btnSalvar.type = "";
+    var btnSalvar =  criarComponenteHtmlDinamico({ tag: 'input', id:'btnSalvar', className:'btn btn-success', value:'Salvar'});
     btnSalvar.onclick = (evt) =>{
         $(evt.target).closest(".vinculo").find(".row input,select").prop('disabled', true);
         $(evt.target).hide();
         $(evt.target).closest(".acoes").find("#btnCancelar").hide();
         $(evt.target).closest(".acoes").find("#btnEditar").show();
         $(evt.target).closest(".acoes").find("#btnExcluir").show();
+        evt.target.setAttribute('salvou', true)
     };
     
-    var btnCancelar = document.createElement('input');
-    btnCancelar.id = "btnCancelar";
-    btnCancelar.className="btn btn-warning";
-    btnCancelar.value = "Cancelar";
-    btnCancelar.type = "submit";
+    var btnCancelar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnCancelar', className:'btn btn-warning', value:'Cancelar', type:''});
     btnCancelar.onclick = (evt) =>{
-        $(evt.target).closest(".vinculo").remove();
+        if(!$(evt.target).closest(".acoes").find("#btnSalvar")[0].getAttribute('salvou') == true)
+            $(evt.target).closest(".vinculo").remove();
+        else
+            $(evt.target).closest(".vinculo").find(".row input,select").prop('disabled', true);
+            $(evt.target).hide();
+            $(evt.target).closest(".acoes").find("#btnSalvar").hide();
+            $(evt.target).closest(".acoes").find("#btnCancelar").hide();
+            $(evt.target).closest(".acoes").find("#btnEditar").show();
+            $(evt.target).closest(".acoes").find("#btnExcluir").show();
     };
     
-    var btnEditar = document.createElement('input');
-    btnEditar.id = "btnEditar";
-    btnEditar.className="btn btn-primary";
-    btnEditar.value = "Editar";
-    btnEditar.type = "submit";
+    var btnEditar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnEditar', className:'btn btn-primary', value:'Editar'});
     btnEditar.style.display = "none";
-    
-    var btnExcluir = document.createElement('input');
-    btnExcluir.id = "btnExcluir";
-    btnExcluir.className="btn btn-danger";
-    btnExcluir.value = "Excluir";
-    btnExcluir.type = "reset";
+    btnEditar.onclick = (evt) =>{
+        $(evt.target).hide();
+        $(evt.target).closest(".vinculo").find(".row input,select").prop('disabled', false);
+        $(evt.target).closest(".acoes").find("#btnSalvar").show();
+        $(evt.target).closest(".acoes").find("#btnCancelar").show();
+        $(evt.target).closest(".acoes").find("#btnEditar").hide();
+        $(evt.target).closest(".acoes").find("#btnExcluir").hide();
+    };
+
+    var btnExcluir = criarComponenteHtmlDinamico({ tag: 'input', id:'btnExcluir', className:'btn btn-danger', value:'Excluir', type:'reset'});
     btnExcluir.style.display = "none";
     btnExcluir.onclick = (evt) =>{
         $(evt.target).closest(".vinculo").remove();
@@ -273,18 +244,3 @@ function mostrarNovoCadastroDeVinculos(){
 
 }
 /****** VÍNCULOS - FIM ******/
-
-/****** UTILITÁRIOS ******/
-// Método responsável por ler arquivo json.
-function carregueJson(fileName, callback) {   
-    var xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json");
-    xobj.open('GET', fileName, true);
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            callback(xobj.responseText);
-          }
-    };
-    xobj.send(null);  
- }
- /****** UTILITÁRIOS - FIM ******/
