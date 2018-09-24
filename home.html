@@ -272,13 +272,82 @@
                 <section class="tab-pane fade" id="enderecos" role="tabpanel" aria-labelledby="enderecos-tab">
                     <form action="">
                         <legend>Cadastro de endereços do paciente</legend>
+                        <!-- Tipo de endereço -->
+                        <div class="form-group">
+                            <label for="lbTipoEndereco">Tipo de endereço</label>
+                            <select name="selectTipoEndereco" id="selectTipoEndereco" class="form-control col-md-3" required>
+                                <option value="01" selected>Comercial</option>
+                                <option value="02">Correio ou Postal</option>
+                                <option value="03">Acomodação Temporária</option>
+                                <option value="04">Residencial</option>
+                                <option value="05">Sem endereço fixo</option>
+                                <option value="06">Desconhecido/não declarado</option>
+                            </select>
+                        </div>
+                        <!-- Data inicial e final -->
+                        <div class="col-md-3">   
+                            <label for="lbDataInicial">Data Inicial</label>
+                            <input class="form-control" type="date" required>
+
+                            <label for="lbDataFinal">Data Final</label>
+                            <input class="form-control" type="date" required>
+                            <br>
+                        </div>
                         
+                        <!--Seleção do País -->
+                        <div class="row">
+                            <div class="col-md-4">   
+                                <label for="lbPais">País</label>
+                                <input class="form-control" type="text" required>
+                            </div>
+                            <div class="col-md-4">   
+                                <label for="lbEstado">Estado</label>
+                                <input class="form-control" type="text" required>
+                            </div>
+                            <div class="col-md-4">   
+                                <label for="lbMunicipio">Município</label>
+                                <input class="form-control" type="text" required>
+                            </div>
+                        </div>
+
+                        <br>     
+
+                        <div class="row">
+                            <!-- Caixa Postal -->
+                            <div class="col-md-4">   
+                                <label for="lbCXPostal">Caixa Postal</label>
+                                <input class="form-control" type="text" required>
+                            </div>
+                            <!-- CEP -->
+                            <div class="col-md-4">   
+                                <label for="lbCEP">CEP</label>
+                                <input class="form-control" type="text" required>
+                            </div>
+                            <!-- Bairro -->
+                            <div class="col-md-6">   
+                                <label for="lbBairro">Bairro</label>
+                                <input class="form-control" type="text" required>
+                            </div>
+                            <!-- Distrito -->
+                            <div class="col-md-6">   
+                                <label for="lbDistrito">Distrito</label>
+                                <input class="form-control" type="text" required>
+                            </div>
+                        </div>
+
+                        <!-- Endereço -->
+                        <div class="col-md-15">   
+                            <label for="lbEndereço">Endereço</label>
+                            <input class="form-control" type="text" required>
+                        </div>
+
                         <br /><br />  
                         <div class="botoes-acoes">
                             <input class="btn btn-primary" type="submit" value="Salvar" />
                             <input class="btn btn-light" type="reset" value="Limpar"/>
                             <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
                         </div>  
+                    </div>
                     </form>
                 </section>
                 
