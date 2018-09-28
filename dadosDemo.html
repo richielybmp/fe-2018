@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Cadastro de Pacientes - ABNT 15985</title>
+</head>
+
+<body>
+  <div class="box">
+    <b>Mãe</b><br>
+    <input id="inputNomeMae" type="text" name="mae" size="100%" placeholder="Nome completo da Mãe do paciente"><br>
+    <b>Pai</b><br>
+    <input id="inputNomePai" type="text" name="pai" size="100%" placeholder="Nome completo do Pai do paciente"><br>
+    <div><br>
+      <b>Situação familiar</b><br>
+      <input class="checkbox" type="checkbox" value="1"><span>&nbsp;companheiro(a) e filho(s)</span><br>
+      <input class="checkbox" type="checkbox" value="2"><span>&nbsp;companheiro(a) com laços conjugais e sem filhos</span><br>
+      <input class="checkbox" type="checkbox" value="3"><span>&nbsp;companheiro(a), com filho(s) e/ou outro(s)
+        familiar(es)</span><br>
+      <input class="checkbox" type="checkbox" value="4"><span>&nbsp;familiar(es) sem companheiro(a)</span><br>
+      <input class="checkbox" type="checkbox" value="5"><span>&nbsp;outra(s) pessoa(s) sem laços consanguíneos e/ou
+        laços conjugais</span><br>
+      <input class="checkbox" type="checkbox" value="6"><span>&nbsp;vive sozinho</span><br>
+    </div><br>
+
+    <div>
+      <label for="data"><b>Data de nascimento</b> </label>
+      <input type="date" id="data" name="dn" />
+    </div>
+
+    <div>
+      <b> Inicador de acurácia</b><br>
+      <label>Dia</label>
+      <input type="radio" name="dia" value="A">
+      Acurado</label>
+      <label><input type="radio" name="dia" value="E">
+        Estimado</label>
+      <label><input type="radio" name="dia" value="U">
+        Desconhecido</label><br> Mês: <label><input type="radio" name="Mes" value="A">
+        Acurado</label>
+      <label><input type="radio" name="Mes" value="E">
+        Estimado</label>
+      <label><input type="radio" name="Mes" value="U">
+        Desconhecido</label><br> Ano: <label><input type="radio" name="Ano" value="A">
+        Acurado</label>
+      <label><input type="radio" name="Ano" value="E">
+        Estimado</label>
+      <label><input type="radio" name="Ano" value="U">
+        Desconhecido</label>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
