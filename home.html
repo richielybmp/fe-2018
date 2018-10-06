@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+
+<head>
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,427 +9,444 @@
     <meta name="description" content="Implementação de “portal” para cadastro de identificadores de indivíduos em saúde (pacientes). Norma ABNT NBR 15985:2011">
     <title>Cadastro de Pacientes - ABNT NBR 15985:2011</title>
     <link rel="shortcut icon" href="favicon.png">
-     <!-- Bootstrap e CSS -->
+    <!-- Bootstrap e CSS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  </head>
-  <body>
-        <div class="container">
-            <!-- HEADER -->
-            <section class="header">
-                <!-- Apresentação do portal -->
-                <h1>ABNT NBR 15985:2011</h1>
-                <h3>Identificação dos indivíduos em saúde</h3>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
 
-                <!-- Nav de controle das abas do portal -->
-                <ul class="nav nav-tabs" id="minhaTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="identificadores-tab" data-toggle="tab" href="#identificadores" role="tab" aria-controls="identificadores" aria-selected="false">Identificadores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="nomes-tab" data-toggle="tab" href="#nomes" role="tab" aria-controls="nomes" aria-selected="false">Nomes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="dadosDem-tab" data-toggle="tab" href="#dadosDem" role="tab" aria-controls="dadosDem" aria-selected="false">Dados demográficos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="enderecos-tab" data-toggle="tab" href="#enderecos" role="tab" aria-controls="enderecos" aria-selected="false">Endereços</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="comunicacoes-tab" data-toggle="tab" href="#comunicacoes" role="tab" aria-controls="comunicacoes" aria-selected="false">Comunicações eletrônicas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="vinculos-tab" data-toggle="tab" href="#vinculos" role="tab" aria-controls="vinculos" aria-selected="false">Vínculos</a>
-                    </li>
-                </ul>
-            </section>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <section class="header">
+            <!-- Apresentação do portal -->
+            <h1>ABNT NBR 15985:2011</h1>
+            <h3>Identificação dos indivíduos em saúde</h3>
 
-            <!-- Seções controladas pela nav -->
-            <div class="tab-content" id="conteudo">
-                <!-- Home -->
-                <section class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <span>Página inicial - Identificação dos indivíduos em saúde</span>
-                    <div>
-                        <div class="localizar">
+            <!-- Nav de controle das abas do portal -->
+            <ul class="nav nav-tabs" id="minhaTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                        aria-selected="true">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="identificadores-tab" data-toggle="tab" href="#identificadores" role="tab"
+                        aria-controls="identificadores" aria-selected="false">Identificadores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="nomes-tab" data-toggle="tab" href="#nomes" role="tab" aria-controls="nomes"
+                        aria-selected="false">Nomes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="dadosDem-tab" data-toggle="tab" href="#dadosDem" role="tab" aria-controls="dadosDem"
+                        aria-selected="false">Dados demográficos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="enderecos-tab" data-toggle="tab" href="#enderecos" role="tab" aria-controls="enderecos"
+                        aria-selected="false">Endereços</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="comunicacoes-tab" data-toggle="tab" href="#comunicacoes" role="tab"
+                        aria-controls="comunicacoes" aria-selected="false">Comunicações eletrônicas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="vinculos-tab" data-toggle="tab" href="#vinculos" role="tab" aria-controls="vinculos"
+                        aria-selected="false">Vínculos</a>
+                </li>
+            </ul>
+        </section>
 
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar...">
-                                    <span class="mdi mdi-magnify"></span>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" onclick="buscarRegistroIdentificador()">Buscar</button>
-                                    </div>
-                                </div>
+        <!-- Seções controladas pela nav -->
+        <div class="tab-content" id="conteudo">
+            <!-- Home -->
+            <section class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <span>Página inicial - Identificação dos indivíduos em saúde</span>
+                <div>
+                    <div class="localizar">
 
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar...">
+                            <span class="mdi mdi-magnify"></span>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" onclick="buscarRegistroIdentificador()">Buscar</button>
+                            </div>
                         </div>
-                        <input class="btn btn-primary" type="button" value="Novo cadastro" onclick="iniciarCadastro()">
-                        
-                        <table id="tabela-registros-indicadores">
-                            <tr class="trHeader">
-                                <th>Identificador</th>
-                                <th>Nome</th>
-                                <th>Ações</th>
-                            </tr>
-                            <tr>
-                                <td>123</td>
-                                <td>Maria Anders</td>
-                                <td>
-                                    <input class="btn btn-danger" type="button" value="Remover">
-                                    <input class="btn btn-info" type="button" value="Editar">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>456</td>
-                                <td>Francisco Chang</td>
-                                <td>
-                                    <input class="btn btn-danger" type="button" value="Remover">
-                                    <input class="btn btn-info" type="button" value="Editar">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>789</td>
-                                <td>Roland Mendel</td>
-                                <td>
-                                    <input class="btn btn-danger" type="button" value="Remover">
-                                    <input class="btn btn-info" type="button" value="Editar">
-                                </td>
-                            </tr>
-                        </table>
 
                     </div>
-                </section>
-                
-                <!-- Identificadores -->
-                <section class="tab-pane fade" id="identificadores" role="tabpanel" aria-labelledby="identificadores-tab">
-                    <!-- Início do formulário - IDENTIFICAÇÂO -->
-                    <form action="" method="post">
-                        <legend>Cadastro de identificadores do paciente</legend> 
-                            <!-- Tipo do identificador -->
-                            <div class="form-group">
-                                <label for="lbTipoIdentificador">Tipo do identificador</label>
-                                <select name="selectTipoIdentificador" id="selectTipoIdentificador" class="form-control col-md-6" required>
-                                    <option value="01" selected>Único dentro da organização</option>
-                                    <option value="02">Número do prontuário</option>
-                                    <option value="10">Carteira de Trabalho e Previdência Social</option>
-                                    <option value="11">Titulo Eleitoral</option>
-                                    <option value="12">Certidão de Nascimento, Casamento, Divórcio</option>
-                                    <option value="21">Radiologia</option>
-                                    <option value="22">Patologia</option>
-                                    <option value="23">Farmácia</option>
-                                </select>
-                            </div>
-                            <!-- Área geográfica -->
-                            <div class="form-group">   
-                                <label for="">Área Geográfica</label>
-                                <select class="form-control col-md-6" required>
-                                    <option value="1" selected>Local</option>
-                                    <option value="2">Área/região/distrito</option>
-                                    <option value="3">Estado/província/território</option>
-                                    <option value="4">Nacional</option>
-                                </select>
-                            </div>
-                        
-                        <!-- Designação -->
-                        <div class="form-group">   
-                            <label for="lbDesignacao">Designação</label>
-                            <input class="form-control col-md-6" type="text" required>
-                        </div>
+                    <input class="btn btn-primary" type="button" value="Novo cadastro" onclick="iniciarCadastro()">
 
-                        <div class="row">
-                            <!-- Emissor -->
-                            <div class="col-md-6">   
-                                <label for="lbEmissor">Emissor</label>
-                                <input class="form-control" type="text" required>
-                            </div>
-                            <!-- Data de emissão -->
-                            <div class="col-md-4">   
-                                <label for="lbDataEmissao">Data da emissão</label>
-                                <input class="form-control" type="date" required>
-                            </div>
-                        </div>
+                    <table id="tabela-registros-indicadores">
+                        <tr class="trHeader">
+                            <th>Identificador</th>
+                            <th>Nome</th>
+                            <th>Ações</th>
+                        </tr>
+                        <tr>
+                            <td>123</td>
+                            <td>Maria Anders</td>
+                            <td>
+                                <input class="btn btn-danger" type="button" value="Remover">
+                                <input class="btn btn-info" type="button" value="Editar">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>456</td>
+                            <td>Francisco Chang</td>
+                            <td>
+                                <input class="btn btn-danger" type="button" value="Remover">
+                                <input class="btn btn-info" type="button" value="Editar">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>789</td>
+                            <td>Roland Mendel</td>
+                            <td>
+                                <input class="btn btn-danger" type="button" value="Remover">
+                                <input class="btn btn-info" type="button" value="Editar">
+                            </td>
+                        </tr>
+                    </table>
 
-                        
-                        <!-- CAMPOS OPCIONAIS -->
-                        <!-- Carteira de trabalho e Previdência Social -->
-                        <div id="form-ctps" class="caixa opcional">
-                            <span>Carteira de trabalho</span>
-                            <hr>
-                            <div class="row">
-                                <!-- Série -->
-                                <div class="col-md-3">   
-                                    <label for="lbSerie">Série</label>
-                                    <input class="form-control" type="number"  min="0" disabled required>
-                                </div>
+                </div>
+            </section>
 
-                                <!-- Estado -->
-                                <div class="col-md-4">   
-                                    <label for="lbEstado">Estado</label>
-                                    <!-- Para preencher os estados, estamos utilizando o arquivo 'estados.json' -->
-                                    <input list="selectEstado" name="estados" class="form-control" disabled required>
-                                    <datalist id="selectEstado"></datalist>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Identificadores -->
+            <section class="tab-pane fade" id="identificadores" role="tabpanel" aria-labelledby="identificadores-tab">
+                <!-- Início do formulário - IDENTIFICAÇÂO -->
+                <form action="" method="post">
+                    <legend>Cadastro de identificadores do paciente</legend>
+                    <!-- Tipo do identificador -->
+                    <div class="form-group">
+                        <label for="lbTipoIdentificador">Tipo do identificador</label>
+                        <select name="selectTipoIdentificador" id="selectTipoIdentificador" class="form-control col-md-6"
+                            required>
+                            <option value="01" selected>Único dentro da organização</option>
+                            <option value="02">Número do prontuário</option>
+                            <option value="10">Carteira de Trabalho e Previdência Social</option>
+                            <option value="11">Titulo Eleitoral</option>
+                            <option value="12">Certidão de Nascimento, Casamento, Divórcio</option>
+                            <option value="21">Radiologia</option>
+                            <option value="22">Patologia</option>
+                            <option value="23">Farmácia</option>
+                        </select>
+                    </div>
+                    <!-- Área geográfica -->
+                    <div class="form-group">
+                        <label for="">Área Geográfica</label>
+                        <select class="form-control col-md-6" required>
+                            <option value="1" selected>Local</option>
+                            <option value="2">Área/região/distrito</option>
+                            <option value="3">Estado/província/território</option>
+                            <option value="4">Nacional</option>
+                        </select>
+                    </div>
 
-                        <!-- Certidão -->
-                        <div id="form-certidao" class="caixa opcional">
-                            <!-- Tipo da certidão -->
-                            <span>Certidão</span>
-                            <hr>
-                            <div class="form-group">   
-                                <label for="lbTipoDaCertidao">Tipo da certidão</label>
-                                <select class="form-control col-md-12">
-                                    <option value="nascimento" >Nascimento</option>
-                                    <option value="casamento">Casamento</option>
-                                    <option value="divorcio">Divórcio</option>
-                                </select>
-                            </div>
+                    <!-- Designação -->
+                    <div class="form-group">
+                        <label for="lbDesignacao">Designação</label>
+                        <input class="form-control col-md-6" type="text" required>
+                    </div>
 
-                            <!-- Nome do Cartório -->
-                            <div class="form-group">   
-                                <label for="lbNomeCartorio">Nome do cartório</label>
-                                <input class="form-control col-md-12" type="text">
-                            </div>
-                            <div class="row">
-                                <!-- Livro -->
-                                <div class="col-md-4">   
-                                    <label for="lbLivro">Livro</label>
-                                    <input class="form-control" type="number" min="0">
-                                </div>
-
-                                <!-- Folha -->
-                                <div class="col-md-4">   
-                                    <label for="lbFolha">Folha</label>
-                                    <input class="form-control" type="number" min="0">
-                                </div>
-
-                                <!-- Termo -->
-                                <div class="col-md-4">   
-                                    <label for="lbTermo">Termo</label>
-                                    <input class="form-control" type="number" min="0">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Título eleitoral -->
-                        <div id="form-tEleitor" class="caixa opcional">
-                            <span>Título eleitoral</span>
-                            <hr>
-                            <div class="row">
-                                <!-- Seção eleitoral -->
-                                <div class="col-md-6">   
-                                    <label for="lbSecao">Seção eleitoral</label>
-                                    <input class="form-control" type="number" min="0">
-                                </div>
-
-                                <!-- Zona eleitoral -->
-                                <div class="col-md-6">   
-                                    <label for="lbZona">Zona eleitoral</label>
-                                    <input class="form-control" type="number" min="0">
-                                </div>
-                            </div>
-                        </div>
-
-                        <br /><br />    
-                        <div class="botoes-acoes">
-                            <input class="btn btn-primary" type="submit" value="Salvar" />
-                            <input class="btn btn-light" type="reset" value="Limpar"/>
-                            <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
-                        </div>  
-                    </form>
-                </section>
-                
-                <!-- Nomes -->
-                <section class="tab-pane fade" id="nomes" role="tabpanel" aria-labelledby="nomes-tab">
-                    <form action="">
-                        <legend>Cadastro de Nomes do paciente</legend>
-                        
-                        <br /><br />    
-                        <div class="botoes-acoes">
-                            <input class="btn btn-primary" type="submit" value="Salvar" />
-                            <input class="btn btn-light" type="reset" value="Limpar"/>
-                            <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
-                        </div>  
-                    </form>
-                </section>
-                
-                <!-- Dados demográficos -->
-                <section class="tab-pane fade" id="dadosDem" role="tabpanel" aria-labelledby="dadosDem-tab">
-                    <form action="">
-                        <legend>Cadastro de dados demográficos do paciente</legend>
-                        
-                        <br /><br />    
-                        <div class="botoes-acoes">
-                            <input class="btn btn-primary" type="submit" value="Salvar" />
-                            <input class="btn btn-light" type="reset" value="Limpar"/>
-                            <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
-                        </div>  
-                    </form>
-                </section>
-                
-                <!-- Endereços -->
-                <section class="tab-pane fade" id="enderecos" role="tabpanel" aria-labelledby="enderecos-tab">
-                    <form action="">
-                        <legend>Cadastro de endereços do paciente</legend>
-                        <!-- Tipo de endereço -->
-                        <div class="form-group">
-                            <label for="lbTipoEndereco">Tipo de endereço</label>
-                            <select name="selectTipoEndereco" id="selectTipoEndereco" class="form-control col-md-3" required>
-                                <option value="01" selected>Comercial</option>
-                                <option value="02">Correio ou Postal</option>
-                                <option value="03">Acomodação Temporária</option>
-                                <option value="04">Residencial</option>
-                                <option value="05">Sem endereço fixo</option>
-                                <option value="06">Desconhecido/não declarado</option>
-                            </select>
-                        </div>
-                        <!-- Data inicial -->
-                        <div class="col-md-3">   
-                            <label for="lbDataInicial">Data Inicial</label>
-                            <input class="form-control" type="date" required>
-                        </div>
-                        <div class="field">
-                            <label class="label">Inicador de acurácia</label> <br> Dia: <label class="radio"><input class="radio" type="radio" name="dia" value="A">
-                                Acurado</label>
-                                <label class="radio"><input class="radio" type="radio" name="dia" value="E">
-                                    Estimado</label>
-                                    <label class="radio"><input class="radio" type="radio" name="dia" value="U">
-                                        Desconhecido</label><br> Mês: <label class="radio"><input class="radio" type="radio" name="dia" value="A">
-                                            Acurado</label>
-                                            <label class="radio"><input class="radio" type="radio" name="dia" value="E">
-                                                Estimado</label>
-                                                <label class="radio"><input class="radio" type="radio" name="dia" value="U">
-                                                    Desconhecido</label><br> Ano: <label class="radio"><input class="radio" type="radio" name="dia" value="A">
-                                                        Acurado</label>
-                                                        <label class="radio"><input class="radio" type="radio" name="dia" value="E">
-                                                            Estimado</label>
-                                                            <label class="radio"><input class="radio" type="radio" name="dia" value="U">
-                                                                Desconhecido</label>
-                                                            </div>
-
-                        <!-- Data final -->
-                        <div class="col-md-3">   
-                            <br>
-                            <label for="lbDataFinal">Data Final</label>
-                            <input class="form-control" type="date" required>
-                        </div>
-                        <div class="field">
-                            <label class="label">Inicador de acurácia</label> Dia: <label class="radio"><input class="radio" type="radio" name="dia" value="A">
-                                Acurado</label>
-                                <label class="radio"><input class="radio" type="radio" name="dia" value="E">
-                                    Estimado</label>
-                                    <label class="radio"><input class="radio" type="radio" name="dia" value="U">
-                                        Desconhecido</label><br> Mês: <label class="radio"><input class="radio" type="radio" name="dia" value="A">
-                                            Acurado</label>
-                                            <label class="radio"><input class="radio" type="radio" name="dia" value="E">
-                                                Estimado</label>
-                                                <label class="radio"><input class="radio" type="radio" name="dia" value="U">
-                                                    Desconhecido</label><br> Ano: <label class="radio"><input class="radio" type="radio" name="dia" value="A">
-                                                        Acurado</label>
-                                                        <label class="radio"><input class="radio" type="radio" name="dia" value="E">
-                                                            Estimado</label>
-                                                            <label class="radio"><input class="radio" type="radio" name="dia" value="U">
-                                                                Desconhecido</label>
-                                                            </div>
-
-                        <!--Seleção do País -->
-                        <div class="row">
-                            <div class="col-md-4">   
-                                <label for="lbPais">País</label>
-                                <input class="form-control" type="text" required>
-                            </div>
-                            <div class="col-md-4">   
-                                <label for="lbEstado">Estado</label>
-                                <input class="form-control" type="text" required>
-                            </div>
-                            <div class="col-md-4">   
-                                <label for="lbMunicipio">Município</label>
-                                <input class="form-control" type="text" required>
-                            </div>
-                        </div>
-
-                        <br>     
-
-                        <div class="row">
-                            <!-- Caixa Postal -->
-                            <div class="col-md-4">   
-                                <label for="lbCXPostal">Caixa Postal</label>
-                                <input class="form-control" type="text" required>
-                            </div>
-                            <!-- CEP -->
-                            <div class="col-md-4">   
-                                <label for="lbCEP">CEP</label>
-                                <input class="form-control" type="text" required>
-                            </div>
-                            <!-- Bairro -->
-                            <div class="col-md-6">   
-                                <label for="lbBairro">Bairro</label>
-                                <input class="form-control" type="text" required>
-                            </div>
-                            <!-- Distrito -->
-                            <div class="col-md-6">   
-                                <label for="lbDistrito">Distrito</label>
-                                <input class="form-control" type="text" required>
-                            </div>
-                        </div>
-
-                        <!-- Endereço -->
-                        <div class="col-md-15">   
-                            <label for="lbEndereço">Endereço</label>
+                    <div class="row">
+                        <!-- Emissor -->
+                        <div class="col-md-6">
+                            <label for="lbEmissor">Emissor</label>
                             <input class="form-control" type="text" required>
                         </div>
-
-                        <br /><br />  
-                        <div class="botoes-acoes">
-                            <input class="btn btn-primary" type="submit" value="Salvar" />
-                            <input class="btn btn-light" type="reset" value="Limpar"/>
-                            <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
-                        </div>  
-                    </form>
-                </section>
-                
-                <!-- Comunicações eletrônicas -->
-                <section class="tab-pane fade" id="comunicacoes" role="tabpanel" aria-labelledby="comunicacoes-tab">
-                    <form action="">
-                        <legend>Cadastro de contatos do paciente</legend>
-
-                        <br /><br />
-                        <div class="botoes-acoes">
-                            <input class="btn btn-primary" type="submit" value="Salvar" />
-                            <input class="btn btn-light" type="reset" value="Limpar"/>
-                            <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
-                        </div>    
-                    </form>
-                </section>
-                
-                <!-- Vínculos -->
-                <section class="tab-pane fade" id="vinculos" role="tabpanel" aria-labelledby="vinculos-tab">
-                     <!-- Início do formulário - VÍNCULOS -->
-                     <form action="">
-                        <legend>Cadastro de vínculos do paciente</legend>
-                        
-                        <input class="btn btn-primary bloco" type="button" value="Adicionar Vínculo" onclick="mostrarNovoCadastroDeVinculos()">
-                        <div id="regiao-vinculos"></div>
-                        
-                        <br /><br />    
-                        <div class="botoes-acoes">
-                            <input class="btn btn-primary" type="submit" value="Salvar" />
-                            <input class="btn btn-light" type="reset" value="Limpar"/>
-                            <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar"/>
+                        <!-- Data de emissão -->
+                        <div class="col-md-4">
+                            <label for="lbDataEmissao">Data da emissão</label>
+                            <input class="form-control" type="date" required>
                         </div>
-                    </form>
-                </section>
-            </div>
+                    </div>
 
-            <!-- JavaScript (Opcional) -->
-            <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-            <script src="utilitarios.js"></script>
-            <script src="script-home.js"></script>
-        </div>  
-    </body>
+                    <!-- CAMPOS OPCIONAIS -->
+                    <!-- Carteira de trabalho e Previdência Social -->
+                    <div id="form-ctps" class="caixa opcional">
+                        <span>Carteira de trabalho</span>
+                        <hr>
+                        <div class="row">
+                            <!-- Série -->
+                            <div class="col-md-3">
+                                <label for="lbSerie">Série</label>
+                                <input class="form-control" type="number" min="0" disabled required>
+                            </div>
+
+                            <!-- Estado -->
+                            <div class="col-md-4">
+                                <label for="lbEstado">Estado</label>
+                                <!-- Para preencher os estados, estamos utilizando o arquivo 'estados.json' -->
+                                <input list="selectEstado" name="estados" class="form-control" disabled required>
+                                <datalist id="selectEstado"></datalist>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certidão -->
+                    <div id="form-certidao" class="caixa opcional">
+                        <!-- Tipo da certidão -->
+                        <span>Certidão</span>
+                        <hr>
+                        <div class="form-group">
+                            <label for="lbTipoDaCertidao">Tipo da certidão</label>
+                            <select class="form-control col-md-12">
+                                <option value="nascimento">Nascimento</option>
+                                <option value="casamento">Casamento</option>
+                                <option value="divorcio">Divórcio</option>
+                            </select>
+                        </div>
+
+                        <!-- Nome do Cartório -->
+                        <div class="form-group">
+                            <label for="lbNomeCartorio">Nome do cartório</label>
+                            <input class="form-control col-md-12" type="text">
+                        </div>
+                        <div class="row">
+                            <!-- Livro -->
+                            <div class="col-md-4">
+                                <label for="lbLivro">Livro</label>
+                                <input class="form-control" type="number" min="0">
+                            </div>
+
+                            <!-- Folha -->
+                            <div class="col-md-4">
+                                <label for="lbFolha">Folha</label>
+                                <input class="form-control" type="number" min="0">
+                            </div>
+
+                            <!-- Termo -->
+                            <div class="col-md-4">
+                                <label for="lbTermo">Termo</label>
+                                <input class="form-control" type="number" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Título eleitoral -->
+                    <div id="form-tEleitor" class="caixa opcional">
+                        <span>Título eleitoral</span>
+                        <hr>
+                        <div class="row">
+                            <!-- Seção eleitoral -->
+                            <div class="col-md-6">
+                                <label for="lbSecao">Seção eleitoral</label>
+                                <input class="form-control" type="number" min="0">
+                            </div>
+
+                            <!-- Zona eleitoral -->
+                            <div class="col-md-6">
+                                <label for="lbZona">Zona eleitoral</label>
+                                <input class="form-control" type="number" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <br /><br />
+                    <div class="botoes-acoes">
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar" />
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+                    </div>
+                </form>
+            </section>
+
+            <!-- Nomes -->
+            <section class="tab-pane fade" id="nomes" role="tabpanel" aria-labelledby="nomes-tab">
+                <form action="">
+                    <legend>Cadastro de Nomes do paciente</legend>
+
+                    <br /><br />
+                    <div class="botoes-acoes">
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar" />
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+                    </div>
+                </form>
+            </section>
+
+            <!-- Dados demográficos -->
+            <section class="tab-pane fade" id="dadosDem" role="tabpanel" aria-labelledby="dadosDem-tab">
+                <form action="">
+                    <legend>Cadastro de dados demográficos do paciente</legend>
+
+                    <br /><br />
+                    <div class="botoes-acoes">
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar" />
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+                    </div>
+                </form>
+            </section>
+
+            <!-- Endereços -->
+            <section class="tab-pane fade" id="enderecos" role="tabpanel" aria-labelledby="enderecos-tab">
+                <form action="">
+                    <legend>Cadastro de endereços do paciente</legend>
+                    <!-- Tipo de endereço -->
+                    <div class="form-group">
+                        <label for="lbTipoEndereco">Tipo de endereço</label>
+                        <select name="selectTipoEndereco" id="selectTipoEndereco" class="form-control col-md-3"
+                            required>
+                            <option value="1" selected>Comercial</option>
+                            <option value="2">Correio ou Postal</option>
+                            <option value="3">Acomodação Temporária</option>
+                            <option value="4">Residencial</option>
+                            <option value="8">Sem endereço fixo</option>
+                            <option value="9">Desconhecido/não declarado</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <!-- Data inicial -->
+                        <div class="form-group col-md-6">
+                            <label for="lbDataInicial">Data Inicial</label>
+                            <input class="form-control col-md-4" type="date" required>
+
+                            <div class="field">
+                                <label class="label">Inicador de acurácia</label>
+                                <br>
+                                Dia:
+                                <label class="radio"><input class="radio" type="radio" name="diaInicial" value="A"> Acurado</label>
+                                <label class="radio"><input class="radio" type="radio" name="diaInicial" value="E"> Estimado</label>
+                                <label class="radio"><input class="radio" type="radio" name="diaInicial" value="U"> Desconhecido</label>
+                                <br>
+                                Mês:
+                                <label class="radio"><input class="radio" type="radio" name="mesInicial" value="A"> Acurado</label>
+                                <label class="radio"><input class="radio" type="radio" name="mesInicial" value="E"> Estimado</label>
+                                <label class="radio"><input class="radio" type="radio" name="mesInicial" value="U"> Desconhecido</label>
+                                <br>
+                                Ano:
+                                <label class="radio"><input class="radio" type="radio" name="anoInicial" value="A"> Acurado</label>
+                                <label class="radio"><input class="radio" type="radio" name="anoInicial" value="E"> Estimado</label>
+                                <label class="radio"><input class="radio" type="radio" name="anoInicial" value="U"> Desconhecido</label>
+                            </div>
+                        </div>
+
+                        <!-- Data final -->
+                        <div class="form-group col-md-6">
+                            <label for="lbDataFinal">Data Final</label>
+                            <input class="form-control col-md-4" type="date" required>
+
+                            <div class="field">
+                                <label class="label">Inicador de acurácia</label>
+                                <br>
+                                Dia:
+                                <label class="radio"><input class="radio" type="radio" name="dia" value="A"> Acurado</label>
+                                <label class="radio"><input class="radio" type="radio" name="dia" value="E"> Estimado</label>
+                                <label class="radio"><input class="radio" type="radio" name="dia" value="U"> Desconhecido</label>
+                                <br>
+                                Mês:
+                                <label class="radio"><input class="radio" type="radio" name="mes" value="A"> Acurado</label>
+                                <label class="radio"><input class="radio" type="radio" name="mes" value="E"> Estimado</label>
+                                <label class="radio"><input class="radio" type="radio" name="mes" value="U"> Desconhecido</label>
+                                <br>
+                                Ano:
+                                <label class="radio"><input class="radio" type="radio" name="ano" value="A"> Acurado</label>
+                                <label class="radio"><input class="radio" type="radio" name="ano" value="E"> Estimado</label>
+                                <label class="radio"><input class="radio" type="radio" name="ano" value="U"> Desconhecido</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Seleção do País -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="lbPais">País</label>
+                            <input class="form-control" type="text" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="lbEstado">Estado</label>
+                            <input class="form-control" type="text" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="lbMunicipio">Município</label>
+                            <input class="form-control" type="text" required>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <!-- Caixa Postal -->
+                        <div class="col-md-4">
+                            <label for="lbCXPostal">Caixa Postal</label>
+                            <input class="form-control" type="text" required>
+                        </div>
+                        <!-- CEP -->
+                        <div class="col-md-4">
+                            <label for="lbCEP">CEP</label>
+                            <input class="form-control" type="text" required>
+                        </div>
+                        <!-- Bairro -->
+                        <div class="col-md-6">
+                            <label for="lbBairro">Bairro</label>
+                            <input class="form-control" type="text" required>
+                        </div>
+                        <!-- Distrito -->
+                        <div class="col-md-6">
+                            <label for="lbDistrito">Distrito</label>
+                            <input class="form-control" type="text" required>
+                        </div>
+                    </div>
+
+                    <!-- Endereço -->
+                    <div class="col-md-15">
+                        <label for="lbEndereço">Endereço</label>
+                        <input class="form-control" type="text" required>
+                    </div>
+
+                    <br /><br />
+                    <div class="botoes-acoes">
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar" />
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+                    </div>
+                </form>
+            </section>
+
+            <!-- Comunicações eletrônicas -->
+            <section class="tab-pane fade" id="comunicacoes" role="tabpanel" aria-labelledby="comunicacoes-tab">
+                <form action="">
+                    <legend>Cadastro de contatos do paciente</legend>
+
+                    <br /><br />
+                    <div class="botoes-acoes">
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar" />
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+                    </div>
+                </form>
+            </section>
+
+            <!-- Vínculos -->
+            <section class="tab-pane fade" id="vinculos" role="tabpanel" aria-labelledby="vinculos-tab">
+                <!-- Início do formulário - VÍNCULOS -->
+                <form action="">
+                    <legend>Cadastro de vínculos do paciente</legend>
+
+                    <input class="btn btn-primary bloco" type="button" value="Adicionar Vínculo" onclick="mostrarNovoCadastroDeVinculos()">
+                    <div id="regiao-vinculos"></div>
+
+                    <br /><br />
+                    <div class="botoes-acoes">
+                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar" />
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <!-- JavaScript (Opcional) -->
+        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+        <script src="utilitarios.js"></script>
+        <script src="script-home.js"></script>
+    </div>
+</body>
+
 </html>
