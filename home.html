@@ -269,6 +269,61 @@
                 <form action="">
                     <legend>Cadastro de dados demográficos do paciente</legend>
 
+                    <div class="box">
+                        <b>Mãe</b>
+                        <br>
+                        <input id="inputNomeMae" type="text" name="mae" size="100%" placeholder="Nome completo da Mãe do paciente">
+                        <br>
+                        <b>Pai</b>
+                        <br>
+                        <input id="inputNomePai" type="text" name="pai" size="100%" placeholder="Nome completo do Pai do paciente">
+                        <br>
+                        <div>
+                            <br>
+                            <b>Situação familiar</b>
+                            <br>
+                            <input class="checkbox" type="checkbox" value="1"><span> companheiro(a) e filho(s)</span>
+                            <br>
+                            <input class="checkbox" type="checkbox" value="2"><span> companheiro(a) com laços conjugais e sem filhos</span>
+                            <br>
+                            <input class="checkbox" type="checkbox" value="3"><span> companheiro(a), com filho(s) e/ou outro(s) familiar(es)</span>
+                            <br>
+                            <input class="checkbox" type="checkbox" value="4"><span>&nbsp;familiar(es) semcompanheiro(a)</span>
+                            <br>
+                            <input class="checkbox" type="checkbox" value="5"><span>&nbsp;outra(s) pessoa(s) sem laçosconsanguíneos e/oulaços conjugais</span>
+                            <br>
+                            <input class="checkbox" type="checkbox" value="6"><span>&nbsp;vive sozinho</span>
+                            <br>
+                        </div>
+                        <br>
+
+                        <div>
+                            <label for="data"><b>Data de nascimento</b> </label>
+                            <input type="date" id="data" name="dn" />
+                        </div>
+
+                        <div>
+                            <div class="field">
+                                <label class="label">Inicador de acurácia</label>
+                                <br>
+                                Dia:
+                                <label class="radio"><input class="radio" type="radio" name="diaInicial" value="A"> Acurado</label>
+                                <label class="radio"><input class="radio" type="radio" name="diaInicial" value="E"> Estimado</label>
+                                <label class="radio"><input class="radio" type="radio" name="diaInicial" value="U"> Desconhecido</label>
+                                <br>
+                                Mês:
+                                <label class="radio"><input class="radio" type="radio" name="mesInicial" value="A"> Acurado</label>
+                                <label class="radio"><input class="radio" type="radio" name="mesInicial" value="E"> Estimado</label>
+                                <label class="radio"><input class="radio" type="radio" name="mesInicial" value="U"> Desconhecido</label>
+                                <br>
+                                Ano:
+                                <label class="radio"><input class="radio" type="radio" name="anoInicial" value="A"> Acurado</label>
+                                <label class="radio"><input class="radio" type="radio" name="anoInicial" value="E"> Estimado</label>
+                                <label class="radio"><input class="radio" type="radio" name="anoInicial" value="U"> Desconhecido</label>
+                            </div>
+                        </div>
+                    </div>
+
                     <br /><br />
                     <div class="botoes-acoes">
                         <input class="btn btn-primary" type="submit" value="Salvar" />
@@ -285,8 +340,7 @@
                     <!-- Tipo de endereço -->
                     <div class="form-group">
                         <label for="lbTipoEndereco">Tipo de endereço</label>
-                        <select name="selectTipoEndereco" id="selectTipoEndereco" class="form-control col-md-3"
-                            required>
+                        <select name="selectTipoEndereco" id="selectTipoEndereco" class="form-control col-md-3" required>
                             <option value="1" selected>Comercial</option>
                             <option value="2">Correio ou Postal</option>
                             <option value="3">Acomodação Temporária</option>
@@ -435,18 +489,18 @@
                 </form>
             </section>
         </div>
-
-        <!-- JavaScript (Opcional) -->
-        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
-        <script src="utilitarios.js"></script>
-        <script src="script-home.js"></script>
     </div>
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="utilitarios.js"></script>
+    <script src="script-home.js"></script>
 </body>
 
 </html>
