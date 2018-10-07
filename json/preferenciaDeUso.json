@@ -1,0 +1,9 @@
+{
+    "Preferencia":[
+        {"descricao": "Horário comercial", "codigo": "B"},
+        {"descricao": "Durante o dia", "codigo": "D"},
+        {"descricao": "Finais de semana", "sigla": "W"},
+        {"descricao": "Qualquer hora", "codigo": "A"},
+        {"descricao": "Período noturno", "codigo": "E"}
+    ]
+}

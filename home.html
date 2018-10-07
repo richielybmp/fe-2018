@@ -113,7 +113,7 @@
             <!-- Identificadores -->
             <section class="tab-pane fade" id="identificadores" role="tabpanel" aria-labelledby="identificadores-tab">
                 <!-- Início do formulário - IDENTIFICAÇÂO -->
-                <form action="" method="post">
+                <form action="" method="post" id="formId">
                     <legend>Cadastro de identificadores do paciente</legend>
                     <!-- Tipo do identificador -->
                     <div class="form-group">
@@ -461,6 +461,9 @@
             <section class="tab-pane fade" id="comunicacoes" role="tabpanel" aria-labelledby="comunicacoes-tab">
                 <form action="">
                     <legend>Cadastro de contatos do paciente</legend>
+
+                    <input class="btn btn-primary bloco" type="button" value="Adicionar Contato" onclick="mostrarNovoCadastroDeContato()">
+                    <div id="regiao-contatos"></div>
 
                     <br /><br />
                     <div class="botoes-acoes">

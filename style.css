@@ -54,7 +54,7 @@ tr:hover:not(.trHeader) {
     display: none;
 }
 
-.vinculo{
+.vinculo, .contato{
     overflow: hidden;
 }
 

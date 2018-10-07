@@ -82,6 +82,166 @@ function mostreFormularios(){
 }
 /****** IDENTIFICADORES - FIM ******/
     
+/****** CONTATO *******/
+var quantidadeDeSelectsMeiosDeComunicacao = 0;
+var quantidadeDeSelectsPreferenciaDeUso = 0;
+var quantidadeDeSelectsModoUtilizacao = 0;
+//Método responsável por gerar html para cadastro de novos contatos.
+function mostrarNovoCadastroDeContato(){
+    // criar várias entradas para vínculos
+    var regiaoContatos = document.getElementById("regiao-contatos");
+    
+    var divContato = criarComponenteHtmlDinamico({ tag: 'div', className:'contato' });
+    
+    // divRow
+    var divRow = criarComponenteHtmlDinamico({ tag: 'div', className:'row' });
+
+    // Meio de comunicação
+    var divMeioDeComunicacao = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
+    var labelMeioDeComunicacao = criarComponenteHtmlDinamico({ tag: 'label', innerHTML:'Meio de comunicação', htmlFor:'lbMeioDeComunicacao' }); 
+    var seletorDeMeioDeComunicacao = criarComponenteHtmlDinamico({ tag: 'select', id:'selectMeioDeComunicacao_' + quantidadeDeSelectsMeiosDeComunicacao, className:'form-control meioDeComunicacao' });
+
+    divMeioDeComunicacao.appendChild(labelMeioDeComunicacao);
+    divMeioDeComunicacao.appendChild(seletorDeMeioDeComunicacao);
+    
+    carregueJson('./json/meiosDeComunicacao.json', function(response) {
+        // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
+        var meiosDeComunicacao = JSON.parse(response);
+        
+        // Select 'meio'
+        var elMeiosDeComunicacao = document.getElementById(seletorDeMeioDeComunicacao.id);
+        
+        // Para cada item no objeto Estados, vamos criar uma <option> e adicionar no 'select'
+        meiosDeComunicacao.Meios.forEach(meio => {
+            var option = document.createElement("option");
+            option.text = meio.descricao;  
+            option.value = meio.codigo; 
+            elMeiosDeComunicacao.appendChild(option);
+        });
+        quantidadeDeSelectsMeiosDeComunicacao++;
+    });
+
+    // Preferência de uso
+    var divPreferenciaDeUso = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
+    var labelPreferenciaDeUso = criarComponenteHtmlDinamico({ tag: 'label', innerHTML:'Preferência', htmlFor:'lbPreferenciaDeUso' }); 
+    var seletorDePreferenciaDeUso = criarComponenteHtmlDinamico({ tag: 'select', id:'selectPreferenciaDeUso_' + quantidadeDeSelectsPreferenciaDeUso, className:'form-control preferenciaDeUso' });
+
+    divPreferenciaDeUso.appendChild(labelPreferenciaDeUso);
+    divPreferenciaDeUso.appendChild(seletorDePreferenciaDeUso);
+    
+    carregueJson('./json/preferenciaDeUso.json', function(response) {
+        // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
+        var preferencia = JSON.parse(response);
+        
+        // Select 'preferencia'
+        var elPreferenciaDeUso = document.getElementById(seletorDePreferenciaDeUso.id);
+        
+        // Para cada item no objeto Preferencia, vamos criar uma <option> e adicionar no 'select'
+        preferencia.Preferencia.forEach(meio => {
+            var option = document.createElement("option");
+            option.text = meio.descricao;  
+            option.value = meio.codigo; 
+            elPreferenciaDeUso.appendChild(option);
+        });
+        quantidadeDeSelectsPreferenciaDeUso++;
+    });
+
+    // Detalhes do meio de comunicação
+     var divDetalhesDoMeio = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
+     var labelDetalhesDoMeio = criarComponenteHtmlDinamico({ tag: 'label', id:'', className:'', name:'', innerHTML:'Detalhes ', htmlFor:'lbDetalhesDoMeio', type:'' });
+     var inputDetalhesDoMeio = criarComponenteHtmlDinamico({ tag: 'input', className:'form-control', innerHTML:'Detalhes do meio de comunicação', htmlFor:'lbDetalhesDoMeio', type:'text' });
+    
+     divDetalhesDoMeio.appendChild(labelDetalhesDoMeio);
+     divDetalhesDoMeio.appendChild(inputDetalhesDoMeio);
+
+    // Utilização do contato
+    var divUtilizacaoDoContato = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
+    var labelUtilizacaoDoContato = criarComponenteHtmlDinamico({ tag: 'label', innerHTML:'Utilização', htmlFor:'lbUtilizacaoDoContato' }); 
+    var seletorDeUtilizacaoDoContato = criarComponenteHtmlDinamico({ tag: 'select', id:'selectUtilizacaoDoContato_' + quantidadeDeSelectsModoUtilizacao, className:'form-control utilizacaoDoContato' });
+
+    divUtilizacaoDoContato.appendChild(labelUtilizacaoDoContato);
+    divUtilizacaoDoContato.appendChild(seletorDeUtilizacaoDoContato);
+    
+    carregueJson('./json/modoUtilizacaoContato.json', function(response) {
+        // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
+        var modo = JSON.parse(response);
+        
+        // Select 'modo'
+        var elModo = document.getElementById(seletorDeUtilizacaoDoContato.id);
+        
+        // Para cada item no objeto Modo, vamos criar uma <option> e adicionar no 'select'
+        modo.Modo.forEach(meio => {
+            var option = document.createElement("option");
+            option.text = meio.descricao;  
+            option.value = meio.codigo; 
+            elModo.appendChild(option);
+        });
+        quantidadeDeSelectsModoUtilizacao++;
+    });
+
+    // ------------------------------------------------
+    divRow.appendChild(divMeioDeComunicacao);
+    divRow.appendChild(divDetalhesDoMeio);
+    divRow.appendChild(divPreferenciaDeUso);
+    divRow.appendChild(divUtilizacaoDoContato);
+    // ------------------------------------------------
+    
+    // divAcoes
+    var divAcoes = criarComponenteHtmlDinamico({ tag: 'div', className:'acoes' });
+    
+    var btnSalvar =  criarComponenteHtmlDinamico({ tag: 'input', id:'btnSalvar', className:'btn btn-success', value:'Salvar'});
+    btnSalvar.onclick = (evt) =>{
+        $(evt.target).closest(".contato").find(".row input,select").prop('disabled', true);
+        $(evt.target).hide();
+        $(evt.target).closest(".acoes").find("#btnCancelar").hide();
+        $(evt.target).closest(".acoes").find("#btnEditar").show();
+        $(evt.target).closest(".acoes").find("#btnExcluir").show();
+        evt.target.setAttribute('salvou', true)
+    };
+    
+    var btnCancelar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnCancelar', className:'btn btn-warning', value:'Cancelar', type:''});
+    btnCancelar.onclick = (evt) =>{
+        if(!$(evt.target).closest(".acoes").find("#btnSalvar")[0].getAttribute('salvou') == true)
+            $(evt.target).closest(".contato").remove();
+        else
+            $(evt.target).closest(".contato").find(".row input,select").prop('disabled', true);
+            $(evt.target).hide();
+            $(evt.target).closest(".acoes").find("#btnSalvar").hide();
+            $(evt.target).closest(".acoes").find("#btnCancelar").hide();
+            $(evt.target).closest(".acoes").find("#btnEditar").show();
+            $(evt.target).closest(".acoes").find("#btnExcluir").show();
+    };
+    
+    var btnEditar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnEditar', className:'btn btn-primary', value:'Editar'});
+    btnEditar.style.display = "none";
+    btnEditar.onclick = (evt) =>{
+        $(evt.target).hide();
+        $(evt.target).closest(".contato").find(".row input,select").prop('disabled', false);
+        $(evt.target).closest(".acoes").find("#btnSalvar").show();
+        $(evt.target).closest(".acoes").find("#btnCancelar").show();
+        $(evt.target).closest(".acoes").find("#btnEditar").hide();
+        $(evt.target).closest(".acoes").find("#btnExcluir").hide();
+    };
+
+    var btnExcluir = criarComponenteHtmlDinamico({ tag: 'input', id:'btnExcluir', className:'btn btn-danger', value:'Excluir', type:'reset'});
+    btnExcluir.style.display = "none";
+    btnExcluir.onclick = (evt) =>{
+        $(evt.target).closest(".contato").remove();
+    };
+
+    divAcoes.appendChild(btnSalvar);
+    divAcoes.appendChild(btnCancelar);
+    divAcoes.appendChild(btnEditar);
+    divAcoes.appendChild(btnExcluir);
+
+    divContato.appendChild(divRow);
+    divContato.appendChild(divAcoes);
+
+    regiaoContatos.appendChild(divContato);
+}
+
+/****** CONTATO - FIM ******/
+
 /****** VÍNCULOS ******/
 var quantidadeDeSelectsRelacionamento = 0;
     
@@ -212,35 +372,5 @@ function mostrarNovoCadastroDeVinculos(){
     regiaoVinculos.appendChild(divVinculo);
 
     console.log(regiaoVinculos);
-
-    //         <!-- Tipo de relacionamento -->
-    //         <div class="col-md-3">
-    //             <label for="lbRelacionamento">Relacionamento</label>
-    //             <select class="form-control">
-    //                 <option value="7" selected="">Avó materna</option>
-    //                 <option value="8">Avô materno</option>
-    //                 <option value="22">Cônjuge/companheiro(a)</option>
-    //                 <option value="23">Irmão</option>
-    //                 <option value="24">Irmã</option>
-    //                 <option value="25">Meio-irmão</option>
-    //                 <option value="26">Meio-irmã</option>
-    //                 <option value="27">Irmãos</option>
-    //                 <option value="28">Criança</option>
-    //                 <option value="29">Filha</option>
-    //                 <option value="36">Avó paterna</option>
-    //                 <option value="37">Avô paterno</option>
-    //                 <option value="38">Tio materno</option>
-    //                 <option value="40">Tio paterno</option>
-    //                 <option value="41">Tia paterna</option>
-    //                 <option value="189">Recém-nascido</option>
-    //                 <option value="254">Pais</option>
-    //                 <option value="262">Mãe adotiva</option>
-    //                 <option value="263">Pai adotivo</option>
-    //                 <option value="264">Responsável</option>
-    //                 <option value="265">Coabitante</option>
-    //                 <option value="939">Tia materna</option>
-    //             </select>
-    //         </div>
-
 }
 /****** VÍNCULOS - FIM ******/
