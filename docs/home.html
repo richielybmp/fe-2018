@@ -304,11 +304,11 @@
                     <div class="box">
                         <b>Mãe</b>
                         <br>
-                        <input id="inputNomeMae" type="text" name="mae" size="100%" placeholder="Nome completo da Mãe do paciente">
+                        <input class="form-control" id="inputNomeMae" type="text" name="mae" size="100%" placeholder="Nome completo da Mãe do paciente">
                         <br>
                         <b>Pai</b>
                         <br>
-                        <input id="inputNomePai" type="text" name="pai" size="100%" placeholder="Nome completo do Pai do paciente">
+                        <input class="form-control" id="inputNomePai" type="text" name="pai" size="100%" placeholder="Nome completo do Pai do paciente">
                         <br>
                         <div>
                             <br>
@@ -328,15 +328,16 @@
                             <br>
                         </div>
                         <br>
-
-                        <div>
-                            <label for="data"><b>Data de nascimento</b> </label>
-                            <input type="date" id="data" name="dn" />
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="data"><b>Data de nascimento</b> </label>
+                                <input class="form-control" type="date" id="data" name="dn" required />
+                            </div>
                         </div>
-
+                        <br>
                         <div>
                             <div class="field">
-                                <label class="label">Inicador de acurácia</label>
+                                <b>Inicador de acurácia</b>
                                 <br>
                                 Dia:
                                 <label class="radio"><input class="radio" type="radio" name="diaInicial" value="A"> Acurado</label>
@@ -353,7 +354,11 @@
                                 <label class="radio"><input class="radio" type="radio" name="anoInicial" value="E"> Estimado</label>
                                 <label class="radio"><input class="radio" type="radio" name="anoInicial" value="U"> Desconhecido</label>
                             </div>
+                            <b>Seguimento</b><br>
+                            <input class="checkbox" type="checkbox" value="7"><span>&nbsp;Data precisa de seguimento</span>
                         </div>
+
+
                     </div>
 
                     <br /><br />
