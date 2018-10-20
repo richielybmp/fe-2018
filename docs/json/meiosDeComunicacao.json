@@ -1,0 +1,11 @@
+{
+    "Meios": [
+        {"descricao": "Telefone", "codigo": "T"},
+        {"descricao": "Telefone celular", "codigo": "C"},
+        {"descricao": "Fax", "sigla": "F"},
+        {"descricao": "Pager", "codigo": "P"},
+        {"descricao": "Correio eletrônico", "codigo": "E"},
+        {"descricao": "URL", "codigo": "U"},
+        {"descricao": "Outro", "codigo": "O"}
+    ]
+}
