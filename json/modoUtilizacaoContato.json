@@ -1,7 +1,0 @@
-{
-    "Modo":[
-        {"descricao": "Comercial", "codigo": "B"},
-        {"descricao": "Pessoal", "codigo": "P"},
-        {"descricao": "Comercial ou pessoal", "codigo": "A"}
-    ]
-}

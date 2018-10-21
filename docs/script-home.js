@@ -14,6 +14,16 @@ function buscarRegistroIdentificador(){
     document.getElementById('tabela-registros-indicadores').style.display = "table";
 }
 
+var quantidadeDeSelectsTipoDoIdentificador = 0;
+var quantidadeDeSelectsAreaGeografica = 0;
+var quantidadeDeSelectsEstado = 0;
+var quantidadeDeSelectsTipoCertidao = 0;
+
+//Método responsável por gerar html para cadastro de novos identificadores.
+function mostrarNovoCadastroDeIdentificador(){
+    alert('Criar novo cadastro de identificadores')
+}
+
 // Chamada de método responsável por carregar a combo de Estados.
 carregueJson('./json/estados.json', function(response) {
     // Na resposta do carregueEstados, é realizado um callback com a responseText.
@@ -147,12 +157,13 @@ function mostrarNovoCadastroDeContato(){
     });
 
     // Detalhes do meio de comunicação
-     var divDetalhesDoMeio = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
-     var labelDetalhesDoMeio = criarComponenteHtmlDinamico({ tag: 'label', id:'', className:'', name:'', innerHTML:'Detalhes ', htmlFor:'lbDetalhesDoMeio', type:'' });
-     var inputDetalhesDoMeio = criarComponenteHtmlDinamico({ tag: 'input', className:'form-control', innerHTML:'Detalhes do meio de comunicação', htmlFor:'lbDetalhesDoMeio', type:'text' });
+    var divDetalhesDoMeio = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
+    var labelDetalhesDoMeio = criarComponenteHtmlDinamico({ tag: 'label', id:'', className:'', name:'', innerHTML:'Detalhes ', htmlFor:'lbDetalhesDoMeio', type:'' });
+    var inputDetalhesDoMeio = criarComponenteHtmlDinamico({ tag: 'input', className:'form-control', innerHTML:'Detalhes do meio de comunicação', htmlFor:'lbDetalhesDoMeio', type:'text' });
+    inputDetalhesDoMeio.setAttribute('required', "");
     
-     divDetalhesDoMeio.appendChild(labelDetalhesDoMeio);
-     divDetalhesDoMeio.appendChild(inputDetalhesDoMeio);
+    divDetalhesDoMeio.appendChild(labelDetalhesDoMeio);
+    divDetalhesDoMeio.appendChild(inputDetalhesDoMeio);
 
     // Utilização do contato
     var divUtilizacaoDoContato = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
@@ -189,17 +200,25 @@ function mostrarNovoCadastroDeContato(){
     // divAcoes
     var divAcoes = criarComponenteHtmlDinamico({ tag: 'div', className:'acoes' });
     
-    var btnSalvar =  criarComponenteHtmlDinamico({ tag: 'input', id:'btnSalvar', className:'btn btn-success', value:'Salvar'});
+    var btnSalvar =  criarComponenteHtmlDinamico({ tag: 'input', id:'btnSalvar', className:'btn btn-success', value:'Salvar', type:'button'});
     btnSalvar.onclick = (evt) =>{
-        $(evt.target).closest(".contato").find(".row input,select").prop('disabled', true);
-        $(evt.target).hide();
-        $(evt.target).closest(".acoes").find("#btnCancelar").hide();
-        $(evt.target).closest(".acoes").find("#btnEditar").show();
-        $(evt.target).closest(".acoes").find("#btnExcluir").show();
-        evt.target.setAttribute('salvou', true)
+        var elObrigatorio = $(evt.target).closest(".contato").find(".row input:required");
+        
+        if (elObrigatorio.val() != ""){
+            $(evt.target).closest(".contato").find(".row input,select").prop('disabled', true);
+            $(evt.target).hide();
+            $(evt.target).closest(".acoes").find("#btnCancelar").hide();
+            $(evt.target).closest(".acoes").find("#btnEditar").show();
+            $(evt.target).closest(".acoes").find("#btnExcluir").show();
+            elObrigatorio.css("border-color", "#ced4da"); 
+            evt.target.setAttribute('salvou', true);
+        }
+        else {
+            elObrigatorio.css("border-color", "red");
+        }
     };
     
-    var btnCancelar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnCancelar', className:'btn btn-warning', value:'Cancelar', type:''});
+    var btnCancelar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnCancelar', className:'btn btn-warning', value:'Cancelar', type:'button'});
     btnCancelar.onclick = (evt) =>{
         if(!$(evt.target).closest(".acoes").find("#btnSalvar")[0].getAttribute('salvou') == true)
             $(evt.target).closest(".contato").remove();
@@ -212,7 +231,7 @@ function mostrarNovoCadastroDeContato(){
             $(evt.target).closest(".acoes").find("#btnExcluir").show();
     };
     
-    var btnEditar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnEditar', className:'btn btn-primary', value:'Editar'});
+    var btnEditar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnEditar', className:'btn btn-primary', value:'Editar', type:'button'});
     btnEditar.style.display = "none";
     btnEditar.onclick = (evt) =>{
         $(evt.target).hide();
@@ -261,7 +280,8 @@ function mostrarNovoCadastroDeVinculos(){
     var divIdentificador = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
     var labelIdentificador = criarComponenteHtmlDinamico({ tag: 'label', id:'', className:'', name:'', innerHTML:'Identificador', htmlFor:'lbIdentificador', type:'' });
     var inputIdentificador = criarComponenteHtmlDinamico({ tag: 'input', className:'form-control', innerHTML:'Identificador', htmlFor:'lbIdentificador', type:'text' });
-    
+    inputIdentificador.setAttribute('required', "");
+
     divIdentificador.appendChild(labelIdentificador);
     divIdentificador.appendChild(inputIdentificador);
     
@@ -321,17 +341,25 @@ function mostrarNovoCadastroDeVinculos(){
     // divAcoes
     var divAcoes = criarComponenteHtmlDinamico({ tag: 'div', className:'acoes' });
     
-    var btnSalvar =  criarComponenteHtmlDinamico({ tag: 'input', id:'btnSalvar', className:'btn btn-success', value:'Salvar'});
+    var btnSalvar =  criarComponenteHtmlDinamico({ tag: 'input', id:'btnSalvar', className:'btn btn-success', value:'Salvar', type:'button'});
     btnSalvar.onclick = (evt) =>{
-        $(evt.target).closest(".vinculo").find(".row input,select").prop('disabled', true);
-        $(evt.target).hide();
-        $(evt.target).closest(".acoes").find("#btnCancelar").hide();
-        $(evt.target).closest(".acoes").find("#btnEditar").show();
-        $(evt.target).closest(".acoes").find("#btnExcluir").show();
-        evt.target.setAttribute('salvou', true)
+        var elObrigatorio = $(evt.target).closest(".vinculo").find(".row input:required");
+        
+        if (elObrigatorio.val() != ""){
+            $(evt.target).closest(".vinculo").find(".row input,select").prop('disabled', true);
+            $(evt.target).hide();
+            $(evt.target).closest(".acoes").find("#btnCancelar").hide();
+            $(evt.target).closest(".acoes").find("#btnEditar").show();
+            $(evt.target).closest(".acoes").find("#btnExcluir").show();
+            elObrigatorio.css("border-color", "#ced4da"); 
+            evt.target.setAttribute('salvou', true);
+        }
+        else {
+            elObrigatorio.css("border-color", "red");
+        }
     };
     
-    var btnCancelar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnCancelar', className:'btn btn-warning', value:'Cancelar', type:''});
+    var btnCancelar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnCancelar', className:'btn btn-warning', value:'Cancelar', type:'button'});
     btnCancelar.onclick = (evt) =>{
         if(!$(evt.target).closest(".acoes").find("#btnSalvar")[0].getAttribute('salvou') == true)
             $(evt.target).closest(".vinculo").remove();
@@ -344,7 +372,7 @@ function mostrarNovoCadastroDeVinculos(){
             $(evt.target).closest(".acoes").find("#btnExcluir").show();
     };
     
-    var btnEditar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnEditar', className:'btn btn-primary', value:'Editar'});
+    var btnEditar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnEditar', className:'btn btn-primary', value:'Editar', type:'button'});
     btnEditar.style.display = "none";
     btnEditar.onclick = (evt) =>{
         $(evt.target).hide();

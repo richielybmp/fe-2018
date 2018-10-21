@@ -80,7 +80,6 @@
                             <td>123</td>
                             <td>Maria Anders</td>
                             <td>
-                                <input class="btn btn-danger" type="button" value="Remover">
                                 <input class="btn btn-info" type="button" value="Editar">
                             </td>
                         </tr>
@@ -88,7 +87,6 @@
                             <td>456</td>
                             <td>Francisco Chang</td>
                             <td>
-                                <input class="btn btn-danger" type="button" value="Remover">
                                 <input class="btn btn-info" type="button" value="Editar">
                             </td>
                         </tr>
@@ -96,7 +94,6 @@
                             <td>789</td>
                             <td>Roland Mendel</td>
                             <td>
-                                <input class="btn btn-danger" type="button" value="Remover">
                                 <input class="btn btn-info" type="button" value="Editar">
                             </td>
                         </tr>
@@ -110,35 +107,41 @@
                 <!-- Início do formulário - IDENTIFICAÇÂO -->
                 <form action="" method="post" id="formId">
                     <legend>Cadastro de identificadores do paciente</legend>
-                    <!-- Tipo do identificador -->
-                    <div class="form-group">
-                        <label for="lbTipoIdentificador">Tipo do identificador</label>
-                        <select name="selectTipoIdentificador" id="selectTipoIdentificador" class="form-control col-md-6" required>
-                            <option value="01" selected>Único dentro da organização</option>
-                            <option value="02">Número do prontuário</option>
-                            <option value="10">Carteira de Trabalho e Previdência Social</option>
-                            <option value="11">Titulo Eleitoral</option>
-                            <option value="12">Certidão de Nascimento, Casamento, Divórcio</option>
-                            <option value="21">Radiologia</option>
-                            <option value="22">Patologia</option>
-                            <option value="23">Farmácia</option>
-                        </select>
-                    </div>
-                    <!-- Área geográfica -->
-                    <div class="form-group">
-                        <label for="">Área Geográfica</label>
-                        <select class="form-control col-md-6" required>
-                            <option value="1" selected>Local</option>
-                            <option value="2">Área/região/distrito</option>
-                            <option value="3">Estado/província/território</option>
-                            <option value="4">Nacional</option>
-                        </select>
+
+                    <input class="btn btn-primary bloco" type="button" value="Adicionar Identificador" onclick="mostrarNovoCadastroDeIdentificador()">
+                    <br />
+
+                    <div class="row">
+                        <!-- Tipo do identificador -->
+                        <div class="form-group col-md-6">
+                            <label for="lbTipoIdentificador">Tipo do identificador</label>
+                            <select name="selectTipoIdentificador" id="selectTipoIdentificador" class="form-control" required>
+                                <option value="01" selected>Único dentro da organização</option>
+                                <option value="02">Número do prontuário</option>
+                                <option value="10">Carteira de Trabalho e Previdência Social</option>
+                                <option value="11">Titulo Eleitoral</option>
+                                <option value="12">Certidão de Nascimento, Casamento, Divórcio</option>
+                                <option value="21">Radiologia</option>
+                                <option value="22">Patologia</option>
+                                <option value="23">Farmácia</option>
+                            </select>
+                        </div>
+                        <!-- Área geográfica -->
+                        <div class="form-group col-md-6">
+                            <label for="">Área Geográfica</label>
+                            <select class="form-control" required>
+                                <option value="1" selected>Local</option>
+                                <option value="2">Área/região/distrito</option>
+                                <option value="3">Estado/província/território</option>
+                                <option value="4">Nacional</option>
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Designação -->
                     <div class="form-group">
                         <label for="lbDesignacao">Designação</label>
-                        <input class="form-control col-md-6" type="text" required>
+                        <input class="form-control" type="text" required>
                     </div>
 
                     <div class="row">
@@ -238,7 +241,7 @@
                     <br />
                     <br />
                     <div class="botoes-acoes">
-                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-success" type="submit" value="Salvar" />
                         <input class="btn btn-light" type="reset" value="Limpar" />
                         <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
                     </div>
@@ -285,7 +288,7 @@
                     <br />
                     <br />
                     <div class="botoes-acoes">
-                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-success" type="submit" value="Salvar" />
                         <input class="btn btn-light" type="reset" value="Limpar" />
                         <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
                     </div>
@@ -513,7 +516,7 @@
                     <br />
                     <br />
                     <div class="botoes-acoes">
-                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-success" type="submit" value="Salvar" />
                         <input class="btn btn-light" type="reset" value="Limpar" />
                         <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
                     </div>
@@ -540,7 +543,7 @@
                         <!-- Data inicial -->
                         <div class="form-group col-md-6">
                             <label for="lbDataInicial">Data Inicial</label>
-                            <input class="form-control col-md-4" type="date" required>
+                            <input class="form-control col-md-6" type="date" required>
 
                             <div class="field">
                                 <label class="label">Inicador de acurácia</label>
@@ -571,7 +574,7 @@
                         <!-- Data final -->
                         <div class="form-group col-md-6">
                             <label for="lbDataFinal">Data Final</label>
-                            <input class="form-control col-md-4" type="date" required>
+                            <input class="form-control col-md-6" type="date" required>
 
                             <div class="field">
                                 <label class="label">Inicador de acurácia</label>
@@ -650,7 +653,7 @@
                     <br />
                     <br />
                     <div class="botoes-acoes">
-                        <input class="btn btn-primary" type="submit" value="Salvar" />
+                        <input class="btn btn-success" type="submit" value="Salvar" />
                         <input class="btn btn-light" type="reset" value="Limpar" />
                         <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
                     </div>
@@ -663,13 +666,14 @@
                     <legend>Cadastro de contatos do paciente</legend>
 
                     <input class="btn btn-primary bloco" type="button" value="Adicionar Contato" onclick="mostrarNovoCadastroDeContato()">
+                    <br />
                     <div id="regiao-contatos"></div>
 
                     <br />
                     <br />
                     <div class="botoes-acoes">
-                        <input class="btn btn-primary" type="submit" value="Salvar" />
-                        <input class="btn btn-light" type="reset" value="Limpar" />
+                        <input class="btn btn-success" type="submit" value="Salvar" />
+                        <!-- <input class="btn btn-light" type="reset" value="Limpar" /> -->
                         <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
                     </div>
                 </form>
@@ -682,13 +686,15 @@
                     <legend>Cadastro de vínculos do paciente</legend>
 
                     <input class="btn btn-primary bloco" type="button" value="Adicionar Vínculo" onclick="mostrarNovoCadastroDeVinculos()">
+                    <br />
+
                     <div id="regiao-vinculos"></div>
 
                     <br />
                     <br />
                     <div class="botoes-acoes">
-                        <input class="btn btn-primary" type="submit" value="Salvar" />
-                        <input class="btn btn-light" type="reset" value="Limpar" />
+                        <input class="btn btn-success" type="submit" value="Salvar" />
+                        <!-- <input class="btn btn-light" type="reset" value="Limpar" /> -->
                         <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
                     </div>
                 </form>
