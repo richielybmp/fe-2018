@@ -111,140 +111,17 @@
                     <input class="btn btn-primary bloco" type="button" value="Adicionar Identificador" onclick="mostrarNovoCadastroDeIdentificador()">
                     <br />
 
-                    <div class="row">
-                        <!-- Tipo do identificador -->
-                        <div class="form-group col-md-6">
-                            <label for="lbTipoIdentificador">Tipo do identificador</label>
-                            <select name="selectTipoIdentificador" id="selectTipoIdentificador" class="form-control" required>
-                                <option value="01" selected>Único dentro da organização</option>
-                                <option value="02">Número do prontuário</option>
-                                <option value="10">Carteira de Trabalho e Previdência Social</option>
-                                <option value="11">Titulo Eleitoral</option>
-                                <option value="12">Certidão de Nascimento, Casamento, Divórcio</option>
-                                <option value="21">Radiologia</option>
-                                <option value="22">Patologia</option>
-                                <option value="23">Farmácia</option>
-                            </select>
-                        </div>
-                        <!-- Área geográfica -->
-                        <div class="form-group col-md-6">
-                            <label for="">Área Geográfica</label>
-                            <select class="form-control" required>
-                                <option value="1" selected>Local</option>
-                                <option value="2">Área/região/distrito</option>
-                                <option value="3">Estado/província/território</option>
-                                <option value="4">Nacional</option>
-                            </select>
-                        </div>
-                    </div>
+                    <div id="regiao-identificadores"></div>
 
-                    <!-- Designação -->
-                    <div class="form-group">
-                        <label for="lbDesignacao">Designação</label>
-                        <input class="form-control" type="text" required>
-                    </div>
-
-                    <div class="row">
-                        <!-- Emissor -->
-                        <div class="col-md-6">
-                            <label for="lbEmissor">Emissor</label>
-                            <input class="form-control" type="text" required>
-                        </div>
-                        <!-- Data de emissão -->
-                        <div class="col-md-4">
-                            <label for="lbDataEmissao">Data da emissão</label>
-                            <input class="form-control" type="date" required>
-                        </div>
-                    </div>
-
-                    <!-- CAMPOS OPCIONAIS -->
-                    <!-- Carteira de trabalho e Previdência Social -->
-                    <div id="form-ctps" class="caixa opcional">
-                        <span>Carteira de trabalho</span>
-                        <hr>
-                        <div class="row">
-                            <!-- Série -->
-                            <div class="col-md-3">
-                                <label for="lbSerie">Série</label>
-                                <input class="form-control" type="number" min="0" disabled required>
-                            </div>
-
-                            <!-- Estado -->
-                            <div class="col-md-4">
-                                <label for="lbEstado">Estado</label>
-                                <!-- Para preencher os estados, estamos utilizando o arquivo 'estados.json' -->
-                                <input list="selectEstado" name="estados" class="form-control" disabled required>
-                                <datalist id="selectEstado"></datalist>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Certidão -->
-                    <div id="form-certidao" class="caixa opcional">
-                        <!-- Tipo da certidão -->
-                        <span>Certidão</span>
-                        <hr>
-                        <div class="form-group">
-                            <label for="lbTipoDaCertidao">Tipo da certidão</label>
-                            <select class="form-control col-md-12">
-                                <option value="nascimento">Nascimento</option>
-                                <option value="casamento">Casamento</option>
-                                <option value="divorcio">Divórcio</option>
-                            </select>
-                        </div>
-
-                        <!-- Nome do Cartório -->
-                        <div class="form-group">
-                            <label for="lbNomeCartorio">Nome do cartório</label>
-                            <input class="form-control col-md-12" type="text">
-                        </div>
-                        <div class="row">
-                            <!-- Livro -->
-                            <div class="col-md-4">
-                                <label for="lbLivro">Livro</label>
-                                <input class="form-control" type="number" min="0">
-                            </div>
-
-                            <!-- Folha -->
-                            <div class="col-md-4">
-                                <label for="lbFolha">Folha</label>
-                                <input class="form-control" type="number" min="0">
-                            </div>
-
-                            <!-- Termo -->
-                            <div class="col-md-4">
-                                <label for="lbTermo">Termo</label>
-                                <input class="form-control" type="number" min="0">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Título eleitoral -->
-                    <div id="form-tEleitor" class="caixa opcional">
-                        <span>Título eleitoral</span>
-                        <hr>
-                        <div class="row">
-                            <!-- Seção eleitoral -->
-                            <div class="col-md-6">
-                                <label for="lbSecao">Seção eleitoral</label>
-                                <input class="form-control" type="number" min="0">
-                            </div>
-
-                            <!-- Zona eleitoral -->
-                            <div class="col-md-6">
-                                <label for="lbZona">Zona eleitoral</label>
-                                <input class="form-control" type="number" min="0">
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <br />
                     <br />
-                    <div class="botoes-acoes">
+                    <!-- <div class="botoes-acoes">
                         <input class="btn btn-success" type="submit" value="Salvar" />
                         <input class="btn btn-light" type="reset" value="Limpar" />
                         <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
-                    </div>
+                    </div> -->
                 </form>
             </section>
 
@@ -665,17 +542,77 @@
                 <form action="">
                     <legend>Cadastro de contatos do paciente</legend>
 
-                    <input class="btn btn-primary bloco" type="button" value="Adicionar Contato" onclick="mostrarNovoCadastroDeContato()">
+                    <!-- <input class="btn btn-primary bloco" type="button" value="Adicionar Contato" onclick="mostrarNovoCadastroDeContato()"> -->
                     <br />
-                    <div id="regiao-contatos"></div>
+                    <div id="regiao-contatos">
+                        <div class="contato">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="lbMeioDeComunicacao">Meio de comunicação</label>
+                                    <select id="selectMeioDeComunicacao_0" class="form-control meioDeComunicacao">
+                                        <option value="T" data-desc="Telefone">Telefone</option>
+                                        <option value="C" data-desc="Telefone celular">Telefone celular</option>
+                                        <option value="F" data-desc="Fax">Fax</option>
+                                        <option value="P" data-desc="Pager">Pager</option>
+                                        <option value="E" data-desc="Correio eletrônico">Correio eletrônico</option>
+                                        <option value="U" data-desc="URL">URL</option>
+                                        <option value="O" data-desc="Outro">Outro</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="lbDetalhesDoMeio">Detalhes </label>
+                                    <input id="inputDetalhes" class="form-control" type="text" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="lbPreferenciaDeUso">Preferência</label>
+                                    <select id="selectPreferenciaDeUso_0" class="form-control preferenciaDeUso">
+                                        <option value="B" data-desc="Horário comercial">Horário comercial</option>
+                                        <option value="D" data-desc="Durante o dia">Durante o dia</option>
+                                        <option value="W" data-desc="Finais de semana">Finais de semana</option>
+                                        <option value="A" data-desc="Qualquer hora">Qualquer hora</option>
+                                        <option value="E" data-desc="Período noturno">Período noturno</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="lbUtilizacaoDoContato">Utilização</label>
+                                    <select id="selectUtilizacaoDoContato_0" class="form-control utilizacaoDoContato">
+                                        <option value="B" data-desc="Comercial">Comercial</option>
+                                        <option value="P" data-desc="Pessoal">Pessoal</option>
+                                        <option value="A" data-desc="Comercial ou pessoal">Comercial ou pessoal</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="acoes">
+                                <input id="btnSalvar" class="btn btn-success" type="button" value="Salvar" onclick="adicionarContato()">
+                                <input id="btnCancelar" class="btn btn-warning" type="reset" value="Cancelar">
+                                <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
+                                <input id="btnExcluir" class="btn btn-danger" type="reset" value="Excluir" style="display: none;" onclick="excluirContato()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tabelaContatos">          
+                        <table class="table table-bordered table-hovered">
+                            <thead>
+                                <tr class="trHeader">
+                                    <th>Meio de Comunicação</th>
+                                    <th>Detalhes</th>
+                                    <th>Preferência</th>
+                                    <th>Utilização</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <br />
                     <br />
-                    <div class="botoes-acoes">
-                        <input class="btn btn-success" type="submit" value="Salvar" />
+                    <!-- <div class="botoes-acoes"> -->
+                        <!-- <input class="btn btn-success" type="submit" value="Salvar" /> -->
                         <!-- <input class="btn btn-light" type="reset" value="Limpar" /> -->
-                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
-                    </div>
+                        <!-- <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" /> -->
+                    <!-- </div> -->
                 </form>
             </section>
 

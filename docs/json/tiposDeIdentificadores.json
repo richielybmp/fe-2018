@@ -1,0 +1,11 @@
+{
+    "Identificador": [
+        {"descricao": "Único dentro da organização", "valor": 1},
+        {"descricao": "Carteira de Trabalho e Previdência Social", "valor": 10},
+        {"descricao": "Titulo Eleitoral", "valor": 11},
+        {"descricao": "Certidão de Nascimento, Casamento, Divórcio", "valor": 12},
+        {"descricao": "Radiologia", "valor": 21},
+        {"descricao": "Patologia", "valor": 22},
+        {"descricao": "Farmácia", "valor": 23}
+    ]
+}

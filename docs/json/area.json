@@ -1,0 +1,8 @@
+{
+    "Area":[
+        {"descricao": "Local", "valor":"1"},
+        {"descricao": "Área/região/distrito", "valor":"2"},
+        {"descricao": "Estado/província/território", "valor":"3"},
+        {"descricao": "Nacional", "valor":"4"}
+    ]
+}

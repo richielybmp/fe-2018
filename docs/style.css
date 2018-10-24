@@ -58,8 +58,12 @@ tr:hover:not(.trHeader) {
     overflow: hidden;
 }
 
-.acoes{
+.acoes {
     float: right;
+    margin: 10px 0 35px 0;
+}
+
+.acoes-id {
     margin: 10px 0 35px 0;
 }
 
