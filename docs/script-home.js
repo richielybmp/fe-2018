@@ -526,7 +526,7 @@ function editarContato(evt){
         default:
             break;
     }  
-    $(".acoes #btnExcluir").show();
+    $("#regiao-contatos .acoes #btnExcluir").show();
 }
 
 function excluirContato(){
@@ -538,7 +538,7 @@ function limparFormulario(){
     $("#selectPreferenciaDeUso_0").val("");
     $("#inputDetalhes").val("");
     $("#selectUtilizacaoDoContato_0").val("");
-    $(".acoes #btnExcluir").hide();
+    $("#regiao-contatos .acoes #btnExcluir").hide();
 }
 /****** CONTATO - FIM ******/
 
@@ -577,7 +577,7 @@ function adicionarVinculo(){
         elTr.appendChild(criarComponenteHtmlDinamico({tag:'td', innerHTML:dataInicio}))
         elTr.appendChild(criarComponenteHtmlDinamico({tag:'td', innerHTML:dataFim}))
 
-        elTr.addEventListener("dblclick", editarContato);
+        elTr.addEventListener("dblclick", editarVinculo);
 
         bodytabelaContatos.appendChild(elTr);
         limparVinculo();
@@ -589,9 +589,10 @@ function limparVinculo(){
     $("#dtInicio").val("");
     $("#dtFinal").val("");
     $("#selectRelacionamentos_0").val("");
+    $("#regiao-vinculos .acoes #btnExcluir").hide();
 }
 
-function editarContato(evt){
+function editarVinculo(evt){
     var linha = $(evt.target).closest('tr')[0];
     $("#inputIdVinculo").val($($(linha).find("td:eq(0)")[0]).text());
     $("#dtInicio").val($($(linha).find("td:eq(2)")[0]).text());
@@ -667,6 +668,6 @@ function editarContato(evt){
         default:
             break;
     }  
-    $(".acoes #btnExcluir").show();
+    $("#regiao-vinculos .acoes #btnExcluir").show();
 }
 /****** VÍNCULOS - FIM ******/

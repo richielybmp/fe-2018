@@ -44,5 +44,14 @@ function carregueJson(fileName, callback) {
 function existeValor(obj){
     return obj != null && obj != undefined && obj != "";
 }
+/*Scroll Spy*/
+$('body').scrollspy({ target: '#spy', offset:80});
 
+var page = $('html, body');
+$("#spy > .nav li").click(function(evt) {
+    $('html, body').animate({
+        scrollTop: $($(evt.target).closest('a')[0].hash).offset().top
+    }, 500);
+    return false;
+});
  /****** UTILITÁRIOS - FIM ******/
