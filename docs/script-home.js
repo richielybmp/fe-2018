@@ -432,6 +432,7 @@ function mostreFormularios(evt){
 }
 /****** IDENTIFICADORES - FIM ******/
  
+/****** CONTATO ******/
 function adicionarContato(){
     var bodytabelaContatos = $("#tabelaContatos tbody")[0];
     var meioDeComunicacao = $("#selectMeioDeComunicacao_0 option:selected").data('desc');
@@ -464,7 +465,6 @@ function adicionarContato(){
 
 function editarContato(evt){
     var linha = $(evt.target).closest('tr')[0];
-    debugger
     $("#inputDetalhes").val($($(linha).find("td:eq(1)")[0]).text());
 
     switch ($($(linha).find("td:eq(3)")[0]).text()){
@@ -531,147 +531,142 @@ function editarContato(evt){
 
 function excluirContato(){
 
+}     
+
+function limparFormulario(){
+    $("#selectMeioDeComunicacao_0").val("");
+    $("#selectPreferenciaDeUso_0").val("");
+    $("#inputDetalhes").val("");
+    $("#selectUtilizacaoDoContato_0").val("");
+    $(".acoes #btnExcluir").hide();
 }
 /****** CONTATO - FIM ******/
 
 /****** VÍNCULOS ******/
-var quantidadeDeSelectsRelacionamento = 0;
-    
-//Método responsável por gerar html para cadastro de novos vinculos.
-function mostrarNovoCadastroDeVinculos(){
-    //document.querySelector(".regiao-vinculos > div").style.display="block";
-    
-    // criar várias entradas para vínculos
-    var regiaoVinculos = document.getElementById("regiao-vinculos");
-    
-    var divVinculo = criarComponenteHtmlDinamico({ tag: 'div', className:'vinculo' });
-    
-    // divRow
-    var divRow = criarComponenteHtmlDinamico({ tag: 'div', className:'row' });
 
-    //Identificador
-    var divIdentificador = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
-    var labelIdentificador = criarComponenteHtmlDinamico({ tag: 'label', id:'', className:'', name:'', innerHTML:'Identificador', htmlFor:'lbIdentificador', type:'' });
-    var inputIdentificador = criarComponenteHtmlDinamico({ tag: 'input', className:'form-control', innerHTML:'Identificador', htmlFor:'lbIdentificador', type:'text' });
-    inputIdentificador.setAttribute('required', "");
-
-    divIdentificador.appendChild(labelIdentificador);
-    divIdentificador.appendChild(inputIdentificador);
+function adicionarVinculo(){
+    var bodytabelaContatos = $("#tabelaVinculos tbody")[0];
     
-    // Relacionamento
-    var divRelacionamento = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
-    var labelRelacionamento = criarComponenteHtmlDinamico({ tag: 'label', innerHTML:'Relacionamento', htmlFor:'lbRelacionamento' }); 
-    var seletorDeRelacionamento = criarComponenteHtmlDinamico({ tag: 'select', id:'selectRelacionamentos_' + quantidadeDeSelectsRelacionamento, className:'form-control relacionamentos' });
+    var identificador = $("#inputIdVinculo").val();
+    var tipoRelacionamento = $("#selectRelacionamentos_0 option:selected").data('desc');
+    var dataInicio = $("#dtInicio").val();
+    var dataFim = $("#dtFinal").val()
 
-    divRelacionamento.appendChild(labelRelacionamento);
-    divRelacionamento.appendChild(seletorDeRelacionamento);
-    
-    carregueJson('./json/relacionamentos.json', function(response) {
-        // Na resposta do carregueEstados, é realizado um callback com a responseText.
-        // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
-        var relacionamentos = JSON.parse(response);
+    $("#inputIdVinculo").css("border-color", "#ced4da"); 
+    $("#selectRelacionamentos_0").css("border-color", "#ced4da");
+    $("#dtInicio").css("border-color", "#ced4da"); 
+    $("#dtFinal").css("border-color", "#ced4da"); 
+
+    if (identificador == ""){
+        $("#inputIdVinculo").css("border-color", "red");
+    }
+    else if(tipoRelacionamento == undefined){
+        $("#selectRelacionamentos_0").css("border-color", "red");
+    }
+    else if(dataInicio == ""){
+        $("#dtInicio").css("border-color", "red");
+    }
+    else if(dataFim == ""){
+        $("#dtFinal").css("border-color", "red");
+    }
+    else {
+        var elTr = criarComponenteHtmlDinamico({tag:'tr'});
         
-        // Select 'estados'
-        var elRelacionamentos = document.getElementById(seletorDeRelacionamento.id);
-        
-        // Para cada item no objeto Estados, vamos criar uma <option> e adicionar no 'select'
-        relacionamentos.Relacionamentos.forEach(estado => {
-            //console.log(estado);
-            var option = document.createElement("option");
-            option.text = estado.nome;  // Goiás
-            option.value = estado.codigo; // GO
-            elRelacionamentos.appendChild(option);
-        });
-        quantidadeDeSelectsRelacionamento++;
-    });
+        elTr.appendChild(criarComponenteHtmlDinamico({tag:'td', innerHTML:identificador}))
+        elTr.appendChild(criarComponenteHtmlDinamico({tag:'td', innerHTML:tipoRelacionamento}))
+        elTr.appendChild(criarComponenteHtmlDinamico({tag:'td', innerHTML:dataInicio}))
+        elTr.appendChild(criarComponenteHtmlDinamico({tag:'td', innerHTML:dataFim}))
 
-    // Data Inicio
-    var divDataInicio = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
-    
-    var labelDataInicio = criarComponenteHtmlDinamico({ tag: 'label', htmlFor:'lbDataInicio', innerHTML:'Data inicial' });
-    
-    var inputDataInicio = criarComponenteHtmlDinamico({ tag: 'input', id:'dtInicio', className:'form-control', name:'dtInicio', type:'date' });
+        elTr.addEventListener("dblclick", editarContato);
 
-    divDataInicio.appendChild(labelDataInicio);
-    divDataInicio.appendChild(inputDataInicio);
+        bodytabelaContatos.appendChild(elTr);
+        limparVinculo();
+    }
+}
 
-    // Data final
-    var divDataFim = criarComponenteHtmlDinamico({ tag: 'div', className:'col-md-3' });
-    
-    var labelDataFim =  criarComponenteHtmlDinamico({ tag: 'label', htmlFor:'lbDataFim', innerHTML:'Data final' });
-    
-    var inputDataFim = criarComponenteHtmlDinamico({ tag: 'input', id:'dtFinal', className:'form-control', name:'dtFinal', type:'date' });
+function limparVinculo(){
+    $("#inputIdVinculo").val("");
+    $("#dtInicio").val("");
+    $("#dtFinal").val("");
+    $("#selectRelacionamentos_0").val("");
+}
 
-    divDataFim.appendChild(labelDataFim);
-    divDataFim.appendChild(inputDataFim);
-    // ------------------------------------------------
-    divRow.appendChild(divIdentificador);
-    divRow.appendChild(divRelacionamento);
-    divRow.appendChild(divDataInicio);
-    divRow.appendChild(divDataFim);
-    // ------------------------------------------------
-    
-    // divAcoes
-    var divAcoes = criarComponenteHtmlDinamico({ tag: 'div', className:'acoes' });
-    
-    var btnSalvar =  criarComponenteHtmlDinamico({ tag: 'input', id:'btnSalvar', className:'btn btn-success', value:'Salvar', type:'button'});
-    btnSalvar.onclick = (evt) =>{
-        var elObrigatorio = $(evt.target).closest(".vinculo").find(".row input:required");
-        
-        if (elObrigatorio.val() != ""){
-            $(evt.target).closest(".vinculo").find(".row input,select").prop('disabled', true);
-            $(evt.target).hide();
-            $(evt.target).closest(".acoes").find("#btnCancelar").hide();
-            $(evt.target).closest(".acoes").find("#btnEditar").show();
-            $(evt.target).closest(".acoes").find("#btnExcluir").show();
-            elObrigatorio.css("border-color", "#ced4da"); 
-            evt.target.setAttribute('salvou', true);
-        }
-        else {
-            elObrigatorio.css("border-color", "red");
-        }
-    };
-    
-    var btnCancelar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnCancelar', className:'btn btn-warning', value:'Cancelar', type:'button'});
-    btnCancelar.onclick = (evt) =>{
-        if(!$(evt.target).closest(".acoes").find("#btnSalvar")[0].getAttribute('salvou') == true)
-            $(evt.target).closest(".vinculo").remove();
-        else
-            $(evt.target).closest(".vinculo").find(".row input,select").prop('disabled', true);
-            $(evt.target).hide();
-            $(evt.target).closest(".acoes").find("#btnSalvar").hide();
-            $(evt.target).closest(".acoes").find("#btnCancelar").hide();
-            $(evt.target).closest(".acoes").find("#btnEditar").show();
-            $(evt.target).closest(".acoes").find("#btnExcluir").show();
-    };
-    
-    var btnEditar = criarComponenteHtmlDinamico({ tag: 'input', id:'btnEditar', className:'btn btn-primary', value:'Editar', type:'button'});
-    btnEditar.style.display = "none";
-    btnEditar.onclick = (evt) =>{
-        $(evt.target).hide();
-        $(evt.target).closest(".vinculo").find(".row input,select").prop('disabled', false);
-        $(evt.target).closest(".acoes").find("#btnSalvar").show();
-        $(evt.target).closest(".acoes").find("#btnCancelar").show();
-        $(evt.target).closest(".acoes").find("#btnEditar").hide();
-        $(evt.target).closest(".acoes").find("#btnExcluir").hide();
-    };
+function editarContato(evt){
+    var linha = $(evt.target).closest('tr')[0];
+    $("#inputIdVinculo").val($($(linha).find("td:eq(0)")[0]).text());
+    $("#dtInicio").val($($(linha).find("td:eq(2)")[0]).text());
+    $("#dtFinal").val($($(linha).find("td:eq(3)")[0]).text());
 
-    var btnExcluir = criarComponenteHtmlDinamico({ tag: 'input', id:'btnExcluir', className:'btn btn-danger', value:'Excluir', type:'reset'});
-    btnExcluir.style.display = "none";
-    btnExcluir.onclick = (evt) =>{
-        $(evt.target).closest(".vinculo").remove();
-    };
-
-    divAcoes.appendChild(btnSalvar);
-    divAcoes.appendChild(btnCancelar);
-    divAcoes.appendChild(btnEditar);
-    divAcoes.appendChild(btnExcluir);
-
-    divVinculo.appendChild(divRow);
-    divVinculo.appendChild(divAcoes);
-
-    regiaoVinculos.appendChild(divVinculo);
-
-    console.log(regiaoVinculos);
+    switch ($($(linha).find("td:eq(1)")[0]).text()){
+        case "Avó materna":
+            $("#selectRelacionamentos_0").val("7");
+            break;
+        case "Avô materno":
+            $("#selectRelacionamentos_0").val("8");
+            break;
+        case "Cônjuge/companheiro(a)":
+            $("#selectRelacionamentos_0").val("9");
+            break;
+        case "Irmão":
+            $("#selectRelacionamentos_0").val("23");
+            break;
+        case "Irmã":
+            $("#selectRelacionamentos_0").val("24");
+            break;
+        case "Meio-irmão":
+            $("#selectRelacionamentos_0").val("25");
+            break;
+        case "Meio-irmã":
+            $("#selectRelacionamentos_0").val("26");
+            break;
+        case "Irmãos":
+            $("#selectRelacionamentos_0").val("27");
+            break;
+        case "Criança":
+            $("#selectRelacionamentos_0").val("28");
+            break;
+        case "Filha":
+            $("#selectRelacionamentos_0").val("29");
+            break;
+        case "Avó paterna":
+            $("#selectRelacionamentos_0").val("36");
+            break;
+        case "Avô paterno":
+            $("#selectRelacionamentos_0").val("37");
+            break;
+        case "Tio materno":
+            $("#selectRelacionamentos_0").val("38");
+            break;
+        case "Tio paterno":
+            $("#selectRelacionamentos_0").val("40");
+            break;
+        case "Tia paterna":
+            $("#selectRelacionamentos_0").val("41");
+            break;
+        case "Recém-nascido":
+            $("#selectRelacionamentos_0").val("189");
+            break;
+        case "Pais":
+            $("#selectRelacionamentos_0").val("254");
+            break;
+        case "Mãe adotiva":
+            $("#selectRelacionamentos_0").val("262");
+            break;
+        case "Pai adotivo":
+            $("#selectRelacionamentos_0").val("263");
+            break;
+        case "Responsável":
+            $("#selectRelacionamentos_0").val("264");
+            break;
+        case "Coabitante":   
+            $("#selectRelacionamentos_0").val("265");
+            break;
+        case "Tia materna":
+            $("#selectRelacionamentos_0").val("939");
+            break;
+        default:
+            break;
+    }  
+    $(".acoes #btnExcluir").show();
 }
 /****** VÍNCULOS - FIM ******/

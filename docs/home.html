@@ -584,7 +584,7 @@
                             </div>
                             <div class="acoes">
                                 <input id="btnSalvar" class="btn btn-success" type="button" value="Salvar" onclick="adicionarContato()">
-                                <input id="btnCancelar" class="btn btn-warning" type="reset" value="Cancelar">
+                                <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="limparFormulario()">
                                 <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
                                 <input id="btnExcluir" class="btn btn-danger" type="reset" value="Excluir" style="display: none;" onclick="excluirContato()">
                             </div>
@@ -594,7 +594,7 @@
                     <div id="tabelaContatos">          
                         <table class="table table-bordered table-hovered">
                             <thead>
-                                <tr class="trHeader">
+                                <tr class="trHeader" style="background-color: #007bff">
                                     <th>Meio de Comunicação</th>
                                     <th>Detalhes</th>
                                     <th>Preferência</th>
@@ -622,10 +622,76 @@
                 <form action="">
                     <legend>Cadastro de vínculos do paciente</legend>
 
-                    <input class="btn btn-primary bloco" type="button" value="Adicionar Vínculo" onclick="mostrarNovoCadastroDeVinculos()">
+                    <!-- <input class="btn btn-primary bloco" type="button" value="Adicionar Vínculo" onclick="mostrarNovoCadastroDeVinculos()"> -->
                     <br />
 
-                    <div id="regiao-vinculos"></div>
+                    <div id="regiao-vinculos">
+                        <div class="vinculo">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="lbIdentificador">Identificador</label>
+                                    <input id="inputIdVinculo" class="form-control" type="text" required="">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="lbRelacionamento">Relacionamento</label>
+                                    <select id="selectRelacionamentos_0" class="form-control relacionamentos">
+                                        <option value="7" data-desc="Avó materna">Avó materna</option>
+                                        <option value="8" data-desc="Avô materno">Avô materno</option>
+                                        <option value="9" data-desc="Cônjuge/companheiro(a)">Cônjuge/companheiro(a)</option>
+                                        <option value="23" data-desc="Irmão">Irmão</option>
+                                        <option value="24" data-desc="Irmã">Irmã</option>
+                                        <option value="25" data-desc="Meio-irmão">Meio-irmão</option>
+                                        <option value="26" data-desc="Meio-irmã">Meio-irmã</option>
+                                        <option value="27" data-desc="Irmãos">Irmãos</option>
+                                        <option value="28" data-desc="Criança">Criança</option>
+                                        <option value="29" data-desc="Filha">Filha</option>
+                                        <option value="36" data-desc="Avó paterna">Avó paterna</option>
+                                        <option value="37" data-desc="Avô paterno">Avô paterno</option>
+                                        <option value="38" data-desc="Tio materno">Tio materno</option>
+                                        <option value="40" data-desc="Tio paterno">Tio paterno</option>
+                                        <option value="41" data-desc="Tia paterna">Tia paterna</option>
+                                        <option value="189" data-desc="Recém-nascido">Recém-nascido</option>
+                                        <option value="254" data-desc="Pais">Pais</option>
+                                        <option value="262" data-desc="Mãe adotiva">Mãe adotiva</option>
+                                        <option value="263" data-desc="Pai adotivo">Pai adotivo</option>
+                                        <option value="264" data-desc="Responsável">Responsável</option>
+                                        <option value="265" data-desc="Coabitante">Coabitante</option>
+                                        <option value="939" data-desc="Tia materna">Tia materna</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="lbDataInicio">Data inicial</label>
+                                    <input id="dtInicio" class="form-control" name="dtInicio" type="date">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="lbDataFim">Data final</label>
+                                    <input id="dtFinal" class="form-control" name="dtFinal" type="date">
+                                </div>
+                            </div>
+                            
+                            <div class="acoes">
+                                <input id="btnSalvar" class="btn btn-success" type="button" value="Salvar" onclick="adicionarVinculo()">
+                                <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="limparVinculo()">
+                                <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
+                                <input id="btnExcluir" class="btn btn-danger" type="reset" value="Excluir" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tabelaVinculos">          
+                        <table class="table table-bordered table-hovered">
+                            <thead>
+                                <tr class="trHeader" style="background-color: #007bff">
+                                    <th>Identificador</th>
+                                    <th>Relacionamento</th>
+                                    <th>Data inicial</th>
+                                    <th>Data final</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <br />
                     <br />
