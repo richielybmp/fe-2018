@@ -3,7 +3,17 @@ h1, h3 {
     padding: 15px;
 }
 
-#home > span, form > legend, .caixa span, .localizar {
+#pesquisar {
+    display: none;
+    padding-top: 55px;
+}
+
+#pesquisar > span{
+    display: block;
+    font-size: 30px;
+}
+
+form > legend, .caixa span, .localizar {
     margin: 20px 0 20px 0;
     display: block;
     font-size: 30px;

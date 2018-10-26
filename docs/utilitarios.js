@@ -54,4 +54,16 @@ $("#spy > .nav li").click(function(evt) {
     }, 500);
     return false;
 });
+
+function mostrePesquisa(){
+    $("section:not(#pesquisar, #header)").fadeOut(600, function(){
+        $("section#pesquisar").show();
+    });
+}
+
+function mostreInicio(){
+    $("section#pesquisar").fadeOut(600, function(){
+        $("section:not(#pesquisar, #header)").show();
+    });
+}
  /****** UTILITÁRIOS - FIM ******/

@@ -23,7 +23,14 @@
             <nav id="spy">
                 <ul class="sidebar-nav nav">
                     <li class="sidebar-brand">
-                        <a href="#home"><span class="fa fa-home solo">Home</span></a>
+                        <a href="#header" onclick="mostreInicio()">
+                            <span class="fa fa-home solo">Início</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#pesquisar" onclick="mostrePesquisa()" data-scroll>
+                            <span class="fa fa-anchor solo">Pesquisar Paciente</span>
+                        </a>
                     </li>
                     <li>
                         <a href="#identificadores" data-scroll>
@@ -60,7 +67,7 @@
         </div>
 
          <!-- HEADER -->
-         <section class="header">
+         <section id="header" class="header">
             <!-- Apresentação do portal -->
             <h1>ABNT NBR 15985:2011</h1>
             <h3>Identificação dos indivíduos em saúde</h3>
@@ -68,12 +75,11 @@
 
         <!-- Seções controladas pela nav -->
         <div class="tab-content page-content-wrapper" id="conteudo"></div>
-            <!-- Home -->
-            <section class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <span>Página inicial - Identificação dos indivíduos em saúde</span>
+            <!-- Pesquisar -->
+            <section class="tab-pane fade show active" id="pesquisar" role="tabpanel" aria-labelledby="home-tab">
+                <span>Pesquisar pacientes</span>
                 <div>
                     <div class="localizar">
-
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar...">
                             <span class="mdi mdi-magnify"></span>
@@ -83,7 +89,7 @@
                         </div>
 
                     </div>
-                    <input class="btn btn-primary" type="button" value="Novo cadastro" onclick="iniciarCadastro()">
+                    <!-- <input class="btn btn-primary" type="button" value="Novo cadastro" onclick="iniciarCadastro()"> -->
 
                     <table id="tabela-registros-indicadores">
                         <tr class="trHeader">
@@ -125,7 +131,6 @@
                     <legend>Cadastro de identificadores do paciente</legend>
 
                     <input class="btn btn-primary bloco" type="button" value="Adicionar Identificador" onclick="mostrarNovoCadastroDeIdentificador()">
-                    <br />
 
                     <div id="regiao-identificadores"></div>
 

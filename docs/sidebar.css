@@ -78,9 +78,13 @@
     line-height: 60px;
     font-size: 18px;
   }
+
+  .sidebar-nav > .sidebar-brand:hover {
+    background: rgba(255,255,255,0.2);
+  }
   
   .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #fff;
   }
   
   .sidebar-nav > .sidebar-brand a:hover {
@@ -103,10 +107,6 @@
   #menu-toggle {
       text-decoration: none;
   }
-  
-  .btn-menu {
-    color: #000;
-  } 
   
   .inset {
     padding: 20px;
