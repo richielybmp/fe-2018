@@ -58,12 +58,14 @@ $("#spy > .nav li").click(function(evt) {
 function mostrePesquisa(){
     $("section:not(#pesquisar, #header)").fadeOut(600, function(){
         $("section#pesquisar").show();
+        $("#spy li:not(.sidebar-brand)").hide();
     });
 }
 
 function mostreInicio(){
     $("section#pesquisar").fadeOut(600, function(){
         $("section:not(#pesquisar, #header)").show();
+        $("#spy li:not(.sidebar-brand)").show();
     });
 }
  /****** UTILITÁRIOS - FIM ******/

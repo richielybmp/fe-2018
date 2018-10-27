@@ -10,8 +10,8 @@
     <title>Cadastro de Pacientes - ABNT NBR 15985:2011</title>
     <link rel="shortcut icon" href="favicon.png">
     <!-- Bootstrap e CSS -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
 </head>
@@ -27,7 +27,7 @@
                             <span class="fa fa-home solo">Início</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="sidebar-brand">
                         <a href="#pesquisar" onclick="mostrePesquisa()" data-scroll>
                             <span class="fa fa-anchor solo">Pesquisar Paciente</span>
                         </a>
@@ -606,7 +606,7 @@
                                 </div>
                             </div>
                             <div class="acoes">
-                                <input id="btnSalvar" class="btn btn-success" type="button" value="Salvar" onclick="adicionarContato()">
+                                <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarContato()">
                                 <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="limparFormulario()">
                                 <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
                                 <input id="btnExcluir" class="btn btn-danger" type="reset" value="Excluir" style="display: none;" onclick="excluirContato()">
@@ -614,7 +614,8 @@
                         </div>
                     </div>
 
-                    <div id="tabelaContatos">          
+                    <input type="hidden" id="chaveContato" name="chaveContato">
+                    <div id="tabelaContatos" style="display:none">          
                         <table class="table table-bordered table-hovered">
                             <thead>
                                 <tr class="trHeader" style="background-color: #007bff">
@@ -631,11 +632,6 @@
 
                     <br />
                     <br />
-                    <!-- <div class="botoes-acoes"> -->
-                        <!-- <input class="btn btn-success" type="submit" value="Salvar" /> -->
-                        <!-- <input class="btn btn-light" type="reset" value="Limpar" /> -->
-                        <!-- <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" /> -->
-                    <!-- </div> -->
                 </form>
             </section>
 
@@ -645,8 +641,6 @@
                 <!-- Início do formulário - VÍNCULOS -->
                 <form action="">
                     <legend>Cadastro de vínculos do paciente</legend>
-
-                    <!-- <input class="btn btn-primary bloco" type="button" value="Adicionar Vínculo" onclick="mostrarNovoCadastroDeVinculos()"> -->
                     <br />
 
                     <div id="regiao-vinculos">
@@ -694,7 +688,7 @@
                             </div>
                             
                             <div class="acoes">
-                                <input id="btnSalvar" class="btn btn-success" type="button" value="Salvar" onclick="adicionarVinculo()">
+                                <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarVinculo()">
                                 <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="limparVinculo()">
                                 <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
                                 <input id="btnExcluir" class="btn btn-danger" type="reset" value="Excluir" style="display: none;">
@@ -702,7 +696,8 @@
                         </div>
                     </div>
 
-                    <div id="tabelaVinculos">          
+                    <input type="hidden" id="chaveVinculo" name="chaveVinculo">
+                    <div id="tabelaVinculos" style="display:none;">          
                         <table class="table table-bordered table-hovered">
                             <thead>
                                 <tr class="trHeader" style="background-color: #007bff">
@@ -736,8 +731,8 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-    <script src="utilitarios.js"></script>
-    <script src="script-home.js"></script>
+    <script src="js/utilitarios.js"></script>
+    <script src="js/script-home.js"></script>
 </body>
 
 </html>

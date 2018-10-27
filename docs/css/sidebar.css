@@ -73,7 +73,7 @@
     text-decoration: none;
   }
   
-  .sidebar-nav > .sidebar-brand {
+  .sidebar-nav .sidebar-brand {
     height: 65px;
     line-height: 60px;
     font-size: 18px;
