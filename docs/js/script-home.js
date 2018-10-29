@@ -60,7 +60,7 @@ function mostrarNovoCadastroDeIdentificador() {
     // Designação
     var divDesignacao = criarComponenteHtmlDinamico({ tag: 'div', className: 'form-group' });
     var labelDesignacao = criarComponenteHtmlDinamico({ tag: 'label', innerHTML: 'Designação', htmlFor: 'lbDesignacao' });
-    var inputDesignacao = criarComponenteHtmlDinamico({ tag: 'input', className: 'form-control', innerHTML: 'Designação', htmlFor: 'lbDesignacao', type: 'text' });
+    var inputDesignacao = criarComponenteHtmlDinamico({ tag: 'input', id:"idDesignacao", className: 'form-control', innerHTML: 'Designação', htmlFor: 'lbDesignacao', type: 'text' });
     inputDesignacao.setAttribute('required', "");
 
     divDesignacao.appendChild(labelDesignacao);
@@ -71,7 +71,7 @@ function mostrarNovoCadastroDeIdentificador() {
     // Emissor
     var divEmissor = criarComponenteHtmlDinamico({ tag: 'div', className: 'col-md-6' });
     var labelEmissor = criarComponenteHtmlDinamico({ tag: 'label', innerHTML: 'Emissor', htmlFor: 'lbEmissor' });
-    var inputEmissor = criarComponenteHtmlDinamico({ tag: 'input', className: 'form-control', innerHTML: 'Emissor', htmlFor: 'lbEmissor', type: 'text' });
+    var inputEmissor = criarComponenteHtmlDinamico({ tag: 'input', id:"idEmissor", className: 'form-control', innerHTML: 'Emissor', htmlFor: 'lbEmissor', type: 'text' });
     inputEmissor.setAttribute('required', "");
 
     divEmissor.appendChild(labelEmissor);
@@ -80,7 +80,7 @@ function mostrarNovoCadastroDeIdentificador() {
     // Data de emissão
     var divDataEmissao = criarComponenteHtmlDinamico({ tag: 'div', className: 'col-md-6' });
     var labelDataEmissao = criarComponenteHtmlDinamico({ tag: 'label', innerHTML: 'Data de emissao', htmlFor: 'lbDataEmissao' });
-    var inputDataEmissao = criarComponenteHtmlDinamico({ tag: 'input', className: 'form-control', innerHTML: 'Data de emissão', htmlFor: 'lbDataEmissao', type: 'date' });
+    var inputDataEmissao = criarComponenteHtmlDinamico({ tag: 'input', id:"idDataEmissao", className: 'form-control', innerHTML: 'Data de emissão', htmlFor: 'lbDataEmissao', type: 'date' });
     inputDataEmissao.setAttribute('required', "");
 
     divDataEmissao.appendChild(labelDataEmissao);
@@ -293,45 +293,9 @@ function mostrarNovoCadastroDeIdentificador() {
     // divAcoes
     var divAcoes = criarComponenteHtmlDinamico({ tag: 'div', className: 'acoes-id' });
 
-    var btnSalvar = criarComponenteHtmlDinamico({ tag: 'input', id: 'btnSalvar', className: 'btn btn-success', value: 'Salvar', type: 'button' });
+    var btnSalvar = criarComponenteHtmlDinamico({ tag: 'input', id: 'btnSalvar', className: 'btn btn-success', value: 'Adicionar', type: 'button' });
     btnSalvar.onclick = (evt) => {
-        var elObrigatorios = $(evt.target).closest(".form-identificadores").find(".identificador input:required");
-        var inconsistente = false;
-
-        for (var i = 0; i < elObrigatorios.length; i++) {
-            if ($(elObrigatorios[i]).val() == "") {
-                var elementosSuperiores = $(elObrigatorios[i]).parents();
-                var index = 0;
-                for (var j = 0; j < elementosSuperiores.length; j++) {
-                    if ($(elementosSuperiores[j]).hasClass('opcional')) {
-                        index = j;
-                        break;
-                    }
-                }
-                if (index > 0) {
-                    if (elementosSuperiores[index].style.display == "block") {
-                        $(elObrigatorios[i]).css("border-color", "red");
-                        inconsistente = true;
-                    }
-                }
-                else if (index == 0) {
-                    $(elObrigatorios[i]).css("border-color", "red");
-                    inconsistente = true;
-                }
-            }
-            else {
-                $(elObrigatorios[i]).css("border-color", "#ced4da");
-            }
-        }
-
-        if (!inconsistente) {
-            $(evt.target).closest(".form-identificadores").find(".identificador input,select").prop('disabled', true);
-            $(evt.target).hide();
-            $(evt.target).closest(".acoes-id").find("#btnCancelar").hide();
-            $(evt.target).closest(".acoes-id").find("#btnEditar").show();
-            $(evt.target).closest(".acoes-id").find("#btnExcluir").show();
-            evt.target.setAttribute('salvou', true);
-        }
+        acaoBotaoSalvar(evt);
     };
 
     var btnCancelar = criarComponenteHtmlDinamico({ tag: 'input', id: 'btnCancelar', className: 'btn btn-warning', value: 'Cancelar', type: 'button' });
@@ -346,6 +310,8 @@ function mostrarNovoCadastroDeIdentificador() {
         $(evt.target).closest(".acoes-id").find("#btnCancelar").hide();
         $(evt.target).closest(".acoes-id").find("#btnEditar").show();
         $(evt.target).closest(".acoes-id").find("#btnExcluir").show();
+
+        $("#btnNovoIdentificador")[0].style.display = "block";
     };
 
     var btnEditar = criarComponenteHtmlDinamico({ tag: 'input', id: 'btnEditar', className: 'btn btn-primary', value: 'Editar', type: 'button' });
@@ -377,7 +343,117 @@ function mostrarNovoCadastroDeIdentificador() {
 
     var tipoIdentificador = document.getElementById('selectTipoDoID_' + quantidadeDeSelectsTipoDoIdentificador);
     tipoIdentificador.addEventListener('change', mostreFormularios);
+
+    $("#btnNovoIdentificador")[0].style.display = "none";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function acaoBotaoSalvar(evt){
+    var elObrigatorios = $(evt.target).closest(".form-identificadores").find(".identificador input:required");
+    var inconsistente = false;
+
+    for (var i = 0; i < elObrigatorios.length; i++) {
+        if ($(elObrigatorios[i]).val() == "") {
+            var elementosSuperiores = $(elObrigatorios[i]).parents();
+            var index = 0;
+            for (var j = 0; j < elementosSuperiores.length; j++) {
+                if ($(elementosSuperiores[j]).hasClass('opcional')) {
+                    index = j;
+                    break;
+                }
+            }
+            if (index > 0) {
+                if (elementosSuperiores[index].style.display == "block") {
+                    $(elObrigatorios[i]).css("border-color", "red");
+                    inconsistente = true;
+                }
+            }
+            else if (index == 0) {
+                $(elObrigatorios[i]).css("border-color", "red");
+                inconsistente = true;
+            }
+        }
+        else {
+            $(elObrigatorios[i]).css("border-color", "#ced4da");
+        }
+    }
+
+    if (!inconsistente) {
+        $(evt.target).closest(".form-identificadores").find(".identificador input,select").prop('disabled', true);
+        $(evt.target).hide();
+        $(evt.target).closest(".acoes-id").find("#btnCancelar").hide();
+        $(evt.target).closest(".acoes-id").find("#btnEditar").show();
+        $(evt.target).closest(".acoes-id").find("#btnExcluir").show();
+        evt.target.setAttribute('salvou', true);
+        $("#btnNovoIdentificador")[0].style.display = "block";
+
+        adicionarNaTabela();
+    }
+}
+
+function adicionarNaTabela(){
+    var bodytabelaIdentificadores = $("#tabelaIdentificadores tbody")[0];
+    var tipo = $("#selectTipoDoID_0")[0].selectedOptions[0].text;
+    var area = $("#selectArea_0")[0].selectedOptions[0].text;   
+    var designacao = $("#idDesignacao").val();
+    var emissor = $("#idEmissor").val();
+    var dataEmissao = $("#idDataEmissao").val();
+
+
+    var elTr = criarComponenteHtmlDinamico({ tag: 'tr', id: area + dataEmissao });
+
+    elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: tipo }));
+    elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: area }));
+    elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: designacao }));
+    elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: emissor }));
+    elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: dataEmissao }));
+    elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', className: "opcional", innerHTML: $("#selectRelacionamentos_0 option:selected").val() }));
+
+    //elTr.addEventListener("dblclick", editarIdentificadores);
+
+    bodytabelaIdentificadores.appendChild(elTr);
+    //limparIdentificadores();
+    $("#tabelaIdentificadores").show();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Método responsável por controlar a habilitação de campos.
 function controlaHabilitacaoInputs(id, ehDisabled) {
@@ -436,19 +512,37 @@ function adicionarContato() {
     var preferencia = $("#selectPreferenciaDeUso_0 option:selected").data('desc');
     var detalhes = $("#inputDetalhes").val();
     var utilizacao = $("#selectUtilizacaoDoContato_0 option:selected").data('desc');
+    var inconsistente = false;
 
+    limpaInconsistencias([$("#selectMeioDeComunicacao_0"),$("#inputDetalhes"), $("#selectPreferenciaDeUso_0"), $("#selectUtilizacaoDoContato_0")]);
+
+    if (meioDeComunicacao == "" || meioDeComunicacao == undefined){
+        $("#selectMeioDeComunicacao_0").css("border-color", "red");
+        inconsistente = true;
+    }
     if (detalhes == "") {
         $("#inputDetalhes").css("border-color", "red");
+        inconsistente = true;
     }
-    else {
-        $("#inputDetalhes").css("border-color", "#ced4da");
-
+    if (preferencia == "" || preferencia == undefined){
+        $("#selectPreferenciaDeUso_0").css("border-color", "red");
+        inconsistente = true;
+    }
+    if (utilizacao == "" || utilizacao == undefined){
+        $("#selectUtilizacaoDoContato_0").css("border-color", "red");
+        inconsistente = true;
+    }
+    if(!inconsistente) {
         var elTr = criarComponenteHtmlDinamico({ tag: 'tr', id: meioDeComunicacao + detalhes });
 
         elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: meioDeComunicacao }));
         elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: detalhes }));
         elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: preferencia }));
         elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: utilizacao }));
+
+        elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', className: "opcional", innerHTML: $("#selectMeioDeComunicacao_0 option:selected").val() }));
+        elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', className: "opcional", innerHTML: $("#selectPreferenciaDeUso_0 option:selected").val() }));
+        elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', className: "opcional", innerHTML: $("#selectUtilizacaoDoContato_0 option:selected").val() }));
 
         elTr.addEventListener("dblclick", editarContato);
 
@@ -465,114 +559,80 @@ function editarContato(evt) {
     var linha = $(evt.target).closest('tr')[0];
     $("#inputDetalhes").val($($(linha).find("td:eq(1)")[0]).text());
 
-    switch ($($(linha).find("td:eq(3)")[0]).text()) {
-        case "Comercial":
-            $("#selectUtilizacaoDoContato_0").val("B");
-            break;
-        case "Pessoal":
-            $("#selectUtilizacaoDoContato_0").val("P");
-            break;
-        case "Comercial ou pessoal":
-            $("#selectUtilizacaoDoContato_0").val("A");
-            break;
-        default:
-            break;
-    }
+    $("#selectMeioDeComunicacao_0").val($($(linha).find("td:eq(4)")[0]).text());
+    
+    $("#selectPreferenciaDeUso_0").val($($(linha).find("td:eq(5)")[0]).text())
+    
+    $("#selectUtilizacaoDoContato_0").val($($(linha).find("td:eq(6)")[0]).text());
+    
+    $("#chaveContato").val(linha.id);
 
-    switch ($($(linha).find("td:eq(2)")[0]).text()) {
-        case "Horário comercial":
-            $("#selectPreferenciaDeUso_0").val("B");
-            break;
-        case "Durante o dia":
-            $("#selectPreferenciaDeUso_0").val("D");
-            break;
-        case "Finais de semana":
-            $("#selectPreferenciaDeUso_0").val("W");
-            break;
-        case "Qualquer hora":
-            $("#selectPreferenciaDeUso_0").val("A");
-            break;
-        case "Período noturno":
-            $("#selectPreferenciaDeUso_0").val("E");
-            break;
-        default:
-            break;
-    }
-
-    switch ($($(linha).find("td:eq(0)")[0]).text()) {
-        case "Telefone":
-            $("#selectMeioDeComunicacao_0").val("T");
-            break;
-        case "Telefone celular":
-            $("#selectMeioDeComunicacao_0").val("C");
-            break;
-        case "Fax":
-            $("#selectMeioDeComunicacao_0").val("F");
-            break;
-        case "Pager":
-            $("#selectMeioDeComunicacao_0").val("P");
-            break;
-        case "Correio eletrônico":
-            $("#selectMeioDeComunicacao_0").val("E");
-            break;
-        case "URL":
-            $("#selectMeioDeComunicacao_0").val("U");
-            break;
-        case "Outro":
-            $("#selectMeioDeComunicacao_0").val("O");
-            break;
-        default:
-            break;
-    }
+    $("#regiao-contatos .acoes #btnCancelar").show();
     $("#regiao-contatos .acoes #btnExcluir").show();
 }
 
-function excluirContato() {
-
+function limpaInconsistencias(elementos) {
+    elementos.forEach(element => {
+        element.css("border-color", "#ced4da");
+    });
 }
 
-function limparFormulario() {
+function limparContato() {
     $("#selectMeioDeComunicacao_0").val("");
     $("#selectPreferenciaDeUso_0").val("");
     $("#inputDetalhes").val("");
     $("#selectUtilizacaoDoContato_0").val("");
+    $("#regiao-contatos .acoes #btnCancelar").hide();
     $("#regiao-contatos .acoes #btnExcluir").hide();
+}
+
+function excluirContato(){
+    var chave = $("#chaveContato").val();
+    $("#" + chave).remove();
+
+    var possuiVinculosNaTabela = $("#tabelaContatos tbody tr").length > 0;
+    if(!possuiVinculosNaTabela) {
+        $("#tabelaContatos").hide();
+    }
+
+    limparContato();
 }
 /****** CONTATO - FIM ******/
 
 /****** VÍNCULOS ******/
 
 function adicionarVinculo() {
-    
     var bodytabelaVinculos = $("#tabelaVinculos tbody")[0];
-
     var identificador = $("#inputIdVinculo").val();
     var tipoRelacionamento = $("#selectRelacionamentos_0 option:selected").data('desc');
     var dataInicio = $("#dtInicio").val();
     var dataFim = $("#dtFinal").val();
+    var inconsistente = false;
 
-    $("#inputIdVinculo").css("border-color", "#ced4da");
-    $("#selectRelacionamentos_0").css("border-color", "#ced4da");
-    $("#dtInicio").css("border-color", "#ced4da");
-    $("#dtFinal").css("border-color", "#ced4da");
+    limpaInconsistencias([$("#inputIdVinculo"), $("#selectRelacionamentos_0"), $("#dtInicio"), $("#dtFinal")]);
 
     if (identificador == "") {
         $("#inputIdVinculo").css("border-color", "red");
+        inconsistente = true;
     }
-    else if (tipoRelacionamento == undefined) {
+    if (tipoRelacionamento == undefined) {
         $("#selectRelacionamentos_0").css("border-color", "red");
+        inconsistente = true;
     }
-    else if (dataInicio == "") {
+    if (dataInicio == "") {
         $("#dtInicio").css("border-color", "red");
+        inconsistente = true;
     }
-    else if (dataFim == "") {
+    if (dataFim == "") {
         $("#dtFinal").css("border-color", "red");
+        inconsistente = true;
     }
-    else {
+    if(!inconsistente) {
         var elTr = criarComponenteHtmlDinamico({ tag: 'tr', id: identificador + dataInicio + dataFim });
 
         elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: identificador }));
         elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: tipoRelacionamento }));
+        elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', className: "opcional", innerHTML: $("#selectRelacionamentos_0 option:selected").val() }));
         elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: dataInicio }));
         elTr.appendChild(criarComponenteHtmlDinamico({ tag: 'td', innerHTML: dataFim }));
 
@@ -590,84 +650,31 @@ function limparVinculo() {
     $("#dtFinal").val("");
     $("#selectRelacionamentos_0").val("");
     $("#regiao-vinculos .acoes #btnExcluir").hide();
+    $("#regiao-vinculos .acoes #btnCancelar").hide();
 }
 
 function editarVinculo(evt) {
     var linha = $(evt.target).closest('tr')[0];
     $("#inputIdVinculo").val($($(linha).find("td:eq(0)")[0]).text());
-    $("#dtInicio").val($($(linha).find("td:eq(2)")[0]).text());
-    $("#dtFinal").val($($(linha).find("td:eq(3)")[0]).text());
+    $("#dtInicio").val($($(linha).find("td:eq(3)")[0]).text());
+    $("#dtFinal").val($($(linha).find("td:eq(4)")[0]).text());
+    $("#selectRelacionamentos_0").val($(linha).find("td.opcional")[0].textContent);
+    
+    $("#chaveVinculo").val(linha.id);
 
-    switch ($($(linha).find("td:eq(1)")[0]).text()) {
-        case "Avó materna":
-            $("#selectRelacionamentos_0").val("7");
-            break;
-        case "Avô materno":
-            $("#selectRelacionamentos_0").val("8");
-            break;
-        case "Cônjuge/companheiro(a)":
-            $("#selectRelacionamentos_0").val("9");
-            break;
-        case "Irmão":
-            $("#selectRelacionamentos_0").val("23");
-            break;
-        case "Irmã":
-            $("#selectRelacionamentos_0").val("24");
-            break;
-        case "Meio-irmão":
-            $("#selectRelacionamentos_0").val("25");
-            break;
-        case "Meio-irmã":
-            $("#selectRelacionamentos_0").val("26");
-            break;
-        case "Irmãos":
-            $("#selectRelacionamentos_0").val("27");
-            break;
-        case "Criança":
-            $("#selectRelacionamentos_0").val("28");
-            break;
-        case "Filha":
-            $("#selectRelacionamentos_0").val("29");
-            break;
-        case "Avó paterna":
-            $("#selectRelacionamentos_0").val("36");
-            break;
-        case "Avô paterno":
-            $("#selectRelacionamentos_0").val("37");
-            break;
-        case "Tio materno":
-            $("#selectRelacionamentos_0").val("38");
-            break;
-        case "Tio paterno":
-            $("#selectRelacionamentos_0").val("40");
-            break;
-        case "Tia paterna":
-            $("#selectRelacionamentos_0").val("41");
-            break;
-        case "Recém-nascido":
-            $("#selectRelacionamentos_0").val("189");
-            break;
-        case "Pais":
-            $("#selectRelacionamentos_0").val("254");
-            break;
-        case "Mãe adotiva":
-            $("#selectRelacionamentos_0").val("262");
-            break;
-        case "Pai adotivo":
-            $("#selectRelacionamentos_0").val("263");
-            break;
-        case "Responsável":
-            $("#selectRelacionamentos_0").val("264");
-            break;
-        case "Coabitante":
-            $("#selectRelacionamentos_0").val("265");
-            break;
-        case "Tia materna":
-            $("#selectRelacionamentos_0").val("939");
-            break;
-        default:
-            break;
-    }
     $("#regiao-vinculos .acoes #btnExcluir").show();
+    $("#regiao-vinculos .acoes #btnCancelar").show();
+}
+
+function excluirVinculo(){
+    var chave = $("#chaveVinculo").val();
+    $("#" + chave).remove();
+
+    var possuiVinculosNaTabela = $("#tabelaVinculos tbody tr").length > 0;
+    if(!possuiVinculosNaTabela) {
+        $("#tabelaVinculos").hide();
+    }
+
+    limparVinculo();
 }
 /****** VÍNCULOS - FIM ******/

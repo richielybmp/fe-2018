@@ -130,9 +130,26 @@
                 <form action="" method="post" id="formId">
                     <legend>Cadastro de identificadores do paciente</legend>
 
-                    <input class="btn btn-primary bloco" type="button" value="Adicionar Identificador" onclick="mostrarNovoCadastroDeIdentificador()">
+                    <input id="btnNovoIdentificador" class="btn btn-primary bloco" type="button" value="Novo Identificador" onclick="mostrarNovoCadastroDeIdentificador()">
 
-                    <div id="regiao-identificadores"></div>
+                    <div id="regiao-identificadores" style="margin-top:15px;"></div>
+
+                    <input type="hidden" id="chaveIdentificadores" name="chaveIdentificadores">
+                    <div id="tabelaIdentificadores" style="display:none">          
+                        <table class="table table-bordered table-hovered">
+                            <thead>
+                                <tr class="trHeader" style="background-color: #007bff">
+                                    <th>Tipo de Identificador</th>
+                                    <th>Área Geográfica</th>
+                                    <th>Designação</th>
+                                    <th>Emissor</th>
+                                    <th>Data da Emissão</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <br />
                     <br />
@@ -572,7 +589,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <label for="lbMeioDeComunicacao">Meio de comunicação</label>
-                                    <select id="selectMeioDeComunicacao_0" class="form-control meioDeComunicacao">
+                                    <select id="selectMeioDeComunicacao_0" class="form-control meioDeComunicacao" required>
                                         <option value="T" data-desc="Telefone">Telefone</option>
                                         <option value="C" data-desc="Telefone celular">Telefone celular</option>
                                         <option value="F" data-desc="Fax">Fax</option>
@@ -588,7 +605,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="lbPreferenciaDeUso">Preferência</label>
-                                    <select id="selectPreferenciaDeUso_0" class="form-control preferenciaDeUso">
+                                    <select id="selectPreferenciaDeUso_0" class="form-control preferenciaDeUso" required>
                                         <option value="B" data-desc="Horário comercial">Horário comercial</option>
                                         <option value="D" data-desc="Durante o dia">Durante o dia</option>
                                         <option value="W" data-desc="Finais de semana">Finais de semana</option>
@@ -598,7 +615,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="lbUtilizacaoDoContato">Utilização</label>
-                                    <select id="selectUtilizacaoDoContato_0" class="form-control utilizacaoDoContato">
+                                    <select id="selectUtilizacaoDoContato_0" class="form-control utilizacaoDoContato" required>
                                         <option value="B" data-desc="Comercial">Comercial</option>
                                         <option value="P" data-desc="Pessoal">Pessoal</option>
                                         <option value="A" data-desc="Comercial ou pessoal">Comercial ou pessoal</option>
@@ -607,9 +624,9 @@
                             </div>
                             <div class="acoes">
                                 <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarContato()">
-                                <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="limparFormulario()">
+                                <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" style="display: none;" onclick="limparContato()">
                                 <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
-                                <input id="btnExcluir" class="btn btn-danger" type="reset" value="Excluir" style="display: none;" onclick="excluirContato()">
+                                <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;" onclick="excluirContato()">
                             </div>
                         </div>
                     </div>
@@ -689,9 +706,9 @@
                             
                             <div class="acoes">
                                 <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarVinculo()">
-                                <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="limparVinculo()">
+                                <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" style="display: none;" onclick="limparVinculo()">
                                 <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
-                                <input id="btnExcluir" class="btn btn-danger" type="reset" value="Excluir" style="display: none;">
+                                <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;" onclick="excluirVinculo()">
                             </div>
                         </div>
                     </div>

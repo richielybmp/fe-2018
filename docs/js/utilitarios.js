@@ -49,23 +49,31 @@ $('body').scrollspy({ target: '#spy', offset:80});
 
 var page = $('html, body');
 $("#spy > .nav li").click(function(evt) {
-    $('html, body').animate({
-        scrollTop: $($(evt.target).closest('a')[0].hash).offset().top
-    }, 500);
+    $(".sidebar-nav.nav li").removeClass("selecionado");
+
+    var ref = $(evt.target).closest('a')[0];
+    
+    if(ref != undefined){
+        $('html, body').animate({
+            scrollTop: $(ref.hash).offset().top
+        }, 500);
+    }
+    
+    $(evt.target).closest("li").addClass("selecionado");
     return false;
 });
 
 function mostrePesquisa(){
     $("section:not(#pesquisar, #header)").fadeOut(600, function(){
         $("section#pesquisar").show();
-        $("#spy li:not(.sidebar-brand)").hide();
+        $("#spy li:not(.sidebar-brand)").fadeOut(200);
     });
 }
 
 function mostreInicio(){
     $("section#pesquisar").fadeOut(600, function(){
         $("section:not(#pesquisar, #header)").show();
-        $("#spy li:not(.sidebar-brand)").show();
+        $("#spy li:not(.sidebar-brand)").fadeIn(300);
     });
 }
  /****** UTILITÁRIOS - FIM ******/
