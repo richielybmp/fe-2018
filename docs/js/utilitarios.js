@@ -44,6 +44,7 @@ function carregueJson(fileName, callback) {
 function existeValor(obj){
     return obj != null && obj != undefined && obj != "";
 }
+
 /*Scroll Spy*/
 $('body').scrollspy({ target: '#spy', offset:80});
 
