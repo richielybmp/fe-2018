@@ -67,6 +67,7 @@ $("#spy > .nav li").click(function(evt) {
 function mostrePesquisa(){
     $("section:not(#pesquisar, #header)").fadeOut(600, function(){
         $("section#pesquisar").show();
+        $("#chkCadastroDeVinculo").parent().hide();
         $("#spy li:not(.sidebar-brand)").fadeOut(200);
     });
 }

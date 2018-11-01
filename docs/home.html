@@ -1,147 +1,149 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-   <head>
-      <!-- Meta tags Obrigatórias -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="authors" content="Richiely Batista, Felipe Maciel, Anderson Messias, Igor Emílio">
-      <meta name="description" content="Implementação de “portal” para cadastro de identificadores de indivíduos em saúde (pacientes). Norma ABNT NBR 15985:2011">
-      <title>Cadastro de Pacientes - ABNT NBR 15985:2011</title>
-      <link rel="shortcut icon" href="favicon.png">
-      <!-- Bootstrap e CSS -->
-      <link rel="stylesheet" href="css/style.css">
-      <link rel="stylesheet" href="css/sidebar.css">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-         crossorigin="anonymous">
-   </head>
-   <body>
-      <div class="container" id="wrapper">
-         <!-- Sidebar -->
-         <div id="sidebar-wrapper">
-            <nav id="spy">
-               <ul class="sidebar-nav nav">
-                  <li class="sidebar-brand">
-                     <a href="#header" onclick="mostreInicio()">
-                     <span class="fa fa-home solo">Início</span>
-                     </a>
-                  </li>
-                  <li class="sidebar-brand">
-                     <a href="#pesquisar" onclick="mostrePesquisa()" data-scroll>
-                     <span class="fa fa-anchor solo">Pesquisar Paciente</span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#identificadores" data-scroll>
-                     <span class="fa fa-anchor solo">Identificadores</span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#nomes" data-scroll>
-                     <span class="fa fa-anchor solo">Nomes</span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#dadosDem" data-scroll>
-                     <span class="fa fa-anchor solo">Dados demográficos</span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#enderecos" data-scroll>
-                     <span class="fa fa-anchor solo">Endereços</span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#comunicacoes" data-scroll>
-                     <span class="fa fa-anchor solo">Comunicações</span>
-                     </a>
-                  </li>
-                  <!-- <li>
-                     <a href="#vinculos" data-scroll>
-                     <span class="fa fa-anchor solo">Vínculos</span>
-                     </a>
-                  </li> -->
-               </ul>
-            </nav>
-         </div>
-         <!-- HEADER -->
-         <section id="header" class="header">
-            <!-- Apresentação do portal -->
-            <h1>ABNT NBR 15985:2011</h1>
-            <h3>Identificação dos indivíduos em saúde</h3>
-         </section>
-         <!-- Seções controladas pela nav -->
-         <div class="tab-content page-content-wrapper" id="conteudo"></div>
-         <!-- Pesquisar -->
-         <section class="tab-pane fade show active" id="pesquisar" role="tabpanel" aria-labelledby="home-tab">
-            <span>Pesquisar pacientes</span>
-            <div>
-               <div class="localizar">
-                  <div class="input-group">
-                     <input type="text" class="form-control" placeholder="Buscar...">
-                     <span class="mdi mdi-magnify"></span>
-                     <div class="input-group-append">
-                        <button class="btn btn-primary" onclick="buscarRegistroIdentificador()">Buscar</button>
-                     </div>
-                  </div>
-               </div>
-               <!-- <input class="btn btn-primary" type="button" value="Novo cadastro" onclick="iniciarCadastro()"> -->
-               <table id="tabela-registros-indicadores">
-                  <tr class="trHeader">
-                     <th>Identificador</th>
-                     <th>Nome</th>
-                     <th>Ações</th>
-                  </tr>
-                  <tr>
-                     <td>123</td>
-                     <td>Maria Anders</td>
-                     <td>
-                        <input class="btn btn-info" type="button" value="Editar">
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>456</td>
-                     <td>Francisco Chang</td>
-                     <td>
-                        <input class="btn btn-info" type="button" value="Editar">
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>789</td>
-                     <td>Roland Mendel</td>
-                     <td>
-                        <input class="btn btn-info" type="button" value="Editar">
-                     </td>
-                  </tr>
-               </table>
-            </div>
-         </section>
-         <!-- Identificadores -->
-         <!-- <section class="tab-pane fade" id="identificadores" role="tabpanel" aria-labelledby="identificadores-tab"> -->
-         <section id="identificadores">
-            <!-- Início do formulário - IDENTIFICAÇÂO -->
-            <form action="" method="post" id="formId">
-               <legend>Cadastro de identificadores do Paciente / Vínculos</legend>
-               <input id="btnNovoIdentificador" class="btn btn-primary bloco" type="reset" value="Novo Identificador" onclick="mostrarNovoCadastroDeIdentificador(this)">
-               <div id="regiao-identificadores" style="margin-top: 15px;display: none;">
-                  <div class="form-identificadores">
-                     <div class="identificador">
-                        <div class="form-check" style="margin-bottom: 15px;">
-                           <input type="checkbox" class="form-check-input" id="chkCadastroDeVinculo">
-                           <label class="form-check-label" for="chkCadastroDeVinculo">Cadastro de vínculo</label>
-                        </div>
+    <head>
+        <!-- Meta tags Obrigatórias -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="authors" content="Richiely Batista, Felipe Maciel, Anderson Messias, Igor Emílio">
+        <meta name="description" content="Implementação de “portal” para cadastro de identificadores de indivíduos em saúde (pacientes). Norma ABNT NBR 15985:2011">
+        <title>Cadastro de Pacientes - ABNT NBR 15985:2011</title>
+        <link rel="shortcut icon" href="favicon.png">
+        <!-- Bootstrap e CSS -->
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container" id="wrapper">
 
-                        <div id="regiao-individuoVinculo" class="row form-group col-md-6" style="display: none;">
-                            <label for="lbIndividuoVinculo">Indivíduo do vínculo (Paciente)</label>
-                            <select id="selectIndividuoVinculo" class="form-control individuoVinculo opcional" required=""></select>
+             <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <nav id="spy">
+                    <ul class="sidebar-nav nav">
+                        <li class="sidebar-brand">
+                            <a href="#header" onclick="mostreInicio()">
+                                <span class="fa fa-home solo">Início</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-brand">
+                            <a href="#pesquisar" onclick="mostrePesquisa()" data-scroll>
+                                <span class="fa fa-anchor solo">Pesquisar Paciente</span>
+                            </a>
+                        </li>
+                        <li id="refVinculos" style="display:none;">
+                            <a href="#vinculos" data-scroll>
+                                <span class="fa fa-anchor solo">Vínculos</span>
+                            </a>
+                        </li> 
+                        <li>
+                            <a href="#identificadores" data-scroll>
+                                <span class="fa fa-anchor solo">Identificadores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#nomes" data-scroll>
+                                <span class="fa fa-anchor solo">Nomes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#dadosDem" data-scroll>
+                                <span class="fa fa-anchor solo">Dados demográficos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#enderecos" data-scroll>
+                                <span class="fa fa-anchor solo">Endereços</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#comunicacoes" data-scroll>
+                                <span class="fa fa-anchor solo">Comunicações</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+         
+            <!-- HEADER -->
+            <section id="header" class="header">
+                <!-- Apresentação do portal -->
+                <h1>ABNT NBR 15985:2011</h1>
+                <h3>Identificação dos indivíduos em saúde</h3>
+            </section>
+
+            <!-- Pesquisar -->
+            <section class="tab-pane fade show active" id="pesquisar" role="tabpanel" aria-labelledby="home-tab">
+                <span>Pesquisar indivíduos</span>
+                <div>
+                    <div class="localizar">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar...">
+                            <span class="mdi mdi-magnify"></span>
+                            <div class="input-group-append">
+                            <button class="btn btn-primary" onclick="buscarRegistroIdentificador()">Buscar</button>
+                            </div>
                         </div>
-                        <div id="regiao-vinculos" style="display: none;">
+                    </div>
+                    <table id="tabela-registros-indicadores">
+                        <tr class="trHeader">
+                            <th>Identificador</th>
+                            <th>Nome</th>
+                            <th>Ações</th>
+                        </tr>
+                        <tr>
+                            <td>123</td>
+                            <td>Maria Anders</td>
+                            <td>
+                                <input class="btn btn-info" type="button" value="Editar">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>456</td>
+                            <td>Francisco Chang</td>
+                            <td>
+                                <input class="btn btn-info" type="button" value="Editar">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>789</td>
+                            <td>Roland Mendel</td>
+                            <td>
+                                <input class="btn btn-info" type="button" value="Editar">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+         
+            <!-- Cadastro de Vínculos? -->
+            <div class="form-check" style="margin-bottom: 15px;">
+                <input type="checkbox" class="form-check-input" id="chkCadastroDeVinculo">
+                <label class="form-check-label" for="chkCadastroDeVinculo">Cadastro de vínculo</label>
+            </div>
+
+            <!-- Vínculos -->
+            <!-- <section class="tab-pane fade" id="vinculos" role="tabpanel" aria-labelledby="vinculos-tab"> -->
+            <section id="vinculos">
+                <!-- Início do formulário - VÍNCULOS -->
+                <form action="">
+                    <legend>Vínculos</legend>
+                    
+                    <input id="btnNovoVinculo" class="btn btn-primary bloco" type="reset" value="Novo Vínculo" onclick="mostrarNovoCadastroDeVinculo(this)">
+                    
+                    <div id="regiao-vinculos" style="margin-top: 15px;display: none;">
+                        <div class="form-vinculos">    
                             <div class="vinculo">
-                                <div class="row form-group">
-                                    <!-- <div class="col-md-3">
+                                <!-- Campos vínculo -->
+                                <div class="row">
+                                    <div class="col-md-3">
                                         <label for="lbIdentificador">Identificador</label>
-                                        <input id="inputIdVinculo" class="form-control" type="text" required="">
-                                    </div> -->
-                                    <div class="col-md-6">
+                                        <!-- <input id="inputIdVinculo" class="form-control" type="text" required=""> -->
+                                        <select id="inputIdVinculo" class="form-control vinculoIdentificador" required="">
+                                            <option value="ID-P-00000001">ID-P-00000001</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
                                         <label for="lbRelacionamento">Relacionamento</label>
                                         <select id="selectRelacionamentos" class="form-control relacionamentos"></select>
                                     </div>
@@ -154,170 +156,247 @@
                                         <input id="dtFinal" class="form-control" name="dtFinal" type="date">
                                     </div>
                                 </div>
-                                <!-- <div class="acoes">
+                                
+                                <!-- Ações -->
+                                <div class="acoes">
                                     <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarVinculo()">
-                                    <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" style="display: none;" onclick="limparVinculo()">
+                                    <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="acaoBotaoCancelarVinculo()">
                                     <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
                                     <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;" onclick="excluirVinculo()">
-                                </div> -->
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                           <div class="form-group col-md-6">
-                              <label for="lbTipoDoIdentificador">Tipo do identificador</label>
-                              <select id="selectTipoDoID" class="form-control tipoDoIdentificador"></select>
-                           </div>
-                           <div class="form-group col-md-6">
-                              <label for="lbAreaGeo">Área Geográfica</label>
-                              <select id="selectArea" class="form-control areaGeo"></select>
-                           </div>
+                    </div>
+                </form>
+                <!-- Tabela Vínculo -->
+                <input type="hidden" id="chaveVinculo" name="chaveVinculo">
+                <div id="tabelaVinculos" style="display:none;">          
+                    <table class="table table-bordered table-hovered">
+                        <thead>
+                            <tr class="trHeader" style="background-color: #007bff">
+                                <th>Identificador</th>
+                                <th>Relacionamento</th>
+                                <th>Data inicial</th>
+                                <th>Data final</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section> 
+
+                <!-- Identificadores -->
+                <!-- <section class="tab-pane fade" id="identificadores" role="tabpanel" aria-labelledby="identificadores-tab"> -->
+            <section id="identificadores">
+                
+                <!-- Início do formulário - IDENTIFICAÇÂO -->
+                <form action="" method="post" id="formId">
+                    <legend>Identificadores</legend>
+                
+                    <input id="btnNovoIdentificador" class="btn btn-primary bloco" type="reset" value="Novo Identificador" onclick="mostrarNovoCadastroDeIdentificador(this)">
+                
+                    <div id="regiao-identificadores" style="margin-top: 15px;display: none;">
+                        <div class="form-identificadores">
+                            <div class="identificador">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="lbTipoDoIdentificador">Tipo do identificador</label>
+                                        <select id="selectTipoDoID" class="form-control tipoDoIdentificador"></select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="lbAreaGeo">Área Geográfica</label>
+                                        <select id="selectArea" class="form-control areaGeo"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lbDesignacao">Designação</label>
+                                    <input id="idDesignacao" class="form-control" type="text" required="">
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-6">
+                                        <label for="lbEmissor">Emissor</label>
+                                        <input id="idEmissor" class="form-control" type="text" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lbDataEmissao">Data de emissao</label>
+                                        <input id="idDataEmissao" class="form-control" type="date" required="">
+                                    </div>
+                                </div>
+
+                                <!-- CTPS -->
+                                <div id="form-ctps" class="caixa opcional form-ctps" style="display: none;">
+                                    <span>Carteira de trabalho</span>
+                                    
+                                    <hr>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="lbSerie">Série</label>
+                                            <input class="form-control" type="text" required="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="lbEstado">Estado</label>
+                                            <select id="selectEstado" class="form-control estado"></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Certidão -->
+                                <div id="form-certidao" class="caixa opcional form-certidao" style="display: none;">
+                                    <span>Certidão</span>
+                                    
+                                    <hr>
+
+                                    <div class="form-group">
+                                        <label for="lbTipoCertidao">Tipo da certidão</label>
+                                        <select id="selectTipoCertidao" class="form-control tipoCertidao col-md-12">
+                                            <option value="nascimento">Nascimento</option>
+                                            <option value="casamento">Casamento</option>
+                                            <option value="divorcio">Divórcio</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lbNomeCartorio">Nome do cartório</label>
+                                        <input class="form-control" type="text" required="">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="lbLivro">Livro</label>
+                                            <input class="form-control" type="number" required="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="lbFolha">Folha</label>
+                                            <input class="form-control" type="number" required="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="lbTermo">Termo</label>
+                                            <input class="form-control" type="number" required="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Título Eleitoral -->
+                                <div id="form-tEleitor" class="caixa opcional form-tEleitor" style="display: none;">
+                                    <span>Título eleitoral</span>
+                                    
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="lbSecao">Seção eleitoral</label>
+                                            <input class="form-control" type="number" required="">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="lbZona">Zona eleitoral</label>
+                                            <input class="form-control" type="number" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acoes-id">
+                                <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="acaoBotaoSalvar(this)">
+                                <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="acaoBotaoCancelar(this)">
+                                <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
+                                <input id="btnExcluir" class="btn btn-danger" type="reset" value="Excluir" style="display: none;">
+                            </div>
                         </div>
-                        <div class="form-group"><label for="lbDesignacao">Designação</label>
-                           <input id="idDesignacao" class="form-control" type="text" required="">
-                        </div>
-                        <div class="row form-group">
-                           <div class="col-md-6">
-                              <label for="lbEmissor">Emissor</label>
-                              <input id="idEmissor" class="form-control" type="text" required="">
-                           </div>
-                           <div class="col-md-6">
-                              <label for="lbDataEmissao">Data de emissao</label>
-                              <input id="idDataEmissao" class="form-control" type="date" required="">
-                           </div>
-                        </div>
-                        <div id="form-ctps" class="caixa opcional form-ctps" style="display: none;">
-                           <span>Carteira de trabalho</span>
-                           <hr>
-                           <div class="row">
-                              <div class="col-md-3"><label for="lbSerie">Série</label><input class="form-control" type="text" required=""></div>
-                              <div class="col-md-4">
-                                 <label for="lbEstado">Estado</label>
-                                 <select id="selectEstado" class="form-control estado"></select>
-                              </div>
-                           </div>
-                        </div>
-                        <div id="form-certidao" class="caixa opcional form-certidao" style="display: none;">
-                           <span>Certidão</span>
-                           <hr>
-                           <div class="form-group">
-                              <label for="lbTipoCertidao">Tipo da certidão</label>
-                              <select id="selectTipoCertidao" class="form-control tipoCertidao col-md-12">
-                                 <option value="nascimento">Nascimento</option>
-                                 <option value="casamento">Casamento</option>
-                                 <option value="divorcio">Divórcio</option>
-                              </select>
-                           </div>
-                           <div class="form-group"><label for="lbNomeCartorio">Nome do cartório</label><input class="form-control" type="text" required=""></div>
-                           <div class="row">
-                              <div class="col-md-4"><label for="lbLivro">Livro</label><input class="form-control" type="number" required=""></div>
-                              <div class="col-md-4"><label for="lbFolha">Folha</label><input class="form-control" type="number" required=""></div>
-                              <div class="col-md-4"><label for="lbTermo">Termo</label><input class="form-control" type="number" required=""></div>
-                           </div>
-                        </div>
-                        <div id="form-tEleitor" class="caixa opcional form-tEleitor" style="display: none;">
-                           <span>Título eleitoral</span>
-                           <hr>
-                           <div class="row">
-                              <div class="col-md-6"><label for="lbSecao">Seção eleitoral</label><input class="form-control" type="number" required=""></div>
-                              <div class="col-md-6"><label for="lbZona">Zona eleitoral</label><input class="form-control" type="number" required=""></div>
-                           </div>
-                        </div>
-                        
-                        
-                     </div>
-                     <div class="acoes-id">
-                        <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="acaoBotaoSalvar(this)">
-                        <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="acaoBotaoCancelar(this)">
-                        <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
-                        <input id="btnExcluir" class="btn btn-danger" type="reset" value="Excluir" style="display: none;">
-                     </div>
-                  </div>
-               </div>
-               <input type="hidden" id="chaveIdentificadores" name="chaveIdentificadores">
-               <div id="tabelaIdentificadores" style="display:none">
-                  <table class="table table-bordered table-hovered">
-                     <thead>
-                        <tr class="trHeader" style="background-color: #007bff">
-                           <th>ID</th>
-                           <th>Tipo de Identificador</th>
-                           <th>Área Geográfica</th>
-                           <th>Designação</th>
-                           <th>Emissor</th>
-                           <th>Data da Emissão</th>
-                           <!-- <th>Vínculo</th>
-                           <th>Tipo de Relacionamento</th> -->
-                        </tr>
-                     </thead>
-                     <tbody>
-                     </tbody>
-                  </table>
-               </div>
-               <input type="hidden" id="chaveVinculo" name="chaveVinculo">
-                        <div id="tabelaVinculos" style="display:none;">
-                           <table class="table table-bordered table-hovered">
-                              <thead>
+                    </div>
+                    
+                    <!-- Tabela Identificadores Pacientes-->
+                    <input type="hidden" id="chaveIdentificadores" name="chaveIdentificadores">
+                    <div id="tabelaIdentificadores" style="display:none">
+                        <table class="table table-bordered table-hovered">
+                            <caption>Identificadores de Pacientes</caption>
+                            <thead>
+                                <tr class="trHeader" style="background-color: #007bff">
+                                    <th>ID</th>
+                                    <th>Tipo de Identificador</th>
+                                    <th>Área Geográfica</th>
+                                    <th>Designação</th>
+                                    <th>Emissor</th>
+                                    <th>Data da Emissão</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                     <!-- Tabela Identificadores Vínculos -->
+                     <input type="hidden" id="chaveIdentificadoresVinculos" name="chaveIdentificadoresVinculos">
+                     <div id="tabelaIdentificadoresVinculos" style="display:none">
+                         <table class="table table-bordered table-hovered">
+                                <caption>Identificadores de Vínculos</caption>
+                             <thead>
                                  <tr class="trHeader" style="background-color: #007bff">
-                                    <th>Identificador</th>
-                                    <th>Relacionamento</th>
-                                    <th>Data inicial</th>
-                                    <th>Data final</th>
+                                     <th>ID</th>
+                                     <th>Tipo de Identificador</th>
+                                     <th>Área Geográfica</th>
+                                     <th>Designação</th>
+                                     <th>Emissor</th>
+                                     <th>Data da Emissão</th>
                                  </tr>
-                              </thead>
-                              <tbody>
-                              </tbody>
-                           </table>
+                             </thead>
+                             <tbody>
+                             </tbody>
+                         </table>
+                     </div>
+                    
+                    <br />
+                    <br />
+                </form>
+
+            </section>
+
+            <!-- Nomes -->
+            <!-- <section class="tab-pane fade" id="nomes" role="tabpanel" aria-labelledby="nomes-tab"> -->
+            <section id="nomes">
+                <form action="">
+                    <legend>Cadastro de Nomes</legend>
+                    <div class="row">
+                        <div class="col">
+                            <label for="nome">Nome: </label>
+                            <input type="text" id="nome" name="nome" class="form-control">
                         </div>
-               <br />
-               <br />
-            </form>
-         </section>
-         <!-- Nomes -->
-         <!-- <section class="tab-pane fade" id="nomes" role="tabpanel" aria-labelledby="nomes-tab"> -->
-         <section id="nomes">
-            <form action="">
-               <legend>Cadastro de Nomes</legend>
-               <div class="row">
-                  <div class="col">
-                     <label for="nome">Nome: </label>
-                     <input type="text" id="nome" name="nome" class="form-control">
-                  </div>
-                  <div class="col">
-                     <label for="sobrenome">Sobrenome: </label>
-                     <input type="text" id="sobrenome" name="sobrenome" class="form-control">
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col">
-                     <label for="titulo">Título: </label>
-                     <input type="text" id="titulo" name="titulo" class="form-control">
-                  </div>
-                  <div class="col">
-                     <label for="sufixo">Sufixo: </label>
-                     <input type="text" id="sufixo" name="sufixo" class="form-control">
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col ">
-                     <label for="uso">Uso:</label>
-                     <select type="text" id="uso" name="uso" class="form-control">
-                        <option value="">Representação alternativa R</option>
-                        <option value="">Representação alternativa N</option>
-                        <option value="">Representação alternativa C</option>
-                        <option value="">Representação alternativa S</option>
-                        <option value="">Representação alternativa L</option>
-                        <option value="">Representação alternativa O</option>
-                     </select>
-                  </div>
-               </div>
-               <br />
-               <br />
-               <div class="botoes-acoes">
-                  <input class="btn btn-success" type="submit" value="Salvar" />
-                  <input class="btn btn-light" type="reset" value="Limpar" />
-                  <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
-               </div>
-            </form>
-         </section>
+                        <div class="col">
+                            <label for="sobrenome">Sobrenome: </label>
+                            <input type="text" id="sobrenome" name="sobrenome" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="titulo">Título: </label>
+                            <input type="text" id="titulo" name="titulo" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="sufixo">Sufixo: </label>
+                            <input type="text" id="sufixo" name="sufixo" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col ">
+                            <label for="uso">Uso:</label>
+                            <select type="text" id="uso" name="uso" class="form-control">
+                            <option value="">Representação alternativa R</option>
+                            <option value="">Representação alternativa N</option>
+                            <option value="">Representação alternativa C</option>
+                            <option value="">Representação alternativa S</option>
+                            <option value="">Representação alternativa L</option>
+                            <option value="">Representação alternativa O</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="botoes-acoes">
+                        <input class="btn btn-success" type="submit" value="Salvar" />
+                        <input class="btn btn-light" type="reset" value="Limpar" />
+                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+                    </div>
+                </form>
+            </section>
+
          <!-- Dados demográficos -->
          <!-- <section class="tab-pane fade" id="dadosDem" role="tabpanel" aria-labelledby="dadosDem-tab"> -->
          <section id="dadosDem">
@@ -666,57 +745,64 @@
          <section id="comunicacoes">
             <form action="">
                <legend>Cadastro de contatos</legend>
-               <!-- <input class="btn btn-primary bloco" type="button" value="Adicionar Contato" onclick="mostrarNovoCadastroDeContato()"> -->
-               <br />
-               <div id="regiao-contatos">
-                  <div class="contato">
-                     <div class="row">
-                        <div class="col-md-3">
-                           <label for="lbMeioDeComunicacao">Meio de comunicação</label>
-                           <select id="selectMeioDeComunicacao_0" class="form-control meioDeComunicacao" required>
-                              <option value="T" data-desc="Telefone">Telefone</option>
-                              <option value="C" data-desc="Telefone celular">Telefone celular</option>
-                              <option value="F" data-desc="Fax">Fax</option>
-                              <option value="P" data-desc="Pager">Pager</option>
-                              <option value="E" data-desc="Correio eletrônico">Correio eletrônico</option>
-                              <option value="U" data-desc="URL">URL</option>
-                              <option value="O" data-desc="Outro">Outro</option>
-                           </select>
+
+               <input id="btnNovoContato" class="btn btn-primary bloco" type="button" value="Novo Contato" onclick="mostrarNovoCadastroDeContato()">
+
+               <div id="regiao-contatos" style="margin-top: 15px;display: none;">
+                    <div id="form-contatos">
+                        <div class="contato">
+                            <div class="row">
+                                <div class="col-md-3">
+                                <label for="lbMeioDeComunicacao">Meio de comunicação</label>
+                                <select id="selectMeioDeComunicacao_0" class="form-control meioDeComunicacao" required>
+                                    <option value="T" data-desc="Telefone">Telefone</option>
+                                    <option value="C" data-desc="Telefone celular">Telefone celular</option>
+                                    <option value="F" data-desc="Fax">Fax</option>
+                                    <option value="P" data-desc="Pager">Pager</option>
+                                    <option value="E" data-desc="Correio eletrônico">Correio eletrônico</option>
+                                    <option value="U" data-desc="URL">URL</option>
+                                    <option value="O" data-desc="Outro">Outro</option>
+                                </select>
+                                </div>
+                                <div class="col-md-3">
+                                <label for="lbDetalhesDoMeio">Detalhes </label>
+                                <input id="inputDetalhes" class="form-control" type="text" required>
+                                </div>
+                                <div class="col-md-3">
+                                <label for="lbPreferenciaDeUso">Preferência</label>
+                                <select id="selectPreferenciaDeUso_0" class="form-control preferenciaDeUso" required>
+                                    <option value="B" data-desc="Horário comercial">Horário comercial</option>
+                                    <option value="D" data-desc="Durante o dia">Durante o dia</option>
+                                    <option value="W" data-desc="Finais de semana">Finais de semana</option>
+                                    <option value="A" data-desc="Qualquer hora">Qualquer hora</option>
+                                    <option value="E" data-desc="Período noturno">Período noturno</option>
+                                </select>
+                                </div>
+                                <div class="col-md-3">
+                                <label for="lbUtilizacaoDoContato">Utilização</label>
+                                <select id="selectUtilizacaoDoContato_0" class="form-control utilizacaoDoContato" required>
+                                    <option value="B" data-desc="Comercial">Comercial</option>
+                                    <option value="P" data-desc="Pessoal">Pessoal</option>
+                                    <option value="A" data-desc="Comercial ou pessoal">Comercial ou pessoal</option>
+                                </select>
+                                </div>
+                            </div>
+                            <!-- Ações -->
+                            <div class="acoes">
+                                <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarContato(this)">
+                                <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="acaoBotaoCancelarContato(this)">
+                                <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
+                                <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;" onclick="excluirContato()">
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                           <label for="lbDetalhesDoMeio">Detalhes </label>
-                           <input id="inputDetalhes" class="form-control" type="text" required>
-                        </div>
-                        <div class="col-md-3">
-                           <label for="lbPreferenciaDeUso">Preferência</label>
-                           <select id="selectPreferenciaDeUso_0" class="form-control preferenciaDeUso" required>
-                              <option value="B" data-desc="Horário comercial">Horário comercial</option>
-                              <option value="D" data-desc="Durante o dia">Durante o dia</option>
-                              <option value="W" data-desc="Finais de semana">Finais de semana</option>
-                              <option value="A" data-desc="Qualquer hora">Qualquer hora</option>
-                              <option value="E" data-desc="Período noturno">Período noturno</option>
-                           </select>
-                        </div>
-                        <div class="col-md-3">
-                           <label for="lbUtilizacaoDoContato">Utilização</label>
-                           <select id="selectUtilizacaoDoContato_0" class="form-control utilizacaoDoContato" required>
-                              <option value="B" data-desc="Comercial">Comercial</option>
-                              <option value="P" data-desc="Pessoal">Pessoal</option>
-                              <option value="A" data-desc="Comercial ou pessoal">Comercial ou pessoal</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="acoes">
-                        <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarContato()">
-                        <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" style="display: none;" onclick="limparContato()">
-                        <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
-                        <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;" onclick="excluirContato()">
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
+
+               <!-- Tabela de Contatos -->
                <input type="hidden" id="chaveContato" name="chaveContato">
                <div id="tabelaContatos" style="display:none">
                   <table class="table table-bordered table-hovered">
+                      <caption>Contatos</caption>
                      <thead>
                         <tr class="trHeader" style="background-color: #007bff">
                            <th>Meio de Comunicação</th>
@@ -733,22 +819,16 @@
                <br />
             </form>
          </section>
-         <!-- Vínculos -->
-         <!-- <section class="tab-pane fade" id="vinculos" role="tabpanel" aria-labelledby="vinculos-tab"> -->
-        <!-- <section id="vinculos">
-            !-- Início do formulário - VÍNCULOS --
-            <form action="">
-                <legend>Cadastro de vínculos do paciente</legend>
-                <br />
-                <br />
-                <br />
-                <div class="botoes-acoes">
-                    <input class="btn btn-success" type="submit" value="Salvar" />
-                    !-- <input class="btn btn-light" type="reset" value="Limpar" /> --
-                    <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
-                </div>
-            </form>
-        </section> -->
+         
+
+         <br />
+         <br />
+         <div class="botoes-acoes">
+             <input class="btn btn-success" type="submit" value="Salvar" />
+             <!-- <input class="btn btn-light" type="reset" value="Limpar" /> -->
+             <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+         </div>
+     </form>
       </div>
       </div>
       <!-- JavaScript (Opcional) -->

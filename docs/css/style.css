@@ -31,7 +31,7 @@ form > legend, .caixa span, .localizar {
     margin-top: 30px;
 }
 
-.opcional {
+.opcional, #vinculos {
     display: none;
 }
 
@@ -84,3 +84,9 @@ tr:hover:not(.trHeader) {
 input.btn{
     margin-right: 10px;
 }
+
+caption {
+    caption-side: top !important;
+    padding: 0 0 0 8px !important;
+    font-style: italic;
+  }
