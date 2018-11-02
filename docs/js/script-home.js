@@ -107,6 +107,7 @@ $("#chkCadastroDeVinculo").change(function() {
         if ($($("#tabelaIdentificadores tbody")[0])[0].children.length > 0){
             $("#tabelaIdentificadores").fadeIn("fast");
         }
+        acaoBotaoCancelarVinculo();
     }
 });
 
@@ -234,7 +235,7 @@ function acaoBotaoSalvar(el){
     }
 
     if (!inconsistente) {
-        $(el).closest(".form-identificadores").find(".identificador input,select").prop("disabled", true);
+        //$(el).closest(".form-identificadores").find(".identificador input,select").prop("disabled", true);
         el.setAttribute("salvou", true);
         $(".caixa.opcional").hide()
         $("#btnNovoIdentificador")[0].style.display = "block";
@@ -265,8 +266,10 @@ function adicionarNaTabela(){
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: designacao }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: emissor }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: dataEmissao }));
-    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", className: "opcional", innerHTML: $("#selectRelacionamentos option:selected").val() }));
+    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", className: "opcional", innerHTML: $("#selectTipoDoID option:selected").val() }));
 
+    // Adiciona identificador na tabela de vínculos. 
+    // Senão, adiciona na tabela de pacientes.
     if (ehVinculo){
         bodytabelaIdentificadoresVinculos.appendChild(elTr);
         $("#tabelaIdentificadoresVinculos").show();
@@ -277,6 +280,7 @@ function adicionarNaTabela(){
         $("#tabelaIdentificadores").show();
         $("#tabelaIdentificadoresVinculos").hide();
     }
+    elTr.addEventListener("dblclick", editarIdentificadores);
 }
 
 // Método responsável por adicionar nova comunicação eletrônica na tabela.
@@ -350,6 +354,35 @@ function editarVinculo(evt) {
 
     $("#btnNovoVinculo")[0].style.display = "none";
     $("#regiao-vinculos").show();
+}
+
+function editarIdentificadores(evt){
+    var linha = $(evt.target).closest("tr")[0];
+    var tipoIdentificador = $($(linha).find("td:eq(6)")[0]).text();
+
+    $("#selectArea").val("1");
+    $("#idDesignacao").val("- edição designação -");
+    $("#idEmissor").val("- ID-Emissor -");
+    $("#idDataEmissao").val("2018-11-02");
+
+    $("#selectTipoDoID").val(tipoIdentificador);
+
+    var formsOpicionais = $(".identificador .opcional");
+    // Esconder todas as regiões opcionais
+    for (var el in Array.from(formsOpicionais)) {
+        formsOpicionais[el].style.display = "none";
+        var id = formsOpicionais[el].id;
+        controlaHabilitacaoInputs(id, true);
+    }
+
+    mostrarRegiao(tipoIdentificador);
+
+    $("#regiao-identificadores .acoes-id #btnExcluir").show();
+    $("#regiao-identificadores .acoes-id #btnCancelar").show();
+
+    $("#btnNovoIdentificador")[0].style.display = "none";
+    $("#regiao-identificadores").show();
+
 }
 
 // Método responsável por carregar a edição mock das comunicações eletrônicas.
@@ -512,20 +545,24 @@ function mostreFormularios(evt) {
         controlaHabilitacaoInputs(id, true);
     }
 
+    mostrarRegiao(valor);
+}
+
+function mostrarRegiao(valor){
     // Mostrar a região selecionada no select
     switch (valor) {
         case "10":
-            elemento = elIdentificador.find(".opcional.form-ctps");
+            elemento = $(".opcional.form-ctps");
             elemento[0].style.display = "block";
             controlaHabilitacaoInputs("form-ctps", false);
             break;
         case "11":
-            elemento = elIdentificador.find(".opcional.form-tEleitor");
+            elemento = $(".opcional.form-tEleitor");
             elemento[0].style.display = "block";
             controlaHabilitacaoInputs("form-tEleitor", false);
             break;
         case "12":
-            elemento = elIdentificador.find(".opcional.form-certidao");
+            elemento = $(".opcional.form-certidao");
             controlaHabilitacaoInputs("form-certidao", false);
             elemento[0].style.display = "block";
             break;
