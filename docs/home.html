@@ -354,47 +354,71 @@
             <!-- Nomes -->
             <!-- <section class="tab-pane fade" id="nomes" role="tabpanel" aria-labelledby="nomes-tab"> -->
             <section id="nomes">
-                <form action="">
+                <form action="" method="post" id="form-nomes">
+                    <!--Podem ser fornecidos até 9 títulos, 9 primeiros nomes, 9 sobrenomes e 9 sufixos para cada nome.-->
                     <legend>Cadastro de Nomes</legend>
-                    <div class="row">
-                        <div class="col">
-                            <label for="nome">Nome: </label>
-                            <input type="text" id="nome" name="nome" class="form-control">
+
+                    <input id="btnNovoNome" style="display: none" class="btn btn-primary" type="reset" value="Novo Nome" onclick="mostrarNovoCadastroDeNome(this)">
+
+                    <div id="regiao-nomes" class="nome">
+                        <div class="row">
+                            <div class="col">
+                                <label for="nome">Nome: </label>
+                                <input type="text" id="nome" name="nome" class="form-control" required>
+                            </div>
+                            <div class="col">
+                                <label for="sobrenome">Sobrenome: </label>
+                                <input type="text" id="sobrenome" name="sobrenome" class="form-control" required>
+                            </div>
                         </div>
-                        <div class="col">
-                            <label for="sobrenome">Sobrenome: </label>
-                            <input type="text" id="sobrenome" name="sobrenome" class="form-control">
+                        <div class="row caixa-nome opcional">
+                            <div class="col">
+                                <label for="titulo">Título: </label>
+                                <input type="text" id="titulo" name="titulo" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="sufixo">Sufixo: </label>
+                                <input type="text" id="sufixo" name="sufixo" class="form-control">
+                            </div>
+                            <div class="col ">
+                                <label for="uso">Uso:</label>
+                                <select id="uso" name="uso" class="form-control">
+                                    <option value="">Representação alternativa R</option>
+                                    <option value="">Representação alternativa N</option>
+                                    <option value="">Representação alternativa C</option>
+                                    <option value="">Representação alternativa S</option>
+                                    <option value="">Representação alternativa L</option>
+                                    <option value="">Representação alternativa O</option>
+                                </select>
+                            </div>
                         </div>
+                        <br />
+                        <br />
+                        <div class="botoes-acoes">
+                            <input class="btn btn-success" type="button" value="Salvar" onclick="acaoBotaoSalvarNome(this)"/>
+                            <input class="btn btn-light" type="reset" value="Limpar" />
+                            <input class="btn btn-warning" type="button" onclick="" value="Cancelar" />
+                        </div>
+
+
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="titulo">Título: </label>
-                            <input type="text" id="titulo" name="titulo" class="form-control">
-                        </div>
-                        <div class="col">
-                            <label for="sufixo">Sufixo: </label>
-                            <input type="text" id="sufixo" name="sufixo" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col ">
-                            <label for="uso">Uso:</label>
-                            <select type="text" id="uso" name="uso" class="form-control">
-                            <option value="">Representação alternativa R</option>
-                            <option value="">Representação alternativa N</option>
-                            <option value="">Representação alternativa C</option>
-                            <option value="">Representação alternativa S</option>
-                            <option value="">Representação alternativa L</option>
-                            <option value="">Representação alternativa O</option>
-                            </select>
-                        </div>
-                    </div>
-                    <br />
-                    <br />
-                    <div class="botoes-acoes">
-                        <input class="btn btn-success" type="submit" value="Salvar" />
-                        <input class="btn btn-light" type="reset" value="Limpar" />
-                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+                    <!-- Tabela Identificadores Pacientes-->
+                    <!--<input type="hidden" id="chaveIdentificadores" name="chaveIdentificadores">-->
+                    <div id="tabelaNomes" style="display:none">
+                        <table class="table table-bordered table-hovered">
+                            <caption>Identificadores de Pacientes</caption>
+                            <thead>
+                            <tr class="trHeader" style="background-color: #007bff">
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Somenome</th>
+                                <th>Uso</th>
+                                <th>Preferido</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </form>
             </section>
