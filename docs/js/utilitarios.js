@@ -83,14 +83,20 @@ function mostrePesquisa(){
         $("section#pesquisar").show();
         $("#chkCadastroDeVinculo").parent().hide();
         $("#spy li:not(.sidebar-brand)").fadeOut(200);
+        $(".botoes-acoes-geral").hide();
     });
 }
 
 // Método responsável por mostrar seção inicial.
 function mostreInicio(){
     $("section#pesquisar").fadeOut(600, function(){
-        $("section:not(#pesquisar, #header)").show();
+        if($("#chkCadastroDeVinculo")[0].checked){
+            $("section#vinculos").show();    
+        }
+        $("section:not(#pesquisar, #header, #vinculos)").show();
+        $("#chkCadastroDeVinculo").parent().show();
         $("#spy li:not(.sidebar-brand)").fadeIn(300);
+        $(".botoes-acoes-geral").show();
     });
 }
  /****** UTILITÁRIOS - FIM ******/
