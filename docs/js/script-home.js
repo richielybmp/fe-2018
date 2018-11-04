@@ -258,9 +258,11 @@ function adicionarNaTabela(){
     var dataEmissao = $("#idDataEmissao").val();
     var ehVinculo = $("#chkCadastroDeVinculo")[0].checked;
 
-    var elTr = criarComponenteHtmlDinamico({ tag: "tr", id: area + dataEmissao });
+    var chave = "ID-" + (ehVinculo ? "V" : "P" ) + id++;
 
-    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: "ID-" + (ehVinculo ? "-V" : "-P" ) + id++ }));
+    var elTr = criarComponenteHtmlDinamico({ tag: "tr", id: chave });
+
+    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: chave }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: tipo }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: area }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: designacao }));
@@ -366,6 +368,14 @@ function editarIdentificadores(evt){
     $("#idDataEmissao").val("2018-11-02");
 
     $("#selectTipoDoID").val(tipoIdentificador);
+
+    var ehVinculo = $("#chkCadastroDeVinculo")[0].checked;
+    if(ehVinculo){
+        $("#chaveIdentificadoresVinculos").val(linha.id);
+    }
+    else{
+        $("#chaveIdentificadores").val(linha.id);
+    }
 
     var formsOpicionais = $(".identificador .opcional");
     // Esconder todas as regiões opcionais
@@ -478,6 +488,25 @@ function excluirVinculo(){
         }
             
         limparVinculo();
+        acaoExcluirRegistro(options);
+        $('#modalExcluir').modal('hide');
+    });
+}
+
+// Método responsável por excluir vinculo.
+function excluirIdentificador(){
+    $('#modalExcluir').modal('show');
+    
+    var ehVinculo = $("#chkCadastroDeVinculo")[0].checked;
+
+    $("#btnExcluirRegistro").off("click").on("click", function(){
+        var options = {
+            chave: ehVinculo ? $("#chaveIdentificadoresVinculos") : $("#chaveIdentificadores"),
+            tabela: ehVinculo ? "tabelaIdentificadoresVinculos" : "tabelaIdentificadores",
+            btnNovo: $("#btnNovoIdentificador")[0],
+            regiao: $("#regiao-identificadores")
+        }
+            
         acaoExcluirRegistro(options);
         $('#modalExcluir').modal('hide');
     });
