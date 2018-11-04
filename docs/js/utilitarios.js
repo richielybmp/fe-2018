@@ -92,10 +92,11 @@ function mostreInicio(){
     $("section#pesquisar").fadeOut(600, function(){
         if($("#chkCadastroDeVinculo")[0].checked){
             $("section#vinculos").show();    
+            $("#refVinculos").fadeIn(300);
         }
         $("section:not(#pesquisar, #header, #vinculos)").show();
         $("#chkCadastroDeVinculo").parent().show();
-        $("#spy li:not(.sidebar-brand)").fadeIn(300);
+        $("#spy li:not(.sidebar-brand, #refVinculos)").fadeIn(300);
         $(".botoes-acoes-geral").show();
     });
 }

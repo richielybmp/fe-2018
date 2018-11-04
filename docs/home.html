@@ -28,7 +28,7 @@
                         </li>
                         <li class="sidebar-brand">
                             <a href="#pesquisar" onclick="mostrePesquisa()" data-scroll>
-                                <span class="fa fa-anchor solo " >Pesquisar Paciente</span>
+                                <span class="fa fa-anchor solo">Pesquisar Indivíduos</span>
                                 <span class="glyphicon glyphicon-search"></span>
                             </a>
                         </li>
@@ -80,9 +80,9 @@
                     <div class="localizar">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar...">
-                            <span class="mdi mdi-magnify"></span>
+                                <span class="mdi mdi-magnify"></span>
                             <div class="input-group-append">
-                            <button class="btn btn-primary" onclick="buscarRegistroIdentificador()">Buscar</button>
+                                <button class="btn btn-primary" onclick="buscarRegistroIdentificador()">Buscar</button>
                             </div>
                         </div>
                     </div>
@@ -96,21 +96,21 @@
                             <td>ID-P-00000001</td>
                             <td>Maria Anders</td>
                             <td>
-                                <input class="btn btn-info" type="button" value="Editar">
+                                <input class="btn btn-info" type="button" value="Visualizar" onclick="mostreInicio()">
                             </td>
                         </tr>
                         <tr>
                             <td>ID-P-00000002</td>
                             <td>Francisco Chang</td>
                             <td>
-                                <input class="btn btn-info" type="button" value="Editar">
+                                <input class="btn btn-info" type="button" value="Visualizar" onclick="mostreInicio()">
                             </td>
                         </tr>
                         <tr>
                             <td>ID-P-00000003</td>
                             <td>Roland Mendel</td>
                             <td>
-                                <input class="btn btn-info" type="button" value="Editar">
+                                <input class="btn btn-info" type="button" value="Visualizar" onclick="mostreInicio()">
                             </td>
                         </tr>
                     </table>
@@ -235,7 +235,8 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <label for="lbSerie">Série</label>
-                                            <input class="form-control" type="text" required="">
+                                            <!-- onkeypress para que o input aceite números apenas. -->
+                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="lbEstado">Estado</label>
@@ -265,15 +266,15 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="lbLivro">Livro</label>
-                                            <input class="form-control" type="number" required="">
+                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="lbFolha">Folha</label>
-                                            <input class="form-control" type="number" required="">
+                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="lbTermo">Termo</label>
-                                            <input class="form-control" type="number" required="">
+                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
                                         </div>
                                     </div>
                                 </div>
@@ -287,11 +288,11 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="lbSecao">Seção eleitoral</label>
-                                            <input class="form-control" type="number" required="">
+                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="lbZona">Zona eleitoral</label>
-                                            <input class="form-control" type="number" required="">
+                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
                                         </div>
                                     </div>
                                 </div>
@@ -300,7 +301,7 @@
                                 <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="acaoBotaoSalvar(this)">
                                 <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="acaoBotaoCancelar(this)">
                                 <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
-                                <input id="btnExcluir" class="btn btn-danger" type="reset" value="Excluir" style="display: none;"  onclick="excluirIdentificador()">
+                                <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;"  onclick="excluirIdentificador()">
                             </div>
                         </div>
                     </div>

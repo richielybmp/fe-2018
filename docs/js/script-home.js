@@ -131,6 +131,7 @@ function mostrarNovoCadastroDeIdentificador(el){
         classForm: "identificador",
         regiao: $("#regiao-identificadores")
     }
+    $(".caixa.opcional").hide();
     mostrarNovoCadastroForm(options);
 }
 
@@ -237,10 +238,9 @@ function acaoBotaoSalvar(el){
     if (!inconsistente) {
         //$(el).closest(".form-identificadores").find(".identificador input,select").prop("disabled", true);
         el.setAttribute("salvou", true);
-        $(".caixa.opcional").hide()
+        $(".caixa.opcional").hide();
         $("#btnNovoIdentificador")[0].style.display = "block";
         $("#regiao-identificadores").hide();
-
         adicionarNaTabela();
     }
 }
@@ -422,6 +422,7 @@ function acaoBotaoCancelar(el){
         classForm: "identificador", 
         regiao: $("#regiao-identificadores")
     };
+    $(".opcional").hide();
     acaoBotaoCancelarForm(options);
 }
 
@@ -509,6 +510,7 @@ function excluirIdentificador(){
             
         acaoExcluirRegistro(options);
         $('#modalExcluir').modal('hide');
+        $("#regiao-identificadores .acoes-id #btnExcluir").hide();
     });
 }
 
