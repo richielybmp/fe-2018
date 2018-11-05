@@ -11,6 +11,7 @@
         <!-- Bootstrap e CSS -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/fontawesome.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
             crossorigin="anonymous">
     </head>
@@ -23,43 +24,66 @@
                     <ul class="sidebar-nav nav">
                         <li class="sidebar-brand">
                             <a href="#header" onclick="mostreInicio()">
-                                <span class="fa fa-home solo">Início</span>
+                                <span>
+                                    <i class="fa fa-home"></i>
+                                    <span>Início</span>  
+                                </span>
                             </a>
                         </li>
                         <li class="sidebar-brand">
                             <a href="#pesquisar" onclick="mostrePesquisa()" data-scroll>
-                                <span class="fa fa-anchor solo">Pesquisar Indivíduos</span>
-                                <span class="glyphicon glyphicon-search"></span>
+                                <span>
+                                    <i class="fa fa-search"></i>
+                                    <span>Pesquisar Indivíduos</span>  
+                                </span>
                             </a>
                         </li>
                         <li id="refVinculos" style="display:none;">
                             <a href="#vinculos" data-scroll>
-                                <span class="fa fa-anchor solo">Vínculos</span>
+                                <span>Vínculos</span>
                             </a>
                         </li> 
                         <li>
                             <a href="#identificadores" data-scroll>
-                                <span class="fa fa-anchor solo">Identificadores</span>
+                                <span>Identificadores</span>
                             </a>
                         </li>
                         <li>
                             <a href="#nomes" data-scroll>
-                                <span class="fa fa-anchor solo">Nomes</span>
+                                <span>Nomes</span>
                             </a>
                         </li>
                         <li>
                             <a href="#dadosDem" data-scroll>
-                                <span class="fa fa-anchor solo">Dados demográficos</span>
+                                <span>Dados demográficos</span>
                             </a>
                         </li>
                         <li>
                             <a href="#enderecos" data-scroll>
-                                <span class="fa fa-anchor solo">Endereços</span>
+                                <span>Endereços</span>
                             </a>
                         </li>
                         <li>
                             <a href="#comunicacoes" data-scroll>
-                                <span class="fa fa-anchor solo">Comunicações</span>
+                                <span>Comunicações</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="inferior sidebar-nav nav">
+                        <li class="li-inferior">
+                            <a class="button is-primary" href="#" onclick="abrirModalAbout();return false;">
+                                <span class="icon">
+                                    <i class="fa fa-info-circle"></i>
+                                </span>
+                                <span>Sobre</span>
+                            </a>
+                        </li>
+                        <li class="li-inferior">
+                            <a class="button is-primary" href="https://github.com/richielybmp/fe-2018" target="_blank">
+                                <span class="icon">
+                                    <i class="fa fa-github"></i>
+                                </span>
+                                <span>GitHub</span>
                             </a>
                         </li>
                     </ul>
@@ -80,9 +104,12 @@
                     <div class="localizar">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar...">
-                                <span class="mdi mdi-magnify"></span>
+                                
                             <div class="input-group-append">
-                                <button class="btn btn-primary" onclick="buscarRegistroIdentificador()">Buscar</button>
+                                <button class="btn btn-primary" onclick="buscarRegistroIdentificador()">
+                                    <span class="fa fa-search"></span>
+                                    <span>Buscar</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -138,14 +165,14 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="lbIdentificador">Identificador</label>
-                                        <!-- <input id="inputIdVinculo" class="form-control" type="text" required=""> -->
-                                        <select id="inputIdVinculo" class="form-control vinculoIdentificador" required="">
+                                        <input id="inputIdVinculo" class="form-control" type="text" required>
+                                        <!-- <select id="inputIdVinculo" class="form-control vinculoIdentificador" required>
                                             <option value="ID-P-00000001">ID-P-00000001</option>
                                             <option value="ID-P-00000002">ID-P-00000002</option>
                                             <option value="ID-P-00000003">ID-P-00000003</option>
                                             <option value="ID-P-00000004">ID-P-00000004</option>
                                             <option value="ID-P-00000005">ID-P-00000005</option>
-                                        </select>
+                                        </select> -->
                                     </div>
                                     <div class="col-md-3">
                                         <label for="lbRelacionamento">Relacionamento</label>
@@ -213,16 +240,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="lbDesignacao">Designação</label>
-                                    <input id="idDesignacao" class="form-control" type="text" required="">
+                                    <input id="idDesignacao" class="form-control" type="text" required>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-md-6">
                                         <label for="lbEmissor">Emissor</label>
-                                        <input id="idEmissor" class="form-control" type="text" required="">
+                                        <input id="idEmissor" class="form-control" type="text" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="lbDataEmissao">Data de emissao</label>
-                                        <input id="idDataEmissao" class="form-control" type="date" required="">
+                                        <input id="idDataEmissao" class="form-control" type="date" required>
                                     </div>
                                 </div>
 
@@ -236,7 +263,7 @@
                                         <div class="col-md-3">
                                             <label for="lbSerie">Série</label>
                                             <!-- onkeypress para que o input aceite números apenas. -->
-                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
+                                            <input class="form-control" type="number" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="lbEstado">Estado</label>
@@ -261,20 +288,20 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="lbNomeCartorio">Nome do cartório</label>
-                                        <input class="form-control" type="text" required="">
+                                        <input class="form-control" type="text" required>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="lbLivro">Livro</label>
-                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
+                                            <input class="form-control" type="number" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="lbFolha">Folha</label>
-                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
+                                            <input class="form-control" type="number" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="lbTermo">Termo</label>
-                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
+                                            <input class="form-control" type="number" required>
                                         </div>
                                     </div>
                                 </div>
@@ -288,11 +315,11 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="lbSecao">Seção eleitoral</label>
-                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
+                                            <input class="form-control" type="number" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="lbZona">Zona eleitoral</label>
-                                            <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required="">
+                                            <input class="form-control" type="number" required>
                                         </div>
                                     </div>
                                 </div>
@@ -770,12 +797,11 @@
             </section>
          
             <!-- Comunicações eletrônicas -->
-            <!-- <section class="tab-pane fade" id="comunicacoes" role="tabpanel" aria-labelledby="comunicacoes-tab"> -->
             <section id="comunicacoes">
                 <form action="">
-                    <legend>Cadastro de contatos</legend>
+                    <legend>Cadastro de Comunicações Eletrônicas</legend>
 
-                    <input id="btnNovoContato" class="btn btn-primary bloco" type="button" value="Novo Contato" onclick="mostrarNovoCadastroDeContato(this)">
+                    <input id="btnNovoContato" class="btn btn-primary bloco" type="button" value="Novo" onclick="mostrarNovoCadastroDeContato(this)">
 
                     <div id="regiao-contatos" style="margin-top: 15px;display: none;">
                         <div id="form-contatos">
@@ -831,7 +857,7 @@
                     <input type="hidden" id="chaveContato" name="chaveContato">
                     <div id="tabelaContatos" style="display:none">
                         <table class="table table-bordered table-hovered">
-                            <caption>Contatos</caption>
+                            <caption>Comunicações Eletrônicas</caption>
                             <thead>
                                 <tr class="trHeader" style="background-color: #007bff">
                                 <th>Meio de Comunicação</th>
@@ -857,11 +883,11 @@
             </div>
         </div>
         
-        <!-- Modal -->
+        <!-- Modal Excluir-->
         <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header excluir">
                     <h5 class="modal-title" id="exampleModalLongTitle">Excluir registro</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -873,6 +899,38 @@
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button id="btnExcluirRegistro" type="button" class="btn btn-danger">Excluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Modal Excluir-->
+        <div class="modal fade" id="modalAbout" tabindex="-1" role="dialog" aria-labelledby="modalAboutTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header sobre">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Sobre</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <pre>
+Página desenvolvida para o projeto final da disciplina de 
+Fundamentos de Front-end pela Especialização em 
+Desenvolvimento Web e Mobile - UFG.
+
+Autores:
+                            <ul>
+                                <li>Richiely Batista</li>
+                                <li>Felipe Maciel</li>
+                                <li>Anderson Messias</li>
+                                <li>Igor Emilio</li>
+                            </ul>
+                        </pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnExcluirRegistro" type="button" class="btn btn-primary" onclick="$('#modalAbout').modal('hide');">Fechar</button>
                     </div>
                 </div>
             </div>

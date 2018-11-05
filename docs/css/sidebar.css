@@ -38,14 +38,13 @@
   
   .sidebar-nav li {
     line-height: 40px;
-    /*text-indent: 20px;*/
   }
   
   .sidebar-nav li a {
     color: #fff;
     display: block;
     text-decoration: none;
-    padding-left: 60px;
+    padding-left: 35px;
   }
   
   .sidebar-nav li a span:before {

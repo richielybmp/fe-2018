@@ -61,7 +61,7 @@ function existeValor(obj){
 $("body").scrollspy({ target: "#spy", offset:80});
 
 // Método responsável por rolar scroll ao clicar no menu lateral.
-$("#spy > .nav li").click(function(evt) {
+$("#spy > .nav li:not(:last)").click(function(evt) {
     $(".sidebar-nav.nav li").removeClass("selecionado");
 
     var ref = $(evt.target).closest("a")[0];
@@ -82,7 +82,7 @@ function mostrePesquisa(){
     $("section:not(#pesquisar, #header)").fadeOut(600, function(){
         $("section#pesquisar").show();
         $("#chkCadastroDeVinculo").parent().hide();
-        $("#spy li:not(.sidebar-brand)").fadeOut(200);
+        $("#spy li:not(.sidebar-brand, .li-inferior)").fadeOut(200);
         $(".botoes-acoes-geral").hide();
     });
 }
@@ -99,5 +99,9 @@ function mostreInicio(){
         $("#spy li:not(.sidebar-brand, #refVinculos)").fadeIn(300);
         $(".botoes-acoes-geral").show();
     });
+}
+
+function abrirModalAbout(){
+    $('#modalAbout').modal('show');
 }
  /****** UTILITÁRIOS - FIM ******/
