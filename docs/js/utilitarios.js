@@ -104,4 +104,18 @@ function mostreInicio() {
 function abrirModalAbout() {
     $('#modalAbout').modal('show');
 }
+
+function mudaNacionalidade() {
+    var db = document.getElementById('Bra');
+    var de = document.getElementById('Est');
+
+    var elemento = document.getElementById('brasileira');
+    if (elemento.checked) {
+        db.style.display = "block";
+        de.style.display = "none";
+    } else {
+        db.style.display = "none";
+        de.style.display = "block";
+    }
+}
 /****** UTILITÁRIOS - FIM ******/
