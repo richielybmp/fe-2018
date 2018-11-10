@@ -119,6 +119,7 @@ carregueJson("./json/relacionamentos.json", function(response) {
 $("select.tipoDoIdentificador")[0].addEventListener("change", mostreFormularios);
 $("select.tipoDoIdentificadorDoVinculo")[0].addEventListener("change", mostreFormulariosVinculo);
 $("select.relacionamentos")[0].addEventListener("change", controlaExibicaoDatasVinculo);
+$("select#selectTipoEndereco")[0].addEventListener("change", mostrarNovoCadastroDeEndereco);
 
 // Evento que controla o formulário de cadastro de Vínculos.
 $("#chkCadastroDeVinculo").change(function() {
@@ -173,6 +174,55 @@ function mostrarNovoCadastroDeIdentificador(el) {
     $(".caixa.opcional").hide();
     mostrarNovoCadastroForm(options);
 }
+
+// Mostrar form Endereço.
+function mostrarNovoCadastroDeEndereco(el) {
+    var options = {
+        el: el,
+        classForm: "identificador",
+        regiao: $("#regiao-endereco")
+    }
+
+    var valorTipoEndereco = $(el.target).val();
+    
+    if(valorTipoEndereco > 0)
+    {
+        options.regiao.fadeIn("fast");
+        var end = enderecosSalvos.find(x => x.val == valorTipoEndereco);
+
+        if (end.salvo){
+            // datas
+            $("#endDtInicial").val("2018-11-10");
+            $("#endDtFinal").val("2018-11-10");
+
+            //acuracia
+            $($("input[name='EdiaInicial']")[0])[0].checked = true;
+            $($("input[name='EmesInicial']")[1])[0].checked = true;
+            $($("input[name='EanoInicial']")[2])[0].checked = true;
+
+            //acuracia
+            $($("input[name='EdiaFinal']")[0])[0].checked = true;
+            $($("input[name='EmesFinal']")[1])[0].checked = true;
+            $($("input[name='EanoFinal']")[2])[0].checked = true;
+
+            $("#ePais").val("[edição]Brasil");
+            $("#eEstado").val("[edição]Goiás");
+            $("#eMunicipio").val("[edição]Goiânia");
+
+            $("#EcaixaPostal").val("111111111");
+            $("#Ecep").val("99999-999");
+            $("#Ebairro").val("[edição]Bairro");
+            $("#Edistrito").val("[edição]Central");
+
+            $("#eEndereco").val("Rua 11, quadra 11, lote 11. Apt 01");
+        }
+        
+    }
+    else
+    {
+        options.regiao.fadeOut("fast");
+     }
+ }
 
 // Mostrar form Comunicações eletrônicas.
 function mostrarNovoCadastroDeContato(el) {
@@ -538,6 +588,14 @@ function acaoBotaoCancelarContato(el) {
     acaoBotaoCancelarForm(options);
 }
 
+// Método para cancelar o cadastro de endereços.
+function cancelarEndereco(el){
+    var elObrigatorios = $("#regiao-endereco :not(.botoes-acoes)").find("select,input").val("");
+    $(elObrigatorios).css("border-color", "#ced4da");
+    $("#regiao-endereco").fadeOut("fast");
+    $("#selectTipoEndereco").val("0");
+}
+
 // Método geral que controla ação cancelar.
 function acaoBotaoCancelarForm(options) {
     var elObrigatorios = $(options.el).closest("." + options.form).find("." + options.classForm + " select,input:required");
@@ -546,6 +604,7 @@ function acaoBotaoCancelarForm(options) {
 
     options.btnNovo.fadeIn("fast");
 }
+
 
 // EXCLUIR
 // Método responsável por excluir registros.
@@ -791,3 +850,42 @@ function mostrarNovoCadastroDeNome(el) {
     }
     mostrarNovoCadastroForm(options);
 }
+
+function salvarEndereco(el){
+    var valTipoEndereco = $("#selectTipoEndereco").val();
+
+    var obrigatorios = $("#regiao-endereco").find(":required").toArray();
+
+    var inconsistente = false;
+    
+    obrigatorios.forEach(function(element) {
+        var valor = $(element).val();
+        $(element).css("border-color", "#ced4da");
+
+        if(valor == "" || valor == undefined){
+            $(element).css("border-color", "red");
+            inconsistente = true;
+        }
+
+    });
+
+    if (!inconsistente){
+        var end = enderecosSalvos.find(x => x.val = valTipoEndereco);
+        end.salvo = true;
+
+        $('#modalFim').modal('show');
+        $("#selectTipoEndereco").val("0")
+
+        mostrarNovoCadastroDeEndereco($("select#selectTipoEndereco")[0]);
+    }
+}
+
+var enderecosSalvos = 
+[
+    {val:"1", salvo:false}, 
+    {val:"2", salvo:false},
+    {val:"3", salvo:false},
+    {val:"4", salvo:false},
+    {val:"8", salvo:false},
+    {val:"9", salvo:false}
+]
