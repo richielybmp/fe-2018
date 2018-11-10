@@ -7,13 +7,24 @@ function iniciarCadastro() {
 // Método responsável por mostrar a aba home.
 function cancelarCadastro() {
     // Clica no botão cancelar de todas as seções.
-    $(".acoes .btn.btn-warning").click();
-    $(".acoes-id .btn.btn-warning").click();
-    //$(".botoes-acoes .btn.btn-warning").click();
+    $("#spy .sidebar-brand:eq(0)").find("a").click();
+    var todosEl = $("input:not(.btn),select").val("").toArray();
+
+    todosEl.forEach(function(element) {
+        $(element).css("border-color", "#ced4da");
+    }, this);
+
+    //cancelarCadastro();
 }
 
 function finalizarCadastro() {
     $("#spy .sidebar-brand:eq(0)").find("a").click();
+    var todosEl = $("input:not(.btn),select").val("").toArray();
+
+    todosEl.forEach(function(element) {
+        $(element).css("border-color", "#ced4da");
+    }, this);
+
     cancelarCadastro();
     $('#modalFim').modal('show');
 }
