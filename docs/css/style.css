@@ -127,3 +127,36 @@ caption {
 .modal-body pre {
     overflow-x: hidden;
 }
+.space-between {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+.icon-color{
+    color: #fff;
+}
+.btn-circle-plus{
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+    background-color: #007bff;
+    color: white;
+    border:none;
+    cursor: pointer;
+    transition: all .3s;
+}
+.btn-circle-plus:hover{
+    background-color: #004e99;
+}
+.btn-circle-plus:focus{
+    outline: none;
+}
+.position-btn-plus{
+    margin: auto 0;
+    //position: absolute;
+    right: 10%;
+}
+.container-representacao-nome{
+    flex-direction: column;
+
+}

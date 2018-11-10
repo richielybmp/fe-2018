@@ -396,84 +396,88 @@
 
                 <div id="regiao-nomes" class="nome">
                     <div class="row">
-                        <div class="col">
-                            <label for="nome">Nome: </label>
-                            <input type="text" id="nome" name="nome" class="form-control" required>
-                        </div>
-                        <div class="col">
-                            <label for="sobrenome">Sobrenome: </label>
-                            <input type="text" id="sobrenome" name="sobrenome" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="row caixa-nome opcional">
-                        <div class="col">
-                            <label for="titulo">Título: </label>
+                        <div class="col-2">
+                            <label for="titulo">Título </label>
                             <input type="text" id="titulo" name="titulo" class="form-control">
                         </div>
+                        <div class="col-4">
+                            <label for="nome">Primeiro Nome </label>
+                            <input type="text" id="nome" name="nome" class="form-control" required>
+                        </div>
+                        <div class="col-4">
+                            <label for="sobrenome">Sobrenome </label>
+                            <input type="text" id="sobrenome" name="sobrenome" class="form-control" required>
+                        </div>
                         <div class="col">
-                            <label for="sufixo">Sufixo: </label>
+                            <label for="sufixo">Sufixo </label>
                             <input type="text" id="sufixo" name="sufixo" class="form-control">
                         </div>
-                        <div class="col ">
-                            <label for="uso">Uso:</label>
-                            <select id="uso" name="uso" class="form-control">
-                                <option value="">Representação alternativa R</option>
-                                <option value="">Representação alternativa N</option>
-                                <option value="">Representação alternativa C</option>
-                                <option value="">Representação alternativa S</option>
-                                <option value="">Representação alternativa L</option>
-                                <option value="">Representação alternativa O</option>
-                            </select>
-                        </div>
                     </div>
-                    <br />
-                    <br />
-                    <div class="botoes-acoes">
-                        <input class="btn btn-success" type="button" value="Salvar" onclick="acaoBotaoSalvarNome(this)" />
-                        <input class="btn btn-light" type="reset" value="Limpar" />
-                        <input class="btn btn-warning" type="button" onclick="" value="Cancelar" />
-                    </div>
-
-                    </div>
+                    <br>
                     <div class="grupo-uso-nomes row">
                         <div class="col ">
-                            <label for="uso-nome">Uso:</label>
+                            <label for="uso-nome">Uso</label>
                             <select id="uso-nome" name="uso" class="form-control">
-                                <option value="">Representação alternativa R</option>
-                                <option value="">Representação alternativa N</option>
-                                <option value="">Representação alternativa C</option>
-                                <option value="">Representação alternativa S</option>
-                                <option value="">Representação alternativa L</option>
-                                <option value="">Representação alternativa O</option>
+                                <option value="1">Relatório</option>
+                                <option value="2">Nome de recém-nascido</option>
+                                <option value="3">Nome profissional ou comercial</option>
+                                <option value="4">Nome de solteiro, nome de nascimento ou nome original</option>
+                                <option value="5">Nome registrado (nome legal)</option>
+                                <option value="8">Outro nome (alias)</option>
                             </select>
                         </div>
                         <div class="col">
-                            <label for="uso-data-inicio">Início:</label>
+                            <label for="uso-data-inicio">Início</label>
                             <input type="date" id="uso-data-inicio" class="form-control">
                         </div>
                         <div class="col">
-                            <label for="uso-data-fim">Término:</label>
+                            <label for="uso-data-fim">Término</label>
                             <input type="date" id="uso-data-fim" class="form-control">
                         </div>
                     </div>
+                    <div class="botoes-acoes">
+                        <input class="btn btn-success" type="button" value="Novo Nome" onclick="acaoBotaoSalvarNome(this)" />
+                        <input class="btn btn-warning" type="button" onclick="" value="Cancelar" />
+                    </div>
+                    <br>
                     <!-- Tabela Identificadores Pacientes-->
                     <!--<input type="hidden" id="chaveIdentificadores" name="chaveIdentificadores">-->
-                    <div id="tabelaNomes" style="display:none">
-                        <table class="table table-bordered table-hovered">
-                            <caption>Identificadores de Pacientes</caption>
-                            <thead>
-                            <tr class="trHeader" style="background-color: #007bff">
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Somenome</th>
-                                <th>Uso</th>
-                                <th>Preferido</th>
-                            </tr>
+                    </div>
+                <div id="tabelaNomes" style="display:none">
+                    <table class="table table-bordered table-hovered">
+                        <caption>Nomes de Pacientes</caption>
+                        <thead>
+                        <tr class="trHeader" style="background-color: #007bff">
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Somenome</th>
+                            <th>Uso</th>
+                            <th>Preferido</th>
+                        </tr>
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
                 </div>
+
+                <br/><br/>
+                    <div class="row space-between">
+                        <div class="container-representacao-nome col-4">
+                            <div class="form-group campo-representacao">
+                                <label for="represent-alternativa-nome">Representação</label>
+                                <input type="text" class="form-control campo-representacao" name="representação[]" id="represent-alternativa-nome">
+                            </div>
+                        </div>
+                        <div class="position-btn-plus">
+                            <button type="button" class="btn btn-primary bloco" onclick="adicionarRepresentacaoNome(this)"> <i class="fa fa-plus icon-color"></i> </button>
+                            <button type="button" class="btn btn-primary bloco" onclick="removerRepresentacaoNome(this)"> <i class="fa fa-minus icon-color"></i> </button>
+                        </div>
+                    </div>
+                    <div class="botoes-acoes">
+                        <input class="btn btn-success" type="button" value="Salvar" onclick="" />
+                        <input class="btn btn-warning" type="button" onclick="" value="Cancelar" />
+                    </div>
+
             </form>
         </section>
 
@@ -1306,5 +1310,6 @@ Autores:
         crossorigin="anonymous"></script>
     <script src="js/utilitarios.js"></script>
     <script src="js/script-home.js"></script>
+    <script src="js/script-nome.js"></script>
 </body>
 </html>
