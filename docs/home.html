@@ -164,27 +164,118 @@
                     <div class="form-vinculos">
                         <div class="vinculo">
                             <!-- Campos vínculo -->
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label for="lbIdentificador">Identificador</label>
-                                    <input id="inputIdVinculo" class="form-control" type="text" required>
-                                    <!-- <select id="inputIdVinculo" class="form-control vinculoIdentificador" required>
-                                            <option value="ID-P-00000001">ID-P-00000001</option>
-                                            <option value="ID-P-00000002">ID-P-00000002</option>
-                                            <option value="ID-P-00000003">ID-P-00000003</option>
-                                            <option value="ID-P-00000004">ID-P-00000004</option>
-                                            <option value="ID-P-00000005">ID-P-00000005</option>
-                                        </select> -->
+                            <div id="regiao-identificadores-vinculo" style="margin-top: 15px;">
+                                <div class="form-identificadores-vinculo">
+                                    <div class="identificador-vinculo">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="lbTipoDoIdentificador">Tipo do identificador</label>
+                                                <select id="selectTipoDoIDVinculo" class="form-control tipoDoIdentificadorDoVinculo"></select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="lbAreaGeo">Área Geográfica</label>
+                                                <select id="selectAreaVinculo" class="form-control areaGeoVinculo"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lbDesignacao">Designação</label>
+                                            <input id="idDesignacaoVinculo" class="form-control" type="text" required>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label for="lbEmissor">Emissor</label>
+                                                <input id="idEmissorVinculo" class="form-control" type="text" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="lbDataEmissao">Data de emissao</label>
+                                                <input id="idDataEmissaoVinculo" class="form-control" type="date" required>
+                                            </div>
+                                        </div>
+            
+                                        <!-- CTPS -->
+                                        <div id="form-ctps-vinculo" class="caixa opcional form-ctps-vinculo" style="display: none;">
+                                            <span>Carteira de trabalho</span>
+            
+                                            <hr>
+            
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label for="lbSerie">Série</label>
+                                                    <!-- onkeypress para que o input aceite números apenas. -->
+                                                    <input class="form-control" type="number" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="lbEstado">Estado</label>
+                                                    <select id="selectEstadoVinculo" class="form-control estadoVinculo"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+            
+                                        <!-- Certidão -->
+                                        <div id="form-certidao-vinculo" class="caixa opcional form-certidao-vinculo" style="display: none;">
+                                            <span>Certidão</span>
+            
+                                            <hr>
+            
+                                            <div class="form-group">
+                                                <label for="lbTipoCertidao">Tipo da certidão</label>
+                                                <select id="selectTipoCertidaoVinculo" class="form-control tipoCertidaoVinculo col-md-12">
+                                                    <option value="nascimento">Nascimento</option>
+                                                    <option value="casamento">Casamento</option>
+                                                    <option value="divorcio">Divórcio</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="lbNomeCartorio">Nome do cartório</label>
+                                                <input class="form-control" type="text" required>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="lbLivro">Livro</label>
+                                                    <input class="form-control" type="number" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="lbFolha">Folha</label>
+                                                    <input class="form-control" type="number" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="lbTermo">Termo</label>
+                                                    <input class="form-control" type="number" required>
+                                                </div>
+                                            </div>
+                                        </div>
+            
+                                        <!-- Título Eleitoral -->
+                                        <div id="form-tEleitor-vinculo" class="caixa opcional form-tEleitor-vinculo" style="display: none;">
+                                            <span>Título eleitoral</span>
+            
+                                            <hr>
+            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="lbSecao">Seção eleitoral</label>
+                                                    <input class="form-control" type="number" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="lbZona">Zona eleitoral</label>
+                                                    <input class="form-control" type="number" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
                                     <label for="lbRelacionamento">Relacionamento</label>
                                     <select id="selectRelacionamentos" class="form-control relacionamentos"></select>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4 data-vinculo">
                                     <label for="lbDataInicio">Data inicial</label>
                                     <input id="dtInicio" class="form-control" name="dtInicio" type="date">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4 data-vinculo">
                                     <label for="lbDataFim">Data final</label>
                                     <input id="dtFinal" class="form-control" name="dtFinal" type="date">
                                 </div>
@@ -195,8 +286,7 @@
                                 <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarVinculo()">
                                 <input id="btnCancelar" class="btn btn-warning" type="reset" value="Cancelar" onclick="acaoBotaoCancelarVinculo()">
                                 <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
-                                <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;"
-                                    onclick="excluirVinculo()">
+                                <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;" onclick="excluirVinculo()">
                             </div>
                         </div>
                     </div>
@@ -206,9 +296,11 @@
             <input type="hidden" id="chaveVinculo" name="chaveVinculo">
             <div id="tabelaVinculos" style="display:none;">
                 <table class="table table-bordered table-hovered">
+                    <caption>Identificadores de Vínculos</caption>
                     <thead>
                         <tr class="trHeader" style="background-color: #007bff">
-                            <th>Identificador</th>
+                            <th>ID</th>
+                            <th>Designação</th>
                             <th>Relacionamento</th>
                             <th>Data inicial</th>
                             <th>Data final</th>
@@ -358,7 +450,7 @@
                     </table>
                 </div>
 
-                <!-- Tabela Identificadores Vínculos -->
+                <!-- Tabela Identificadores Vínculos
                 <input type="hidden" id="chaveIdentificadoresVinculos" name="chaveIdentificadoresVinculos">
                 <div id="tabelaIdentificadoresVinculos" style="display:none">
                     <table class="table table-bordered table-hovered">
@@ -376,7 +468,7 @@
                         <tbody>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
 
                 <br />
                 <br />
