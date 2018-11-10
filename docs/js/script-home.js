@@ -97,6 +97,9 @@ carregueJson("./json/relacionamentos.json", function(response) {
 // Evento que controla a troca do Tipo de Identificador.
 $("select.tipoDoIdentificador")[0].addEventListener("change", mostreFormularios);
 
+// Evento que controla a troca do Tipo de Endereço.
+$("select#selectTipoEndereco")[0].addEventListener("change", mostrarNovoCadastroDeEndereco);
+
 // Evento que controla o formulário de cadastro de Vínculos.
 $("#chkCadastroDeVinculo").change(function() {
     if (this.checked) {
@@ -120,6 +123,7 @@ $("#chkCadastroDeVinculo").change(function() {
 });
 
 // MOSTRAR
+
 // Mostrar form Vinculo.
 function mostrarNovoCadastroDeVinculo(el) {
     var options = {
@@ -141,6 +145,28 @@ function mostrarNovoCadastroDeIdentificador(el) {
     }
     $(".caixa.opcional").hide();
     mostrarNovoCadastroForm(options);
+}
+
+// Mostrar form Identificadores.
+function mostrarNovoCadastroDeEndereco(el) {
+    var options = {
+        el: el,
+        form: $(".form-identificadores"),
+        classForm: "identificador",
+        regiao: $("#regiao-endereco")
+    }
+    debugger
+    if($(el.target).val()>0)
+    {
+        options.regiao.fadeIn("fast");
+    }
+    else
+    {
+        options.regiao.fadeOut("fast");
+
+    }
+    
+
 }
 
 // Mostrar form Comunicações eletrônicas.
