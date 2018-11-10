@@ -1,406 +1,438 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <!-- Meta tags Obrigatórias -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="authors" content="Richiely Batista, Felipe Maciel, Anderson Messias, Igor Emílio">
-        <meta name="description" content="Implementação de “portal” para cadastro de identificadores de indivíduos em saúde (pacientes). Norma ABNT NBR 15985:2011">
-        <title>Cadastro de Pacientes - ABNT NBR 15985:2011</title>
-        <link rel="shortcut icon" href="favicon.png">
-        <!-- Bootstrap e CSS -->
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-            crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="container" id="wrapper">
 
-             <!-- Sidebar -->
-            <div id="sidebar-wrapper">
-                <nav id="spy">
-                    <ul class="sidebar-nav nav">
-                        <li class="sidebar-brand">
-                            <a href="#header" onclick="mostreInicio()">
-                                <span class="fa fa-home solo">Início</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-brand">
-                            <a href="#pesquisar" onclick="mostrePesquisa()" data-scroll>
-                                <span class="fa fa-anchor solo " >Pesquisar Paciente</span>
-                                <span class="glyphicon glyphicon-search"></span>
-                            </a>
-                        </li>
-                        <li id="refVinculos" style="display:none;">
-                            <a href="#vinculos" data-scroll>
-                                <span class="fa fa-anchor solo">Vínculos</span>
-                            </a>
-                        </li> 
-                        <li>
-                            <a href="#identificadores" data-scroll>
-                                <span class="fa fa-anchor solo">Identificadores</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#nomes" data-scroll>
-                                <span class="fa fa-anchor solo">Nomes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#dadosDem" data-scroll>
-                                <span class="fa fa-anchor solo">Dados demográficos</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#enderecos" data-scroll>
-                                <span class="fa fa-anchor solo">Endereços</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#comunicacoes" data-scroll>
-                                <span class="fa fa-anchor solo">Comunicações</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-         
-            <!-- HEADER -->
-            <section id="header" class="header">
-                <!-- Apresentação do portal -->
-                <h1>ABNT NBR 15985:2011</h1>
-                <h3>Identificação dos indivíduos em saúde</h3>
-            </section>
+<head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="authors" content="Richiely Batista, Felipe Maciel, Anderson Messias, Igor Emílio">
+    <meta name="description" content="Implementação de “portal” para cadastro de identificadores de indivíduos em saúde (pacientes). Norma ABNT NBR 15985:2011">
+    <title>Cadastro de Pacientes - ABNT NBR 15985:2011</title>
+    <link rel="shortcut icon" href="favicon.png">
+    <!-- Bootstrap e CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
 
-            <!-- Pesquisar -->
-            <section class="tab-pane fade show active" id="pesquisar" role="tabpanel" aria-labelledby="home-tab">
-                <span>Pesquisar indivíduos</span>
-                <div>
-                    <div class="localizar">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Buscar...">
-                            <span class="mdi mdi-magnify"></span>
-                            <div class="input-group-append">
-                            <button class="btn btn-primary" onclick="buscarRegistroIdentificador()">Buscar</button>
-                            </div>
+<body>
+    <div class="container" id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <nav id="spy">
+                <ul class="sidebar-nav nav">
+                    <li class="sidebar-brand">
+                        <a href="#header" onclick="mostreInicio()">
+                            <span>
+                                <i class="fa fa-home"></i>
+                                <span>Início</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="sidebar-brand">
+                        <a href="#pesquisar" onclick="mostrePesquisa()" data-scroll>
+                            <span>
+                                <i class="fa fa-search"></i>
+                                <span>Pesquisar Indivíduos</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li id="refVinculos" style="display:none;">
+                        <a href="#vinculos" data-scroll>
+                            <span>Vínculos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#identificadores" data-scroll>
+                            <span>Identificadores</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#nomes" data-scroll>
+                            <span>Nomes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dadosDem" data-scroll>
+                            <span>Dados demográficos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#enderecos" data-scroll>
+                            <span>Endereços</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#comunicacoes" data-scroll>
+                            <span>Comunicações</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="inferior sidebar-nav nav">
+                    <li class="li-inferior">
+                        <a class="button is-primary" href="#" onclick="abrirModalAbout();return false;">
+                            <span class="icon">
+                                <i class="fa fa-info-circle"></i>
+                            </span>
+                            <span>Sobre</span>
+                        </a>
+                    </li>
+                    <li class="li-inferior">
+                        <a class="button is-primary" href="https://github.com/richielybmp/fe-2018" target="_blank">
+                            <span class="icon">
+                                <i class="fa fa-github"></i>
+                            </span>
+                            <span>GitHub</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- HEADER -->
+        <section id="header" class="header">
+            <!-- Apresentação do portal -->
+            <h1>ABNT NBR 15985:2011</h1>
+            <h3>Identificação dos indivíduos em saúde</h3>
+        </section>
+
+        <!-- Pesquisar -->
+        <section class="tab-pane fade show active" id="pesquisar" role="tabpanel" aria-labelledby="home-tab">
+            <span>Pesquisar indivíduos</span>
+            <div>
+                <div class="localizar">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar...">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" onclick="buscarRegistroIdentificador()">
+                                <span class="fa fa-search"></span>
+                                <span>Buscar</span>
+                            </button>
                         </div>
                     </div>
-                    <table id="tabela-registros-indicadores">
-                        <tr class="trHeader">
-                            <th>Identificador</th>
-                            <th>Nome</th>
-                            <th>Ações</th>
-                        </tr>
-                        <tr>
-                            <td>ID-P-00000001</td>
-                            <td>Maria Anders</td>
-                            <td>
-                                <input class="btn btn-info" type="button" value="Editar">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID-P-00000002</td>
-                            <td>Francisco Chang</td>
-                            <td>
-                                <input class="btn btn-info" type="button" value="Editar">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID-P-00000003</td>
-                            <td>Roland Mendel</td>
-                            <td>
-                                <input class="btn btn-info" type="button" value="Editar">
-                            </td>
-                        </tr>
-                    </table>
                 </div>
-            </section>
-         
-            <!-- Cadastro de Vínculos? -->
-            <div class="form-check" style="margin-bottom: 15px;">
-                <input type="checkbox" class="form-check-input" id="chkCadastroDeVinculo">
-                <label class="form-check-label" for="chkCadastroDeVinculo">Cadastro de vínculo</label>
+                <table id="tabela-registros-indicadores">
+                    <tr class="trHeader">
+                        <th>Identificador</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                    <tr>
+                        <td>ID-P-00000001</td>
+                        <td>Maria Anders</td>
+                        <td>
+                            <input class="btn btn-info" type="button" value="Visualizar" onclick="mostreInicio()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ID-P-00000002</td>
+                        <td>Francisco Chang</td>
+                        <td>
+                            <input class="btn btn-info" type="button" value="Visualizar" onclick="mostreInicio()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ID-P-00000003</td>
+                        <td>Roland Mendel</td>
+                        <td>
+                            <input class="btn btn-info" type="button" value="Visualizar" onclick="mostreInicio()">
+                        </td>
+                    </tr>
+                </table>
             </div>
+        </section>
 
-            <!-- Vínculos -->
-            
-            <section id="vinculos">
-                <!-- Início do formulário - VÍNCULOS -->
-                <form action="">
-                    <legend>Vínculos</legend>
-                    
-                    <input id="btnNovoVinculo" class="btn btn-primary bloco" type="reset" value="Novo Vínculo" onclick="mostrarNovoCadastroDeVinculo(this)">
-                    
-                    <div id="regiao-vinculos" style="margin-top: 15px;display: none;">
-                        <div class="form-vinculos">    
-                            <div class="vinculo">
-                                <!-- Campos vínculo -->
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <label for="lbIdentificador">Identificador</label>
-                                        <!-- <input id="inputIdVinculo" class="form-control" type="text" required=""> -->
-                                        <select id="inputIdVinculo" class="form-control vinculoIdentificador" required="">
+        <!-- Cadastro de Vínculos? -->
+        <div class="form-check" style="margin-bottom: 15px;">
+            <input type="checkbox" class="form-check-input" id="chkCadastroDeVinculo">
+            <label class="form-check-label" for="chkCadastroDeVinculo">Cadastro de vínculo</label>
+        </div>
+
+        <!-- Vínculos -->
+        <section id="vinculos">
+            <!-- Início do formulário - VÍNCULOS -->
+            <form action="">
+                <legend>Vínculos</legend>
+
+                <input id="btnNovoVinculo" class="btn btn-primary bloco" type="reset" value="Novo Vínculo" onclick="mostrarNovoCadastroDeVinculo(this)">
+
+                <div id="regiao-vinculos" style="margin-top: 15px;display: none;">
+                    <div class="form-vinculos">
+                        <div class="vinculo">
+                            <!-- Campos vínculo -->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="lbIdentificador">Identificador</label>
+                                    <input id="inputIdVinculo" class="form-control" type="text" required>
+                                    <!-- <select id="inputIdVinculo" class="form-control vinculoIdentificador" required>
                                             <option value="ID-P-00000001">ID-P-00000001</option>
                                             <option value="ID-P-00000002">ID-P-00000002</option>
                                             <option value="ID-P-00000003">ID-P-00000003</option>
                                             <option value="ID-P-00000004">ID-P-00000004</option>
                                             <option value="ID-P-00000005">ID-P-00000005</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="lbRelacionamento">Relacionamento</label>
-                                        <select id="selectRelacionamentos" class="form-control relacionamentos"></select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="lbDataInicio">Data inicial</label>
-                                        <input id="dtInicio" class="form-control" name="dtInicio" type="date">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="lbDataFim">Data final</label>
-                                        <input id="dtFinal" class="form-control" name="dtFinal" type="date">
-                                    </div>
+                                        </select> -->
                                 </div>
-                                
-                                <!-- Ações -->
-                                <div class="acoes">
-                                    <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarVinculo()">
-                                    <input id="btnCancelar" class="btn btn-warning" type="reset" value="Cancelar" onclick="acaoBotaoCancelarVinculo()">
-                                    <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
-                                    <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;" onclick="excluirVinculo()">
+                                <div class="col-md-3">
+                                    <label for="lbRelacionamento">Relacionamento</label>
+                                    <select id="selectRelacionamentos" class="form-control relacionamentos"></select>
                                 </div>
+                                <div class="col-md-3">
+                                    <label for="lbDataInicio">Data inicial</label>
+                                    <input id="dtInicio" class="form-control" name="dtInicio" type="date">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="lbDataFim">Data final</label>
+                                    <input id="dtFinal" class="form-control" name="dtFinal" type="date">
+                                </div>
+                            </div>
+
+                            <!-- Ações -->
+                            <div class="acoes">
+                                <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarVinculo()">
+                                <input id="btnCancelar" class="btn btn-warning" type="reset" value="Cancelar" onclick="acaoBotaoCancelarVinculo()">
+                                <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
+                                <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;"
+                                    onclick="excluirVinculo()">
                             </div>
                         </div>
                     </div>
-                </form>
-                <!-- Tabela Vínculo -->
-                <input type="hidden" id="chaveVinculo" name="chaveVinculo">
-                <div id="tabelaVinculos" style="display:none;">          
+                </div>
+            </form>
+            <!-- Tabela Vínculo -->
+            <input type="hidden" id="chaveVinculo" name="chaveVinculo">
+            <div id="tabelaVinculos" style="display:none;">
+                <table class="table table-bordered table-hovered">
+                    <thead>
+                        <tr class="trHeader" style="background-color: #007bff">
+                            <th>Identificador</th>
+                            <th>Relacionamento</th>
+                            <th>Data inicial</th>
+                            <th>Data final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Identificadores -->
+        <section id="identificadores">
+            <!-- Início do formulário - IDENTIFICAÇÂO -->
+            <form action="" method="post" id="formId">
+                <legend>Identificadores</legend>
+
+                <input id="btnNovoIdentificador" class="btn btn-primary bloco" type="reset" value="Novo Identificador"
+                    onclick="mostrarNovoCadastroDeIdentificador(this)">
+
+                <div id="regiao-identificadores" style="margin-top: 15px;display: none;">
+                    <div class="form-identificadores">
+                        <div class="identificador">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="lbTipoDoIdentificador">Tipo do identificador</label>
+                                    <select id="selectTipoDoID" class="form-control tipoDoIdentificador"></select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="lbAreaGeo">Área Geográfica</label>
+                                    <select id="selectArea" class="form-control areaGeo"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lbDesignacao">Designação</label>
+                                <input id="idDesignacao" class="form-control" type="text" required>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <label for="lbEmissor">Emissor</label>
+                                    <input id="idEmissor" class="form-control" type="text" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lbDataEmissao">Data de emissao</label>
+                                    <input id="idDataEmissao" class="form-control" type="date" required>
+                                </div>
+                            </div>
+
+                            <!-- CTPS -->
+                            <div id="form-ctps" class="caixa opcional form-ctps" style="display: none;">
+                                <span>Carteira de trabalho</span>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="lbSerie">Série</label>
+                                        <!-- onkeypress para que o input aceite números apenas. -->
+                                        <input class="form-control" type="number" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="lbEstado">Estado</label>
+                                        <select id="selectEstado" class="form-control estado"></select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Certidão -->
+                            <div id="form-certidao" class="caixa opcional form-certidao" style="display: none;">
+                                <span>Certidão</span>
+
+                                <hr>
+
+                                <div class="form-group">
+                                    <label for="lbTipoCertidao">Tipo da certidão</label>
+                                    <select id="selectTipoCertidao" class="form-control tipoCertidao col-md-12">
+                                        <option value="nascimento">Nascimento</option>
+                                        <option value="casamento">Casamento</option>
+                                        <option value="divorcio">Divórcio</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lbNomeCartorio">Nome do cartório</label>
+                                    <input class="form-control" type="text" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="lbLivro">Livro</label>
+                                        <input class="form-control" type="number" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="lbFolha">Folha</label>
+                                        <input class="form-control" type="number" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="lbTermo">Termo</label>
+                                        <input class="form-control" type="number" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Título Eleitoral -->
+                            <div id="form-tEleitor" class="caixa opcional form-tEleitor" style="display: none;">
+                                <span>Título eleitoral</span>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="lbSecao">Seção eleitoral</label>
+                                        <input class="form-control" type="number" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lbZona">Zona eleitoral</label>
+                                        <input class="form-control" type="number" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="acoes-id">
+                            <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="acaoBotaoSalvar(this)">
+                            <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="acaoBotaoCancelar(this)">
+                            <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
+                            <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;"
+                                onclick="excluirIdentificador()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela Identificadores Pacientes-->
+                <input type="hidden" id="chaveIdentificadores" name="chaveIdentificadores">
+                <div id="tabelaIdentificadores" style="display:none">
                     <table class="table table-bordered table-hovered">
+                        <caption>Identificadores de Pacientes</caption>
                         <thead>
                             <tr class="trHeader" style="background-color: #007bff">
-                                <th>Identificador</th>
-                                <th>Relacionamento</th>
-                                <th>Data inicial</th>
-                                <th>Data final</th>
+                                <th>ID</th>
+                                <th>Tipo de Identificador</th>
+                                <th>Área Geográfica</th>
+                                <th>Designação</th>
+                                <th>Emissor</th>
+                                <th>Data da Emissão</th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
                 </div>
-            </section> 
 
-            <!-- Identificadores -->
-            <section id="identificadores">
-                <!-- Início do formulário - IDENTIFICAÇÂO -->
-                <form action="" method="post" id="formId">
-                    <legend>Identificadores</legend>
-                
-                    <input id="btnNovoIdentificador" class="btn btn-primary bloco" type="reset" value="Novo Identificador" onclick="mostrarNovoCadastroDeIdentificador(this)">
-                
-                    <div id="regiao-identificadores" style="margin-top: 15px;display: none;">
-                        <div class="form-identificadores">
-                            <div class="identificador">
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="lbTipoDoIdentificador">Tipo do identificador</label>
-                                        <select id="selectTipoDoID" class="form-control tipoDoIdentificador"></select>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="lbAreaGeo">Área Geográfica</label>
-                                        <select id="selectArea" class="form-control areaGeo"></select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lbDesignacao">Designação</label>
-                                    <input id="idDesignacao" class="form-control" type="text" required="">
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col-md-6">
-                                        <label for="lbEmissor">Emissor</label>
-                                        <input id="idEmissor" class="form-control" type="text" required="">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="lbDataEmissao">Data de emissao</label>
-                                        <input id="idDataEmissao" class="form-control" type="date" required="">
-                                    </div>
-                                </div>
+                <!-- Tabela Identificadores Vínculos -->
+                <input type="hidden" id="chaveIdentificadoresVinculos" name="chaveIdentificadoresVinculos">
+                <div id="tabelaIdentificadoresVinculos" style="display:none">
+                    <table class="table table-bordered table-hovered">
+                        <caption>Identificadores de Vínculos</caption>
+                        <thead>
+                            <tr class="trHeader" style="background-color: #007bff">
+                                <th>ID</th>
+                                <th>Tipo de Identificador</th>
+                                <th>Área Geográfica</th>
+                                <th>Designação</th>
+                                <th>Emissor</th>
+                                <th>Data da Emissão</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
 
-                                <!-- CTPS -->
-                                <div id="form-ctps" class="caixa opcional form-ctps" style="display: none;">
-                                    <span>Carteira de trabalho</span>
-                                    
-                                    <hr>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <label for="lbSerie">Série</label>
-                                            <input class="form-control" type="text" required="">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="lbEstado">Estado</label>
-                                            <select id="selectEstado" class="form-control estado"></select>
-                                        </div>
-                                    </div>
-                                </div>
+                <br />
+                <br />
+            </form>
 
-                                <!-- Certidão -->
-                                <div id="form-certidao" class="caixa opcional form-certidao" style="display: none;">
-                                    <span>Certidão</span>
-                                    
-                                    <hr>
+        </section>
 
-                                    <div class="form-group">
-                                        <label for="lbTipoCertidao">Tipo da certidão</label>
-                                        <select id="selectTipoCertidao" class="form-control tipoCertidao col-md-12">
-                                            <option value="nascimento">Nascimento</option>
-                                            <option value="casamento">Casamento</option>
-                                            <option value="divorcio">Divórcio</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="lbNomeCartorio">Nome do cartório</label>
-                                        <input class="form-control" type="text" required="">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="lbLivro">Livro</label>
-                                            <input class="form-control" type="number" required="">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="lbFolha">Folha</label>
-                                            <input class="form-control" type="number" required="">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="lbTermo">Termo</label>
-                                            <input class="form-control" type="number" required="">
-                                        </div>
-                                    </div>
-                                </div>
+        <!-- Nomes -->
+        <!-- <section class="tab-pane fade" id="nomes" role="tabpanel" aria-labelledby="nomes-tab"> -->
+        <section id="nomes">
+            <form action="" method="post" id="form-nomes">
+                <!--Podem ser fornecidos até 9 títulos, 9 primeiros nomes, 9 sobrenomes e 9 sufixos para cada nome.-->
+                <legend>Cadastro de Nomes</legend>
 
-                                <!-- Título Eleitoral -->
-                                <div id="form-tEleitor" class="caixa opcional form-tEleitor" style="display: none;">
-                                    <span>Título eleitoral</span>
-                                    
-                                    <hr>
+                <input id="btnNovoNome" style="display: none" class="btn btn-primary" type="reset" value="Novo Nome"
+                    onclick="mostrarNovoCadastroDeNome(this)">
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="lbSecao">Seção eleitoral</label>
-                                            <input class="form-control" type="number" required="">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="lbZona">Zona eleitoral</label>
-                                            <input class="form-control" type="number" required="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="acoes-id">
-                                <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="acaoBotaoSalvar(this)">
-                                <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="acaoBotaoCancelar(this)">
-                                <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
-                                <input id="btnExcluir" class="btn btn-danger" type="reset" value="Excluir" style="display: none;">
-                            </div>
+                <div id="regiao-nomes" class="nome">
+                    <div class="row">
+                        <div class="col">
+                            <label for="nome">Nome: </label>
+                            <input type="text" id="nome" name="nome" class="form-control" required>
+                        </div>
+                        <div class="col">
+                            <label for="sobrenome">Sobrenome: </label>
+                            <input type="text" id="sobrenome" name="sobrenome" class="form-control" required>
                         </div>
                     </div>
-                    
-                    <!-- Tabela Identificadores Pacientes-->
-                    <input type="hidden" id="chaveIdentificadores" name="chaveIdentificadores">
-                    <div id="tabelaIdentificadores" style="display:none">
-                        <table class="table table-bordered table-hovered">
-                            <caption>Identificadores de Pacientes</caption>
-                            <thead>
-                                <tr class="trHeader" style="background-color: #007bff">
-                                    <th>ID</th>
-                                    <th>Tipo de Identificador</th>
-                                    <th>Área Geográfica</th>
-                                    <th>Designação</th>
-                                    <th>Emissor</th>
-                                    <th>Data da Emissão</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                    <div class="row caixa-nome opcional">
+                        <div class="col">
+                            <label for="titulo">Título: </label>
+                            <input type="text" id="titulo" name="titulo" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="sufixo">Sufixo: </label>
+                            <input type="text" id="sufixo" name="sufixo" class="form-control">
+                        </div>
+                        <div class="col ">
+                            <label for="uso">Uso:</label>
+                            <select id="uso" name="uso" class="form-control">
+                                <option value="">Representação alternativa R</option>
+                                <option value="">Representação alternativa N</option>
+                                <option value="">Representação alternativa C</option>
+                                <option value="">Representação alternativa S</option>
+                                <option value="">Representação alternativa L</option>
+                                <option value="">Representação alternativa O</option>
+                            </select>
+                        </div>
                     </div>
-
-                     <!-- Tabela Identificadores Vínculos -->
-                     <input type="hidden" id="chaveIdentificadoresVinculos" name="chaveIdentificadoresVinculos">
-                     <div id="tabelaIdentificadoresVinculos" style="display:none">
-                         <table class="table table-bordered table-hovered">
-                                <caption>Identificadores de Vínculos</caption>
-                             <thead>
-                                 <tr class="trHeader" style="background-color: #007bff">
-                                     <th>ID</th>
-                                     <th>Tipo de Identificador</th>
-                                     <th>Área Geográfica</th>
-                                     <th>Designação</th>
-                                     <th>Emissor</th>
-                                     <th>Data da Emissão</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                             </tbody>
-                         </table>
-                     </div>
-                    
                     <br />
                     <br />
-                </form>
-
-            </section>
-
-            <!-- Nomes -->
-            <!-- <section class="tab-pane fade" id="nomes" role="tabpanel" aria-labelledby="nomes-tab"> -->
-            <section id="nomes">
-                <form action="" method="post" id="form-nomes">
-                    <!--Podem ser fornecidos até 9 títulos, 9 primeiros nomes, 9 sobrenomes e 9 sufixos para cada nome.-->
-                    <legend>Cadastro de Nomes</legend>
-
-                    <input id="btnNovoNome" style="display: none" class="btn btn-primary" type="reset" value="Novo Nome" onclick="mostrarNovoCadastroDeNome(this)">
-
-                    <div id="regiao-nomes" class="nome">
-                        <div class="row">
-                            <div class="col">
-                                <label for="nome">Nome: </label>
-                                <input type="text" id="nome" name="nome" class="form-control" required>
-                            </div>
-                            <div class="col">
-                                <label for="sobrenome">Sobrenome: </label>
-                                <input type="text" id="sobrenome" name="sobrenome" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="row caixa-nome opcional">
-                            <div class="col">
-                                <label for="titulo">Título: </label>
-                                <input type="text" id="titulo" name="titulo" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label for="sufixo">Sufixo: </label>
-                                <input type="text" id="sufixo" name="sufixo" class="form-control">
-                            </div>
-                            <div class="col ">
-                                <label for="uso">Uso:</label>
-                                <select id="uso" name="uso" class="form-control">
-                                    <option value="">Representação alternativa R</option>
-                                    <option value="">Representação alternativa N</option>
-                                    <option value="">Representação alternativa C</option>
-                                    <option value="">Representação alternativa S</option>
-                                    <option value="">Representação alternativa L</option>
-                                    <option value="">Representação alternativa O</option>
-                                </select>
-                            </div>
-                        </div>
-                        <br />
-                        <br />
-                        <div class="botoes-acoes">
-                            <input class="btn btn-success" type="button" value="Salvar" onclick="acaoBotaoSalvarNome(this)"/>
-                            <input class="btn btn-light" type="reset" value="Limpar" />
-                            <input class="btn btn-warning" type="button" onclick="" value="Cancelar" />
-                        </div>
-
+                    <div class="botoes-acoes">
+                        <input class="btn btn-success" type="button" value="Salvar" onclick="acaoBotaoSalvarNome(this)" />
+                        <input class="btn btn-light" type="reset" value="Limpar" />
+                        <input class="btn btn-warning" type="button" onclick="" value="Cancelar" />
+                    </div>
 
                     </div>
                     <div class="grupo-uso-nomes row">
@@ -437,201 +469,497 @@
                                 <th>Uso</th>
                                 <th>Preferido</th>
                             </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-            </section>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </section>
 
-            <!-- Dados demográficos -->
-            <!-- <section class="tab-pane fade" id="dadosDem" role="tabpanel" aria-labelledby="dadosDem-tab"> -->
-            <section id="dadosDem">
-                <form action="">
-                    <legend>Cadastro de dados demográficos</legend>
-                    <div class="box">
-                        <b>Mãe</b>
+        <!-- Dados demográficos -->
+        <!-- <section class="tab-pane fade" id="dadosDem" role="tabpanel" aria-labelledby="dadosDem-tab"> -->
+        <section id="dadosDem">
+            <form action="">
+                <legend>Cadastro de dados demográficos</legend>
+                <div class="box">
+                    <b>Mãe</b>
+                    <br>
+                    <input class="form-control" id="inputNomeMae" type="text" name="mae" size="100%" placeholder="Nome completo da Mãe do paciente">
+                    <br>
+                    <b>Pai</b>
+                    <br>
+                    <input class="form-control" id="inputNomePai" type="text" name="pai" size="100%" placeholder="Nome completo do Pai do paciente">
+                    <br>
+
+                    <div>
                         <br>
-                        <input class="form-control" id="inputNomeMae" type="text" name="mae" size="100%" placeholder="Nome completo da Mãe do paciente">
+                        <b>Situação familiar</b>
                         <br>
-                        <b>Pai</b>
+                        <input class="checkbox" type="checkbox" value="1">
+                        <span> companheiro(a) e filho(s)</span>
                         <br>
-                        <input class="form-control" id="inputNomePai" type="text" name="pai" size="100%" placeholder="Nome completo do Pai do paciente">
+                        <input class="checkbox" type="checkbox" value="2">
+                        <span> companheiro(a) com laços conjugais e sem filhos</span>
                         <br>
-                        
-                        <div>
-                            <br>
-                            <b>Situação familiar</b>
-                            <br>
-                            <input class="checkbox" type="checkbox" value="1">
-                            <span> companheiro(a) e filho(s)</span>
-                            <br>
-                            <input class="checkbox" type="checkbox" value="2">
-                            <span> companheiro(a) com laços conjugais e sem filhos</span>
-                            <br>
-                            <input class="checkbox" type="checkbox" value="3">
-                            <span> companheiro(a), com filho(s) e/ou outro(s) familiar(es)</span>
-                            <br>
-                            <input class="checkbox" type="checkbox" value="4">
-                            <span>&nbsp;familiar(es) semcompanheiro(a)</span>
-                            <br>
-                            <input class="checkbox" type="checkbox" value="5">
-                            <span>&nbsp;outra(s) pessoa(s) sem laçosconsanguíneos e/oulaços conjugais</span>
-                            <br>
-                            <input class="checkbox" type="checkbox" value="6">
-                            <span>&nbsp;vive sozinho</span>
-                            <br>
+                        <input class="checkbox" type="checkbox" value="3">
+                        <span> companheiro(a), com filho(s) e/ou outro(s) familiar(es)</span>
+                        <br>
+                        <input class="checkbox" type="checkbox" value="4">
+                        <span>&nbsp;familiar(es) semcompanheiro(a)</span>
+                        <br>
+                        <input class="checkbox" type="checkbox" value="5">
+                        <span>&nbsp;outra(s) pessoa(s) sem laçosconsanguíneos e/oulaços conjugais</span>
+                        <br>
+                        <input class="checkbox" type="checkbox" value="6">
+                        <span>&nbsp;vive sozinho</span>
+                        <br>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="data">
+                                <b>Data de nascimento</b>
+                            </label>
+                            <input class="form-control" type="date" id="data" name="dn" required />
                         </div>
+                    </div>
+                    <br>
+                    <div>
+                        <div class="field">
+                            <b>Inicador de acurácia</b>
+                            <br> Dia:
+                            <label class="radio">
+                                <input class="radio" type="radio" name="diaInicial" value="A"> Acurado</label>
+                            <label class="radio">
+                                <input class="radio" type="radio" name="diaInicial" value="E"> Estimado</label>
+                            <label class="radio">
+                                <input class="radio" type="radio" name="diaInicial" value="U"> Desconhecido</label>
+                            <br> Mês:
+                            <label class="radio">
+                                <input class="radio" type="radio" name="mesInicial" value="A"> Acurado</label>
+                            <label class="radio">
+                                <input class="radio" type="radio" name="mesInicial" value="E"> Estimado</label>
+                            <label class="radio">
+                                <input class="radio" type="radio" name="mesInicial" value="U"> Desconhecido</label>
+                            <br> Ano:
+                            <label class="radio">
+                                <input class="radio" type="radio" name="anoInicial" value="A"> Acurado</label>
+                            <label class="radio">
+                                <input class="radio" type="radio" name="anoInicial" value="E"> Estimado</label>
+                            <label class="radio">
+                                <input class="radio" type="radio" name="anoInicial" value="U"> Desconhecido</label>
+                        </div>
+                        <b>Seguimento</b>
                         <br>
+                        <input class="checkbox" type="checkbox" value="7">
+                        <span>&nbsp;Data precisa de seguimento</span>
+                    </div>
+                    <br>
+                    <div>
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="data">
-                                <b>Data de nascimento</b>
+                                    <b>Óbito</b>
                                 </label>
-                                <input class="form-control" type="date" id="data" name="dn" required />
+                                <input class="form-control" type="date" id="dataObito" name="dob" required />
                             </div>
                         </div>
-                        <br>
                         <div>
                             <div class="field">
                                 <b>Inicador de acurácia</b>
                                 <br> Dia:
                                 <label class="radio">
-                                <input class="radio" type="radio" name="diaInicial" value="A"> Acurado</label>
+                                    <input class="radio" type="radio" name="diaInicial" value="A"> Acurado</label>
                                 <label class="radio">
-                                <input class="radio" type="radio" name="diaInicial" value="E"> Estimado</label>
+                                    <input class="radio" type="radio" name="diaInicial" value="E"> Estimado</label>
                                 <label class="radio">
-                                <input class="radio" type="radio" name="diaInicial" value="U"> Desconhecido</label>
+                                    <input class="radio" type="radio" name="diaInicial" value="U"> Desconhecido</label>
                                 <br> Mês:
                                 <label class="radio">
-                                <input class="radio" type="radio" name="mesInicial" value="A"> Acurado</label>
+                                    <input class="radio" type="radio" name="mesInicial" value="A"> Acurado</label>
                                 <label class="radio">
-                                <input class="radio" type="radio" name="mesInicial" value="E"> Estimado</label>
+                                    <input class="radio" type="radio" name="mesInicial" value="E"> Estimado</label>
                                 <label class="radio">
-                                <input class="radio" type="radio" name="mesInicial" value="U"> Desconhecido</label>
+                                    <input class="radio" type="radio" name="mesInicial" value="U"> Desconhecido</label>
                                 <br> Ano:
                                 <label class="radio">
-                                <input class="radio" type="radio" name="anoInicial" value="A"> Acurado</label>
+                                    <input class="radio" type="radio" name="anoInicial" value="A"> Acurado</label>
                                 <label class="radio">
-                                <input class="radio" type="radio" name="anoInicial" value="E"> Estimado</label>
+                                    <input class="radio" type="radio" name="anoInicial" value="E"> Estimado</label>
                                 <label class="radio">
-                                <input class="radio" type="radio" name="anoInicial" value="U"> Desconhecido</label>
+                                    <input class="radio" type="radio" name="anoInicial" value="U"> Desconhecido</label>
                             </div>
-                            <b>Seguimento</b>
+                            <b>Fonte de notificação</b>
                             <br>
-                            <input class="checkbox" type="checkbox" value="7">
-                            <span>&nbsp;Data precisa de seguimento</span>
-                        </div>
-                        <br>
-                        <div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                <label for="data">
-                                <b>Óbito</b>
-                                </label>
-                                <input class="form-control" type="date" id="dataObito" name="dob" required />
-                                </div>
-                            </div>
-                            <div>
-                                <div class="field">
-                                <b>Inicador de acurácia</b>
-                                <br> Dia:
+                            <div class="field">
                                 <label class="radio">
-                                <input class="radio" type="radio" name="diaInicial" value="A"> Acurado</label>
+                                    <input class="radio" type="radio" name="FonNot" value="Car"> Cartório </label>
                                 <label class="radio">
-                                <input class="radio" type="radio" name="diaInicial" value="E"> Estimado</label>
+                                    <input class="radio" type="radio" name="FonNot" value="Pre"> Prestador de
+                                    assistência à saúde </label>
                                 <label class="radio">
-                                <input class="radio" type="radio" name="diaInicial" value="U"> Desconhecido</label>
-                                <br> Mês:
+                                    <input class="radio" type="radio" name="FonNot" value="Par"> Parente </label>
                                 <label class="radio">
-                                <input class="radio" type="radio" name="mesInicial" value="A"> Acurado</label>
+                                    <input class="radio" type="radio" name="FonNot" value="Out"> Outro </label>
                                 <label class="radio">
-                                <input class="radio" type="radio" name="mesInicial" value="E"> Estimado</label>
-                                <label class="radio">
-                                <input class="radio" type="radio" name="mesInicial" value="U"> Desconhecido</label>
-                                <br> Ano:
-                                <label class="radio">
-                                <input class="radio" type="radio" name="anoInicial" value="A"> Acurado</label>
-                                <label class="radio">
-                                <input class="radio" type="radio" name="anoInicial" value="E"> Estimado</label>
-                                <label class="radio">
-                                <input class="radio" type="radio" name="anoInicial" value="U"> Desconhecido</label>
-                                </div>
-                                <b>Fonte de notificação</b>
-                                <br>
-                                <div class="field">
-                                <label class="radio">
-                                <input class="radio" type="radio" name="FonNot" value="Car"> Cartório </label>
-                                <label class="radio">
-                                <input class="radio" type="radio" name="FonNot" value="Pre"> Prestador de assistência à saúde </label>
-                                <label class="radio">
-                                <input class="radio" type="radio" name="FonNot" value="Par"> Parente </label>
-                                <label class="radio">
-                                <input class="radio" type="radio" name="FonNot" value="Out"> Outro </label>
-                                <label class="radio">
-                                <input class="radio" type="radio" name="FonNot" value="Des"> Desconhecido</label>
-                                </div>
+                                    <input class="radio" type="radio" name="FonNot" value="Des"> Desconhecido</label>
                             </div>
                         </div>
-                        <div class="field">
-                            <label>
+                    </div>
+                    <div class="field">
+                        <label>
                             <b>Raça/Cor</b>
-                            </label>
-                            <br>
-                            <input class="checkbox" type="checkbox" value="branca">
-                            <span> branca</span>
-                            <br>
-                            <input class="checkbox" type="checkbox" value="preta">
-                            <span> preta</span>
-                            <br>
-                            <input class="checkbox" type="checkbox" value="parda">
-                            <span> parda</span>
-                            <br>
-                            <input class="checkbox" type="checkbox" value="amarela">
-                            <span>&nbsp;amarela</span>
-                            <br>
-                            <input class="checkbox" type="checkbox" value="indígena">
-                            <span>&nbsp;indígena</span>
-                            <br>
-                        </div>
-                        <div class="box">
-                            <label>
+                        </label>
+                        <br>
+                        <input class="checkbox" type="checkbox" value="branca">
+                        <span> branca</span>
+                        <br>
+                        <input class="checkbox" type="checkbox" value="preta">
+                        <span> preta</span>
+                        <br>
+                        <input class="checkbox" type="checkbox" value="parda">
+                        <span> parda</span>
+                        <br>
+                        <input class="checkbox" type="checkbox" value="amarela">
+                        <span>&nbsp;amarela</span>
+                        <br>
+                        <input class="checkbox" type="checkbox" value="indígena">
+                        <span>&nbsp;indígena</span>
+                        <br>
+                    </div>
+                    <div class="box">
+                        <label>
                             <b>Sexo</b>
-                            </label>
-                            <br>
-                            <label class="radio">
+                        </label>
+                        <br>
+                        <label class="radio">
                             <input class="radio" type="radio" name="sexo" value="M"> masculino (M) </label>
-                            <br>
-                            <label class="radio">
+                        <br>
+                        <label class="radio">
                             <input class="radio" type="radio" name="sexo" value="F"> feminino (F)</label>
-                            <br>
-                            <label class="radio">
-                            <input class="radio" type="radio" name="sexo" value="I"> intersexo ou indeterminado (I) </label>
-                            <br>
-                            <label class="radio">
+                        <br>
+                        <label class="radio">
+                            <input class="radio" type="radio" name="sexo" value="I"> intersexo ou indeterminado (I)
+                        </label>
+                        <br>
+                        <label class="radio">
                             <input class="radio" type="radio" name="sexo" value="U"> não declarado (U) </label>
-                            <br>
-                        </div>
-                        <div class="form-group">
-                            <b>Situação familiar (convive com)</b> 
-                            <div>
-                                <select name="selectSituacaoFamiliar" id="selectSituacaoFamiliar" class="form-control col-md-6" required>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <b>Situação familiar (convive com)</b>
+                        <div>
+                            <select name="selectSituacaoFamiliar" id="selectSituacaoFamiliar" class="form-control col-md-6"
+                                required>
                                 <option value="1">companheiro(a) e filho(s)</option>
                                 <option value="2">companheiro(a) com laços conjugais e sem filhos</option>
                                 <option value="3">companheiro(a), com filho(s) e/ou outro(s) familiares.</option>
                                 <option value="4">familiar(es) sem companheiro(a)</option>
                                 <option value="5">outra(s) pessoa(s), sem laços consanguíneos e/ou laços conjugais</option>
                                 <option value="6">vive só</option>
-                                </select>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <b>Nacionalidade</b>
+                        <div class="control" onchange="mudaNacionalidade();">
+                            <label class="radio">
+                                <input id="brasileira" type="radio" name="nacionalidade" value="1" checked="">
+                                Brasileiro</label>
+                            <label class="radio">
+                                <input type="radio" name="nacionalidade" value="2">
+                                Estrangeiro</label>
+                        </div>
+
+                        <div id="Bra" class="box" style="display: block;">
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">Estado de nascimento</label>
+                                    <div class="select is-small">
+                                        <select id="estados" class="form-control col-md-6" onchange="atualizaMunicipios()">
+                                            <option value="AC">Acre</option>
+                                            <option value="AL">Alagoas</option>
+                                            <option value="AM">Amazonas</option>
+                                            <option value="AP">Amapá</option>
+                                            <option value="BA">Bahia</option>
+                                            <option value="CE">Ceará</option>
+                                            <option value="DF">Distrito Federal</option>
+                                            <option value="ES">Espírito Santo</option>
+                                            <option value="GO">Goiás</option>
+                                            <option value="MA">Maranhão</option>
+                                            <option value="MG">Minas Gerais</option>
+                                            <option value="MS">Mato Grosso do Sul</option>
+                                            <option value="MT">Mato Grosso</option>
+                                            <option value="PA">Pará</option>
+                                            <option value="PB">Paraíba</option>
+                                            <option value="PE">Pernambuco</option>
+                                            <option value="PI">Piauí</option>
+                                            <option value="PR">Paraná</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="RN">Rio Grande do Norte</option>
+                                            <option value="RS">Rio Grande do Sul</option>
+                                            <option value="SC">Santa Catarina</option>
+                                            <option value="SE">Sergipe</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="TO">Tocantins</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label>Município</label>
+                                    <input class="form-control" type="text" placeholder="Nome do município" required>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <b>Nacionalidade</b>
+                        <div id="Est" class="box" style="display: none;">
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">País de nascimento</label>
+                                    <div class="select is-small">
+                                        <select id="paises" class="form-control col-md-6">
+                                            <option value="01">Afeganistão</option>
+                                            <option value="02">África do Sul</option>
+                                            <option value="03">Albânia</option>
+                                            <option value="04">Alemanha</option>
+                                            <option value="05">Andorra</option>
+                                            <option value="06">Angola</option>
+                                            <option value="07">Anguilla</option>
+                                            <option value="08">Antigua e Barbuda</option>
+                                            <option value="09">Antilhas Holandesas</option>
+                                            <option value="10">Arábia Saudita</option>
+                                            <option value="11">Argélia</option>
+                                            <option value="12">Argentina</option>
+                                            <option value="13">Armênia</option>
+                                            <option value="14">Aruba</option>
+                                            <option value="15">Austrália</option>
+                                            <option value="16">Áustria</option>
+                                            <option value="17">Azerbaijão</option>
+                                            <option value="18">Bahamas</option>
+                                            <option value="19">Bahrein</option>
+                                            <option value="20">Bangladesh</option>
+                                            <option value="21">Barbados</option>
+                                            <option value="22">Bélgica</option>
+                                            <option value="23">Belize</option>
+                                            <option value="24">Benin</option>
+                                            <option value="25">Bermudas</option>
+                                            <option value="26">Bielorússia</option>
+                                            <option value="27">Bolívia</option>
+                                            <option value="28">Bósnia e Herzegóvina</option>
+                                            <option value="29">Botswana</option>
+                                            <option value="30">Brunei</option>
+                                            <option value="31">Bulgária</option>
+                                            <option value="32">Burkina Faso</option>
+                                            <option value="33">Burundi</option>
+                                            <option value="34">Butão</option>
+                                            <option value="35">Cabo Verde</option>
+                                            <option value="36">Camarões</option>
+                                            <option value="37">Camboja</option>
+                                            <option value="38">Canadá</option>
+                                            <option value="39">Cazaquistão</option>
+                                            <option value="40">Chade</option>
+                                            <option value="41">Chile</option>
+                                            <option value="42">China</option>
+                                            <option value="43">Chipre</option>
+                                            <option value="44">Cingapura</option>
+                                            <option value="45">Colômbia</option>
+                                            <option value="46">Coréia do Norte</option>
+                                            <option value="47">Coréia do Sul</option>
+                                            <option value="48">Costa do Marfim</option>
+                                            <option value="49">Costa Rica</option>
+                                            <option value="50">Croácia</option>
+                                            <option value="51">Cuba</option>
+                                            <option value="52">Dinamarca</option>
+                                            <option value="53">Djibuti</option>
+                                            <option value="54">Dominica</option>
+                                            <option value="55">Egito</option>
+                                            <option value="56">El Salvador</option>
+                                            <option value="57">Emirados Árabes Unidos</option>
+                                            <option value="58">Equador</option>
+                                            <option value="59">Eritréia</option>
+                                            <option value="60">Eslováquia</option>
+                                            <option value="61">Eslovênia</option>
+                                            <option value="62">Espanha</option>
+                                            <option value="63">Estados Unidos</option>
+                                            <option value="64">Estônia</option>
+                                            <option value="65">Etiópia</option>
+                                            <option value="66">Fiji</option>
+                                            <option value="67">Filipinas</option>
+                                            <option value="68">Finlândia</option>
+                                            <option value="69">França</option>
+                                            <option value="70">Gabão</option>
+                                            <option value="71">Gâmbia</option>
+                                            <option value="72">Geórgia</option>
+                                            <option value="73">Ghana</option>
+                                            <option value="74">Gibraltar</option>
+                                            <option value="75">Granada</option>
+                                            <option value="76">Grécia</option>
+                                            <option value="77">Groenlândia</option>
+                                            <option value="78">Guadalupe</option>
+                                            <option value="79">Guam</option>
+                                            <option value="80">Guatemala</option>
+                                            <option value="81">Guiana</option>
+                                            <option value="82">Guiana Francesa</option>
+                                            <option value="83">Guiné</option>
+                                            <option value="84">Guiné Bissau</option>
+                                            <option value="85">Guiné Equatorial</option>
+                                            <option value="86">Haiti</option>
+                                            <option value="87">Holanda</option>
+                                            <option value="88">Honduras</option>
+                                            <option value="89">Hungria</option>
+                                            <option value="90">Iêmen</option>
+                                            <option value="91">Ilhas Cayman</option>
+                                            <option value="92">Ilhas Comores</option>
+                                            <option value="93">Ilhas Cook</option>
+                                            <option value="94">Ilhas Falkland (Malvinas)</option>
+                                            <option value="95">Ilhas Färoe</option>
+                                            <option value="96">Ilhas Marianas</option>
+                                            <option value="97">Ilhas Marshall</option>
+                                            <option value="98">Ilhas Pitcairn</option>
+                                            <option value="99">Ilhas Salomão</option>
+                                            <option value="100">Ilhas Turks e Caicos</option>
+                                            <option value="101">Ilhas Virgens Americanas</option>
+                                            <option value="102">Ilhas Virgens Britânicas</option>
+                                            <option value="103">Índia</option>
+                                            <option value="104">Indonésia</option>
+                                            <option value="105">Irã</option>
+                                            <option value="106">Iraque</option>
+                                            <option value="107">Irlanda</option>
+                                            <option value="108">Islândia</option>
+                                            <option value="109">Israel</option>
+                                            <option value="110">Itália</option>
+                                            <option value="111">Jamaica</option>
+                                            <option value="112">Japão</option>
+                                            <option value="113">Jordânia</option>
+                                            <option value="114">Kirguistão</option>
+                                            <option value="115">Kiribati</option>
+                                            <option value="116">Kuwait</option>
+                                            <option value="117">Laos</option>
+                                            <option value="118">Lesotho</option>
+                                            <option value="119">Letônia</option>
+                                            <option value="120">Líbano</option>
+                                            <option value="121">Libéria</option>
+                                            <option value="122">Líbia</option>
+                                            <option value="123">Liechtenstein</option>
+                                            <option value="124">Lituânia</option>
+                                            <option value="125">Luxemburgo</option>
+                                            <option value="126">Macau</option>
+                                            <option value="127">Macedônia</option>
+                                            <option value="128">Madagáscar</option>
+                                            <option value="129">Malaísia</option>
+                                            <option value="130">Malawi</option>
+                                            <option value="131">Maldivas</option>
+                                            <option value="132">Mali</option>
+                                            <option value="133">Malta</option>
+                                            <option value="134">Marrocos</option>
+                                            <option value="135">Martinica</option>
+                                            <option value="136">Maurício</option>
+                                            <option value="137">Mauritânia</option>
+                                            <option value="138">Mayotte</option>
+                                            <option value="139">México</option>
+                                            <option value="140">Mianmar</option>
+                                            <option value="141">Micronésia</option>
+                                            <option value="142">Moçambique</option>
+                                            <option value="143">Moldávia</option>
+                                            <option value="144">Mônaco</option>
+                                            <option value="145">Mongólia</option>
+                                            <option value="146">Montserrat</option>
+                                            <option value="147">Namíbia</option>
+                                            <option value="148">Nauru</option>
+                                            <option value="149">Nepal</option>
+                                            <option value="150">Nicarágua</option>
+                                            <option value="151">Níger</option>
+                                            <option value="152">Nigéria</option>
+                                            <option value="153">Niue</option>
+                                            <option value="154">Noruega</option>
+                                            <option value="155">Nova Caledônia</option>
+                                            <option value="156">Nova Zelândia</option>
+                                            <option value="157">Omã</option>
+                                            <option value="158">Palau</option>
+                                            <option value="159">Panamá</option>
+                                            <option value="160">Papua Nova Guiné</option>
+                                            <option value="161">Paquistão</option>
+                                            <option value="162">Paraguai</option>
+                                            <option value="163">Peru</option>
+                                            <option value="164">Polinésia Francesa</option>
+                                            <option value="165">Polônia</option>
+                                            <option value="166">Porto Rico</option>
+                                            <option value="167">Portugal</option>
+                                            <option value="168">Qatar</option>
+                                            <option value="169">Quênia</option>
+                                            <option value="170">Reino Unido</option>
+                                            <option value="171">República Centro Africana</option>
+                                            <option value="172">República Democrática do Congo</option>
+                                            <option value="173">República do Congo</option>
+                                            <option value="174">República Dominicana</option>
+                                            <option value="175">República Tcheca</option>
+                                            <option value="176">Reunião</option>
+                                            <option value="177">Romênia</option>
+                                            <option value="178">Ruanda</option>
+                                            <option value="179">Rússia</option>
+                                            <option value="180">Saara Ocidental</option>
+                                            <option value="181">Saint Pierre e Miquelon</option>
+                                            <option value="182">Samoa</option>
+                                            <option value="183">Samoa Americana</option>
+                                            <option value="184">San Marino</option>
+                                            <option value="185">Santa Helena</option>
+                                            <option value="186">Santa Lúcia</option>
+                                            <option value="187">São Cristóvão e Nevis</option>
+                                            <option value="188">São Tomé e Príncipe</option>
+                                            <option value="189">São Vicente e Granadinas</option>
+                                            <option value="190">Senegal</option>
+                                            <option value="191">Serra Leoa</option>
+                                            <option value="192">Seychelles</option>
+                                            <option value="193">Síria</option>
+                                            <option value="194">Somália</option>
+                                            <option value="195">Sri Lanka</option>
+                                            <option value="196">Suazilândia</option>
+                                            <option value="197">Sudão</option>
+                                            <option value="198">Suécia</option>
+                                            <option value="199">Suíça</option>
+                                            <option value="200">Suriname</option>
+                                            <option value="201">Tadjiquistão</option>
+                                            <option value="202">Tailândia</option>
+                                            <option value="203">Taiwan</option>
+                                            <option value="204">Tanzânia</option>
+                                            <option value="205">Timor Leste</option>
+                                            <option value="206">Togo</option>
+                                            <option value="207">Tokelau</option>
+                                            <option value="208">Tonga</option>
+                                            <option value="209">Trinidad e Tobago</option>
+                                            <option value="210">Tunísia</option>
+                                            <option value="211">Turcomênia</option>
+                                            <option value="212">Turquia</option>
+                                            <option value="213">Tuvalu</option>
+                                            <option value="214">Ucrânia</option>
+                                            <option value="215">Uganda</option>
+                                            <option value="216">Uruguai</option>
+                                            <option value="217">Uzbequistão</option>
+                                            <option value="18">Vanuatu</option>
+                                            <option value="219">Vaticano</option>
+                                            <option value="220">Venezuela</option>
+                                            <option value="221">Vietnam</option>
+                                            <option value="222">Yugoslavia</option>
+                                            <option value="223">Zâmbia</option>
+                                            <option value="224">Zimbabwe</option>
+                                            <option value="777">APÁTRIDA</option>
+                                            <option value="888">OUTRAS NACIONALIDADES</option>
+                                            <option value="999">IGNORADO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Data de entrada no Brasil</label><br>
+                                <input type="date" class="form-control col-md-6">
+                            </div>
                         </div>
+                        <br>
                         <div class="form-group">
                             <b>Pluralidade de nascimentos</b>
-                            <select select name="selectPluraridadeNasc" id="selectPluraridadeNasc" class="form-control col-md-6" required>
+                            <select select name="selectPluraridadeNasc" id="selectPluraridadeNasc" class="form-control col-md-6"
+                                required>
                                 <option value="Uni">Único</option>
                                 <option value="Gem">Gêmeos</option>
                                 <option value="Tri">Trigêmeos</option>
@@ -642,169 +970,185 @@
                                 <option value="NDe" selected="">Não declarado</option>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <b>Ordem de nascimento</b>
+                            <div class="select is-small">
+                                <select class="form-control col-md-6">
+                                    <option value="0">único</option>
+                                    <option value="1">primeiro</option>
+                                    <option value="2">segundo</option>
+                                    <option value="3">terceiro</option>
+                                    <option value="4">quarto</option>
+                                    <option value="5">quinto</option>
+                                    <option value="6">sexto</option>
+                                    <option value="7">outros</option>
+                                    <option value="" selected>Não informado</option>
+                                </select>
+                            </div>
                         </div>
+
+
                         <div class="form-group">
                             <b>Comentário de identificação</b><br>
                             <textarea class="form-control" name="comentarioIde" id="comentarioIde" rows="6" cols="80"></textarea><br />
                         </div>
-                    </div>
-                    <br />
-                    <br />
-                    <div class="botoes-acoes">
-                        <input class="btn btn-success" type="submit" value="Salvar" />
-                        <input class="btn btn-light" type="reset" value="Limpar" />
-                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
-                    </div>
-                </form>
-            </section>
 
-            <!-- Endereços -->
-            <!-- <section class="tab-pane fade" id="enderecos" role="tabpanel" aria-labelledby="enderecos-tab"> -->
-            <section id="enderecos">
-                <form action="">
-                    <legend>Cadastro de endereços</legend>
-                    <!-- Tipo de endereço -->
-                    <div class="form-group">
-                        <label for="lbTipoEndereco">Tipo de endereço</label>
-                        <select name="selectTipoEndereco" id="selectTipoEndereco" class="form-control col-md-3" required>
-                            <option value="1" selected>Comercial</option>
-                            <option value="2">Correio ou Postal</option>
-                            <option value="3">Acomodação Temporária</option>
-                            <option value="4">Residencial</option>
-                            <option value="8">Sem endereço fixo</option>
-                            <option value="9">Desconhecido/não declarado</option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <!-- Data inicial -->
-                        <div class="form-group col-md-6">
-                            <label for="lbDataInicial">Data Inicial</label>
-                            <input class="form-control col-md-6" type="date" required>
-                            <div class="field">
-                                <label class="label">Inicador de acurácia</label>
-                                <br> Dia:
-                                <label class="radio">
+                        <br />
+                        <br />
+                        <div class="botoes-acoes">
+                            <input class="btn btn-success" type="submit" value="Salvar" />
+                            <input class="btn btn-light" type="reset" value="Limpar" />
+                            <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+                        </div>
+            </form>
+        </section>
+
+        <!-- Endereços -->
+        <!-- <section class="tab-pane fade" id="enderecos" role="tabpanel" aria-labelledby="enderecos-tab"> -->
+        <section id="enderecos">
+            <form action="">
+                <legend>Cadastro de endereços</legend>
+                <!-- Tipo de endereço -->
+                <div class="form-group">
+                    <label for="lbTipoEndereco">Tipo de endereço</label>
+                    <select name="selectTipoEndereco" id="selectTipoEndereco" class="form-control col-md-3" required>
+                        <option value="1" selected>Comercial</option>
+                        <option value="2">Correio ou Postal</option>
+                        <option value="3">Acomodação Temporária</option>
+                        <option value="4">Residencial</option>
+                        <option value="8">Sem endereço fixo</option>
+                        <option value="9">Desconhecido/não declarado</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <!-- Data inicial -->
+                    <div class="form-group col-md-6">
+                        <label for="lbDataInicial">Data Inicial</label>
+                        <input class="form-control col-md-6" type="date" required>
+                        <div class="field">
+                            <label class="label">Inicador de acurácia</label>
+                            <br> Dia:
+                            <label class="radio">
                                 <input class="radio" type="radio" name="diaInicial" value="A"> Acurado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="diaInicial" value="E"> Estimado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="diaInicial" value="U"> Desconhecido</label>
-                                <br> Mês:
-                                <label class="radio">
+                            <br> Mês:
+                            <label class="radio">
                                 <input class="radio" type="radio" name="mesInicial" value="A"> Acurado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="mesInicial" value="E"> Estimado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="mesInicial" value="U"> Desconhecido</label>
-                                <br> Ano:
-                                <label class="radio">
+                            <br> Ano:
+                            <label class="radio">
                                 <input class="radio" type="radio" name="anoInicial" value="A"> Acurado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="anoInicial" value="E"> Estimado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="anoInicial" value="U"> Desconhecido</label>
-                            </div>
                         </div>
-                        <!-- Data final -->
-                        <div class="form-group col-md-6">
-                            <label for="lbDataFinal">Data Final</label>
-                            <input class="form-control col-md-6" type="date" required>
-                            <div class="field">
-                                <label class="label">Inicador de acurácia</label>
-                                <br> Dia:
-                                <label class="radio">
+                    </div>
+                    <!-- Data final -->
+                    <div class="form-group col-md-6">
+                        <label for="lbDataFinal">Data Final</label>
+                        <input class="form-control col-md-6" type="date" required>
+                        <div class="field">
+                            <label class="label">Inicador de acurácia</label>
+                            <br> Dia:
+                            <label class="radio">
                                 <input class="radio" type="radio" name="dia" value="A"> Acurado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="dia" value="E"> Estimado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="dia" value="U"> Desconhecido</label>
-                                <br> Mês:
-                                <label class="radio">
+                            <br> Mês:
+                            <label class="radio">
                                 <input class="radio" type="radio" name="mes" value="A"> Acurado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="mes" value="E"> Estimado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="mes" value="U"> Desconhecido</label>
-                                <br> Ano:
-                                <label class="radio">
+                            <br> Ano:
+                            <label class="radio">
                                 <input class="radio" type="radio" name="ano" value="A"> Acurado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="ano" value="E"> Estimado</label>
-                                <label class="radio">
+                            <label class="radio">
                                 <input class="radio" type="radio" name="ano" value="U"> Desconhecido</label>
-                            </div>
                         </div>
                     </div>
-                    <!--Seleção do País -->
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label for="lbPais">País</label>
-                            <input class="form-control" type="text" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="lbEstado">Estado</label>
-                            <input class="form-control" type="text" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="lbMunicipio">Município</label>
-                            <input class="form-control" type="text" required>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <!-- Caixa Postal -->
-                        <div class="col-md-4">
-                            <label for="lbCXPostal">Caixa Postal</label>
-                            <input class="form-control" type="text" required>
-                        </div>
-                        <!-- CEP -->
-                        <div class="col-md-4">
-                            <label for="lbCEP">CEP</label>
-                            <input class="form-control" type="text" required>
-                        </div>
-                        <!-- Bairro -->
-                        <div class="col-md-6">
-                            <label for="lbBairro">Bairro</label>
-                            <input class="form-control" type="text" required>
-                        </div>
-                        <!-- Distrito -->
-                        <div class="col-md-6">
-                            <label for="lbDistrito">Distrito</label>
-                            <input class="form-control" type="text" required>
-                        </div>
-                    </div>
-                    <!-- Endereço -->
-                    <div class="col-md-15">
-                        <label for="lbEndereço">Endereço</label>
+                </div>
+                <!--Seleção do País -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="lbPais">País</label>
                         <input class="form-control" type="text" required>
                     </div>
-                    <br />
-                    <br />
-                    <div class="botoes-acoes">
-                        <input class="btn btn-success" type="submit" value="Salvar" />
-                        <input class="btn btn-light" type="reset" value="Limpar" />
-                        <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+                    <div class="col-md-4">
+                        <label for="lbEstado">Estado</label>
+                        <input class="form-control" type="text" required>
                     </div>
-                </form>
-            </section>
-         
-            <!-- Comunicações eletrônicas -->
-            <!-- <section class="tab-pane fade" id="comunicacoes" role="tabpanel" aria-labelledby="comunicacoes-tab"> -->
-            <section id="comunicacoes">
-                <form action="">
-                    <legend>Cadastro de contatos</legend>
+                    <div class="col-md-4">
+                        <label for="lbMunicipio">Município</label>
+                        <input class="form-control" type="text" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <!-- Caixa Postal -->
+                    <div class="col-md-4">
+                        <label for="lbCXPostal">Caixa Postal</label>
+                        <input class="form-control" type="text" required>
+                    </div>
+                    <!-- CEP -->
+                    <div class="col-md-4">
+                        <label for="lbCEP">CEP</label>
+                        <input class="form-control" type="text" required>
+                    </div>
+                    <!-- Bairro -->
+                    <div class="col-md-6">
+                        <label for="lbBairro">Bairro</label>
+                        <input class="form-control" type="text" required>
+                    </div>
+                    <!-- Distrito -->
+                    <div class="col-md-6">
+                        <label for="lbDistrito">Distrito</label>
+                        <input class="form-control" type="text" required>
+                    </div>
+                </div>
+                <!-- Endereço -->
+                <div class="col-md-15">
+                    <label for="lbEndereço">Endereço</label>
+                    <input class="form-control" type="text" required>
+                </div>
+                <br />
+                <br />
+                <div class="botoes-acoes">
+                    <input class="btn btn-success" type="submit" value="Salvar" />
+                    <input class="btn btn-light" type="reset" value="Limpar" />
+                    <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
+                </div>
+            </form>
+        </section>
 
-                    <input id="btnNovoContato" class="btn btn-primary bloco" type="button" value="Novo Contato" onclick="mostrarNovoCadastroDeContato(this)">
+        <!-- Comunicações eletrônicas -->
+        <section id="comunicacoes">
+            <form action="">
+                <legend>Cadastro de Comunicações Eletrônicas</legend>
 
-                    <div id="regiao-contatos" style="margin-top: 15px;display: none;">
-                        <div id="form-contatos">
-                            <div class="contato">
-                                <div class="row">
-                                    <div class="col-md-3">
+                <input id="btnNovoContato" class="btn btn-primary bloco" type="button" value="Novo" onclick="mostrarNovoCadastroDeContato(this)">
+
+                <div id="regiao-contatos" style="margin-top: 15px;display: none;">
+                    <div id="form-contatos">
+                        <div class="contato">
+                            <div class="row">
+                                <div class="col-md-3">
                                     <label for="lbMeioDeComunicacao">Meio de comunicação</label>
-                                    <select id="selectMeioDeComunicacao" class="form-control meioDeComunicacao" required>
+                                    <select id="selectMeioDeComunicacao" class="form-control meioDeComunicacao"
+                                        required>
                                         <option value="T" data-desc="Telefone">Telefone</option>
                                         <option value="C" data-desc="Telefone celular">Telefone celular</option>
                                         <option value="F" data-desc="Fax">Fax</option>
@@ -813,12 +1157,12 @@
                                         <option value="U" data-desc="URL">URL</option>
                                         <option value="O" data-desc="Outro">Outro</option>
                                     </select>
-                                    </div>
-                                    <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3">
                                     <label for="lbDetalhesDoMeio">Detalhes </label>
                                     <input id="inputDetalhes" class="form-control" type="text" required>
-                                    </div>
-                                    <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3">
                                     <label for="lbPreferenciaDeUso">Preferência</label>
                                     <select id="selectPreferenciaDeUso" class="form-control preferenciaDeUso" required>
                                         <option value="B" data-desc="Horário comercial">Horário comercial</option>
@@ -827,86 +1171,140 @@
                                         <option value="A" data-desc="Qualquer hora">Qualquer hora</option>
                                         <option value="E" data-desc="Período noturno">Período noturno</option>
                                     </select>
-                                    </div>
-                                    <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3">
                                     <label for="lbUtilizacaoDoContato">Utilização</label>
-                                    <select id="selectUtilizacaoDoContato" class="form-control utilizacaoDoContato" required>
+                                    <select id="selectUtilizacaoDoContato" class="form-control utilizacaoDoContato"
+                                        required>
                                         <option value="B" data-desc="Comercial">Comercial</option>
                                         <option value="P" data-desc="Pessoal">Pessoal</option>
                                         <option value="A" data-desc="Comercial ou pessoal">Comercial ou pessoal</option>
                                     </select>
-                                    </div>
                                 </div>
-                                <!-- Ações -->
-                                <div class="acoes">
-                                    <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarContato(this)">
-                                    <input id="btnCancelar" class="btn btn-warning" type="reset" value="Cancelar" onclick="acaoBotaoCancelarContato(this)">
-                                    <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
-                                    <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;" onclick="excluirContato()">
-                                </div>
+                            </div>
+                            <!-- Ações -->
+                            <div class="acoes">
+                                <input id="btnSalvar" class="btn btn-success" type="button" value="Adicionar" onclick="adicionarContato(this)">
+                                <input id="btnCancelar" class="btn btn-warning" type="reset" value="Cancelar" onclick="acaoBotaoCancelarContato(this)">
+                                <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
+                                <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" style="display: none;"
+                                    onclick="excluirContato()">
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Tabela de Contatos -->
-                    <input type="hidden" id="chaveContato" name="chaveContato">
-                    <div id="tabelaContatos" style="display:none">
-                        <table class="table table-bordered table-hovered">
-                            <caption>Contatos</caption>
-                            <thead>
-                                <tr class="trHeader" style="background-color: #007bff">
+                <!-- Tabela de Contatos -->
+                <input type="hidden" id="chaveContato" name="chaveContato">
+                <div id="tabelaContatos" style="display:none">
+                    <table class="table table-bordered table-hovered">
+                        <caption>Comunicações Eletrônicas</caption>
+                        <thead>
+                            <tr class="trHeader" style="background-color: #007bff">
                                 <th>Meio de Comunicação</th>
                                 <th>Detalhes</th>
                                 <th>Preferência</th>
                                 <th>Utilização</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br />
-                    <br />
-                </form>
-            </section>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <br />
+            </form>
+        </section>
 
-            <br />
-            <br />
-            <div class="botoes-acoes-geral">
-                <input class="btn btn-success" type="submit" value="Salvar" />
-                <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
-            </div>
+        <br />
+        <br />
+        <div class="botoes-acoes-geral">
+            <input class="btn btn-success" type="submit" onclick="finalizarCadastro()" value="Finalizar" />
+            <input class="btn btn-warning" type="button" onclick="cancelarCadastro()" value="Cancelar" />
         </div>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
+    </div>
+
+    <!-- Modal Excluir-->
+    <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header excluir">
                     <h5 class="modal-title" id="exampleModalLongTitle">Excluir registro</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    </div>
-                    <div class="modal-body">
-                        Deseja realmente excluir esse registro?
-                    </div>
-                    <div class="modal-footer">
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir esse registro?
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button id="btnExcluirRegistro" type="button" class="btn btn-danger">Excluir</button>
-                    </div>
                 </div>
             </div>
         </div>
-        <!-- JavaScript (Opcional) -->
-        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
-        <script src="js/utilitarios.js"></script>
-        <script src="js/script-home.js"></script>
-        <script src="js/script-nome.js"></script>
-   </body>
+    </div>
+
+    <!-- Modal Finalizado-->
+    <div class="modal fade" id="modalFim" tabindex="-1" role="dialog" aria-labelledby="modalFimTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header sucesso">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Concluído</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Cadastro Finalizado com Sucesso
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Excluir-->
+    <div class="modal fade" id="modalAbout" tabindex="-1" role="dialog" aria-labelledby="modalAboutTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header sobre">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Sobre</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <pre>
+Página desenvolvida para o projeto final da disciplina de 
+Fundamentos de Front-end pela Especialização em 
+Desenvolvimento Web e Mobile - UFG.
+
+Autores:
+                            <ul>
+                                <li>Richiely Batista</li>
+                                <li>Felipe Maciel</li>
+                                <li>Anderson Messias</li>
+                                <li>Igor Emilio</li>
+                            </ul>
+                        </pre>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnExcluirRegistro" type="button" class="btn btn-primary" onclick="$('#modalAbout').modal('hide');">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="js/utilitarios.js"></script>
+    <script src="js/script-home.js"></script>
+</body>
 </html>

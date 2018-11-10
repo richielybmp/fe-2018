@@ -6,7 +6,16 @@ function iniciarCadastro() {
 
 // Método responsável por mostrar a aba home.
 function cancelarCadastro() {
-    document.querySelector("#minhaTab > .nav-item #home-tab").click();
+    // Clica no botão cancelar de todas as seções.
+    $(".acoes .btn.btn-warning").click();
+    $(".acoes-id .btn.btn-warning").click();
+    //$(".botoes-acoes .btn.btn-warning").click();
+}
+
+function finalizarCadastro() {
+    $("#spy .sidebar-brand:eq(0)").find("a").click();
+    cancelarCadastro();
+    $('#modalFim').modal('show');
 }
 
 // Método responsável por exibir a tabela de resultado dos registros da pesquisa de indicadores.
@@ -15,7 +24,7 @@ function buscarRegistroIdentificador() {
 }
 
 // Chamada de método responsável por carregar a combo de Estados.
-carregueJson("./json/estados.json", function (response) {
+carregueJson("./json/estados.json", function(response) {
     // Na resposta do carregueEstados, é realizado um callback com a responseText.
     // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
     var estados = JSON.parse(response);
@@ -26,14 +35,14 @@ carregueJson("./json/estados.json", function (response) {
     // Para cada item no objeto Estados, vamos criar uma <option> e adicionar no "select"
     estados.Estados.forEach(estado => {
         var option = document.createElement("option");
-        option.text = estado.nome;  // Goiás
+        option.text = estado.nome; // Goiás
         option.value = estado.sigla; // GO
         elEstados.appendChild(option);
     });
 });
 
 // Chamada de método responsável por carregar a combo de Tipo do identificador.
-carregueJson("./json/tiposDeIdentificadores.json", function (response) {
+carregueJson("./json/tiposDeIdentificadores.json", function(response) {
     // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
     var tipo = JSON.parse(response);
 
@@ -50,7 +59,7 @@ carregueJson("./json/tiposDeIdentificadores.json", function (response) {
 });
 
 // Chamada de método responsável por carregar a combo de Área Geográfica.
-carregueJson('./json/area.json', function (response) {
+carregueJson('./json/area.json', function(response) {
     // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
     var area = JSON.parse(response);
 
@@ -68,7 +77,7 @@ carregueJson('./json/area.json', function (response) {
 
 
 // Chamada de método responsável por carregar a combo de Relacionamentos.
-carregueJson("./json/relacionamentos.json", function (response) {
+carregueJson("./json/relacionamentos.json", function(response) {
     // Fazemos o parse desse conteúdo para obtermos o JSON transformado em objeto.
     var relacionamentos = JSON.parse(response);
 
@@ -90,21 +99,20 @@ $("select.tipoDoIdentificador")[0].addEventListener("change", mostreFormularios)
 
 // Evento que controla o formulário de cadastro de Vínculos.
 $("#chkCadastroDeVinculo").change(function() {
-    if(this.checked) {
+    if (this.checked) {
         $("#vinculos").fadeIn("fast");
         $("#tabelaIdentificadores").fadeOut("fast");
         $("#refVinculos").fadeIn("fast");
 
-        if ($($("#tabelaIdentificadoresVinculos tbody")[0])[0].children.length > 0){
+        if ($($("#tabelaIdentificadoresVinculos tbody")[0])[0].children.length > 0) {
             $("#tabelaIdentificadoresVinculos").fadeIn("fast");
-        } 
-    }
-    else{
+        }
+    } else {
         $("#vinculos").fadeOut("fast");
         $("#tabelaIdentificadoresVinculos").fadeOut("fast");
         $("#refVinculos").fadeOut("fast");
-        
-        if ($($("#tabelaIdentificadores tbody")[0])[0].children.length > 0){
+
+        if ($($("#tabelaIdentificadores tbody")[0])[0].children.length > 0) {
             $("#tabelaIdentificadores").fadeIn("fast");
         }
         acaoBotaoCancelarVinculo();
@@ -113,7 +121,7 @@ $("#chkCadastroDeVinculo").change(function() {
 
 // MOSTRAR
 // Mostrar form Vinculo.
-function mostrarNovoCadastroDeVinculo(el){
+function mostrarNovoCadastroDeVinculo(el) {
     var options = {
         el: el,
         form: $(".form-vinculos"),
@@ -124,18 +132,19 @@ function mostrarNovoCadastroDeVinculo(el){
 }
 
 // Mostrar form Identificadores.
-function mostrarNovoCadastroDeIdentificador(el){
+function mostrarNovoCadastroDeIdentificador(el) {
     var options = {
         el: el,
         form: $(".form-identificadores"),
         classForm: "identificador",
         regiao: $("#regiao-identificadores")
     }
+    $(".caixa.opcional").hide();
     mostrarNovoCadastroForm(options);
 }
 
 // Mostrar form Comunicações eletrônicas.
-function mostrarNovoCadastroDeContato(el){
+function mostrarNovoCadastroDeContato(el) {
     var options = {
         el: el,
         form: $(".form-contatos"),
@@ -146,7 +155,7 @@ function mostrarNovoCadastroDeContato(el){
 }
 
 // Método responsável por mostrar form de cadastro.
-function mostrarNovoCadastroForm(options){
+function mostrarNovoCadastroForm(options) {
     options.regiao.fadeIn("fast");
     options.form.find("." + options.classForm + " input,select").prop("disabled", false);
     $(options.el).hide();
@@ -180,7 +189,7 @@ function adicionarVinculo() {
         $("#dtFinal").css("border-color", "red");
         inconsistente = true;
     }
-    if(!inconsistente) {
+    if (!inconsistente) {
         var chave = identificador + dataInicio + dataFim;
         chave = chave.replace(/\s/g, '');
         var elTr = criarComponenteHtmlDinamico({ tag: "tr", id: chave });
@@ -196,14 +205,14 @@ function adicionarVinculo() {
         bodytabelaVinculos.appendChild(elTr);
         limparVinculo();
         $("#tabelaVinculos").show();
-        
+
         $("#btnNovoVinculo")[0].style.display = "block";
         $("#regiao-vinculos").hide();
     }
 }
 
 // Método responsável por adicionar Identificadores de vínvulos e pacientes na tabela.
-function acaoBotaoSalvar(el){
+function acaoBotaoSalvar(el) {
     var elObrigatorios = $(el).closest(".form-identificadores").find(".identificador select,input:required");
     var inconsistente = false;
 
@@ -225,11 +234,10 @@ function acaoBotaoSalvar(el){
             }
             //else if (index == 0 && ) {
             else if (index == 0) {
-                    $(elObrigatorios[i]).css("border-color", "red");
-                    inconsistente = true;
+                $(elObrigatorios[i]).css("border-color", "red");
+                inconsistente = true;
             }
-        }
-        else {
+        } else {
             $(elObrigatorios[i]).css("border-color", "#ced4da");
         }
     }
@@ -237,17 +245,16 @@ function acaoBotaoSalvar(el){
     if (!inconsistente) {
         //$(el).closest(".form-identificadores").find(".identificador input,select").prop("disabled", true);
         el.setAttribute("salvou", true);
-        $(".caixa.opcional").hide()
+        $(".caixa.opcional").hide();
         $("#btnNovoIdentificador")[0].style.display = "block";
         $("#regiao-identificadores").hide();
-
         adicionarNaTabela();
     }
 }
 
 var id = 1;
 // Método responsável por adicionar Identificadores de vínvulos e pacientes na tabela.
-function adicionarNaTabela(){
+function adicionarNaTabela() {
     var bodytabelaIdentificadores = $("#tabelaIdentificadores tbody")[0];
     var bodytabelaIdentificadoresVinculos = $("#tabelaIdentificadoresVinculos tbody")[0];
 
@@ -258,9 +265,11 @@ function adicionarNaTabela(){
     var dataEmissao = $("#idDataEmissao").val();
     var ehVinculo = $("#chkCadastroDeVinculo")[0].checked;
 
-    var elTr = criarComponenteHtmlDinamico({ tag: "tr", id: area + dataEmissao });
+    var chave = "ID-" + (ehVinculo ? "V" : "P") + id++;
 
-    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: "ID-" + (ehVinculo ? "-V" : "-P" ) + id++ }));
+    var elTr = criarComponenteHtmlDinamico({ tag: "tr", id: chave });
+
+    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: chave }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: tipo }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: area }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: designacao }));
@@ -270,12 +279,11 @@ function adicionarNaTabela(){
 
     // Adiciona identificador na tabela de vínculos. 
     // Senão, adiciona na tabela de pacientes.
-    if (ehVinculo){
+    if (ehVinculo) {
         bodytabelaIdentificadoresVinculos.appendChild(elTr);
         $("#tabelaIdentificadoresVinculos").show();
         $("#tabelaIdentificadores").hide();
-    }
-    else {
+    } else {
         bodytabelaIdentificadores.appendChild(elTr);
         $("#tabelaIdentificadores").show();
         $("#tabelaIdentificadoresVinculos").hide();
@@ -292,9 +300,9 @@ function adicionarContato() {
     var utilizacao = $("#selectUtilizacaoDoContato option:selected").data("desc");
     var inconsistente = false;
 
-    limpaInconsistencias([$("#selectMeioDeComunicacao"),$("#inputDetalhes"), $("#selectPreferenciaDeUso"), $("#selectUtilizacaoDoContato")]);
+    limpaInconsistencias([$("#selectMeioDeComunicacao"), $("#inputDetalhes"), $("#selectPreferenciaDeUso"), $("#selectUtilizacaoDoContato")]);
 
-    if (meioDeComunicacao == "" || meioDeComunicacao == undefined){
+    if (meioDeComunicacao == "" || meioDeComunicacao == undefined) {
         $("#selectMeioDeComunicacao").css("border-color", "red");
         inconsistente = true;
     }
@@ -302,15 +310,15 @@ function adicionarContato() {
         $("#inputDetalhes").css("border-color", "red");
         inconsistente = true;
     }
-    if (preferencia == "" || preferencia == undefined){
+    if (preferencia == "" || preferencia == undefined) {
         $("#selectPreferenciaDeUso").css("border-color", "red");
         inconsistente = true;
     }
-    if (utilizacao == "" || utilizacao == undefined){
+    if (utilizacao == "" || utilizacao == undefined) {
         $("#selectUtilizacaoDoContato").css("border-color", "red");
         inconsistente = true;
     }
-    if(!inconsistente) {
+    if (!inconsistente) {
         var chave = meioDeComunicacao + detalhes;
         chave = chave.replace(/\s/g, '');
         var elTr = criarComponenteHtmlDinamico({ tag: "tr", id: chave });
@@ -356,7 +364,7 @@ function editarVinculo(evt) {
     $("#regiao-vinculos").show();
 }
 
-function editarIdentificadores(evt){
+function editarIdentificadores(evt) {
     var linha = $(evt.target).closest("tr")[0];
     var tipoIdentificador = $($(linha).find("td:eq(6)")[0]).text();
 
@@ -366,6 +374,13 @@ function editarIdentificadores(evt){
     $("#idDataEmissao").val("2018-11-02");
 
     $("#selectTipoDoID").val(tipoIdentificador);
+
+    var ehVinculo = $("#chkCadastroDeVinculo")[0].checked;
+    if (ehVinculo) {
+        $("#chaveIdentificadoresVinculos").val(linha.id);
+    } else {
+        $("#chaveIdentificadores").val(linha.id);
+    }
 
     var formsOpicionais = $(".identificador .opcional");
     // Esconder todas as regiões opcionais
@@ -404,24 +419,25 @@ function editarContato(evt) {
 
 // CANCELAR
 // Cancelar cadastro de identificadores.
-function acaoBotaoCancelar(el){
+function acaoBotaoCancelar(el) {
     var options = {
-        el: el, 
-        btnNovo: $("#btnNovoIdentificador"), 
-        form: "form-identificadores", 
-        classForm: "identificador", 
+        el: el,
+        btnNovo: $("#btnNovoIdentificador"),
+        form: "form-identificadores",
+        classForm: "identificador",
         regiao: $("#regiao-identificadores")
     };
+    $(".opcional").hide();
     acaoBotaoCancelarForm(options);
 }
 
 // Cancelar Cadastro de Vinculo.
-function acaoBotaoCancelarVinculo(el){
+function acaoBotaoCancelarVinculo(el) {
     var options = {
-        el: el, 
-        btnNovo: $("#btnNovoVinculo"), 
-        form: "form-vinculos", 
-        classForm: "vinculo", 
+        el: el,
+        btnNovo: $("#btnNovoVinculo"),
+        form: "form-vinculos",
+        classForm: "vinculo",
         regiao: $("#regiao-vinculos")
     };
     $("#regiao-vinculos .acoes #btnExcluir").hide();
@@ -429,12 +445,12 @@ function acaoBotaoCancelarVinculo(el){
 }
 
 // Cancelar cadastro de comunicações eletrônicas.
-function acaoBotaoCancelarContato(el){
+function acaoBotaoCancelarContato(el) {
     var options = {
-        el: el, 
-        btnNovo: $("#btnNovoContato"), 
-        form: "form-contatos", 
-        classForm: "contato", 
+        el: el,
+        btnNovo: $("#btnNovoContato"),
+        form: "form-contatos",
+        classForm: "contato",
         regiao: $("#regiao-contatos")
     };
     $("#regiao-contatos .acoes #btnExcluir").hide();
@@ -442,7 +458,7 @@ function acaoBotaoCancelarContato(el){
 }
 
 // Método geral que controla ação cancelar.
-function acaoBotaoCancelarForm(options){
+function acaoBotaoCancelarForm(options) {
     var elObrigatorios = $(options.el).closest("." + options.form).find("." + options.classForm + " select,input:required");
     $(elObrigatorios).css("border-color", "#ced4da");
     options.regiao.hide();
@@ -452,12 +468,12 @@ function acaoBotaoCancelarForm(options){
 
 // EXCLUIR
 // Método responsável por excluir registros.
-function acaoExcluirRegistro(options){
+function acaoExcluirRegistro(options) {
     var chave = options.chave.val();
     $("#" + chave).remove();
 
     var possuiRegistrosNaTabela = $("#" + options.tabela + " tbody tr").length > 0;
-    if(!possuiRegistrosNaTabela) {
+    if (!possuiRegistrosNaTabela) {
         $("#" + options.tabela).hide();
     }
 
@@ -466,28 +482,48 @@ function acaoExcluirRegistro(options){
 }
 
 // Método responsável por excluir vinculo.
-function excluirVinculo(){
+function excluirVinculo() {
     $('#modalExcluir').modal('show');
-    
-    $("#btnExcluirRegistro").off("click").on("click", function(){
+
+    $("#btnExcluirRegistro").off("click").on("click", function() {
         var options = {
             chave: $("#chaveVinculo"),
             tabela: "tabelaVinculos",
             btnNovo: $("#btnNovoVinculo")[0],
             regiao: $("#regiao-vinculos")
         }
-            
+
         limparVinculo();
         acaoExcluirRegistro(options);
         $('#modalExcluir').modal('hide');
     });
 }
 
-// Método responsável por excluir comunicações eletrônicas.
-function excluirContato(){
+// Método responsável por excluir vinculo.
+function excluirIdentificador() {
     $('#modalExcluir').modal('show');
-    
-    $("#btnExcluirRegistro").off("click").on("click", function(){
+
+    var ehVinculo = $("#chkCadastroDeVinculo")[0].checked;
+
+    $("#btnExcluirRegistro").off("click").on("click", function() {
+        var options = {
+            chave: ehVinculo ? $("#chaveIdentificadoresVinculos") : $("#chaveIdentificadores"),
+            tabela: ehVinculo ? "tabelaIdentificadoresVinculos" : "tabelaIdentificadores",
+            btnNovo: $("#btnNovoIdentificador")[0],
+            regiao: $("#regiao-identificadores")
+        }
+
+        acaoExcluirRegistro(options);
+        $('#modalExcluir').modal('hide');
+        $("#regiao-identificadores .acoes-id #btnExcluir").hide();
+    });
+}
+
+// Método responsável por excluir comunicações eletrônicas.
+function excluirContato() {
+    $('#modalExcluir').modal('show');
+
+    $("#btnExcluirRegistro").off("click").on("click", function() {
         var options = {
             chave: $("#chaveContato"),
             tabela: "tabelaContatos",
@@ -548,7 +584,7 @@ function mostreFormularios(evt) {
     mostrarRegiao(valor);
 }
 
-function mostrarRegiao(valor){
+function mostrarRegiao(valor) {
     // Mostrar a região selecionada no select
     switch (valor) {
         case "10":
@@ -577,5 +613,3 @@ function limpaInconsistencias(elementos) {
         element.css("border-color", "#ced4da");
     });
 }
-
-
