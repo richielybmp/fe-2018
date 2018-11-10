@@ -56,6 +56,8 @@ function adicionarNomeNaTabela(){
     let nome = $("#nome").val();
     let sobrenome = $("#sobrenome").val();
     let uso = $("#uso-nome").val();
+    let inicio = $("#uso-data-inicio").val();
+    let fim = $("#uso-data-fim").val();
     let arrayUso = {
         1: 'Relatório',
         2: 'Nome de recém-nascido',
@@ -71,7 +73,7 @@ function adicionarNomeNaTabela(){
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: "ID-" + /*(ehVinculo ? "-V" : "-P" )*/ + id_nome++ }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: nome }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: sobrenome }));
-    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: arrayUso[uso] }));
+    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: arrayUso[uso]+"<br> válido de "+ inicio +' a '+ fim  }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: '<input type="radio" name="preferido" id="">' }));
 
     bodytabelaIdentificadores.appendChild(elTr);
