@@ -1,5 +1,6 @@
 {
     "Relacionamentos": [
+        {"nome": "", "codigo": 0},
         {"nome": "Avó materna", "codigo": 7},
         {"nome": "Avô materno", "codigo": 8},
         {"nome": "Cônjuge/companheiro(a)", "sigla": 22},
