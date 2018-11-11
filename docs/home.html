@@ -522,8 +522,21 @@
                             <input type="date" id="uso-data-fim" class="form-control">
                         </div>
                     </div>
+                    <br/><br/>
+                    <div class="row space-between">
+                        <div class="container-representacao-nome col-4">
+                            <div class="form-group campo-representacao">
+                                <label for="represent-alternativa-nome">Representações Alternativas</label>
+                                <input type="text" class="form-control campo-representacao" name="representacao[]" id="represent-alternativa-nome">
+                            </div>
+                        </div>
+                        <div class="position-btn-plus">
+                            <button type="button" class="btn btn-primary bloco" onclick="adicionarRepresentacaoNome(this)"> <i class="fa fa-plus icon-color"></i> </button>
+                            <button type="button" class="btn btn-primary bloco" onclick="removerRepresentacaoNome(this)"> <i class="fa fa-minus icon-color"></i> </button>
+                        </div>
+                    </div>
                     <div class="botoes-acoes">
-                        <input id="btnSalvar" class="btn btn-success" type="button" value="Novo Nome" onclick="acaoBotaoSalvarNome(this)" salvou="true">
+                        <input id="btnSalvar" class="btn btn-success" type="button" value="Gravar Nome" onclick="acaoBotaoSalvarNome(this)" salvou="true">
                         <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="acaoBotaoCancelarNome(this)">
                         <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
                         <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" onclick="excluirIdentificador()"style="display: none;">
@@ -543,6 +556,7 @@
                             <th>Uso</th>
                             <th>Inicio</th>
                             <th>Fim</th>
+                            <th>Representações Alternativas</th>
                             <th>Preferido</th>
                         </tr>
                         </thead>
@@ -550,24 +564,6 @@
                         </tbody>
                     </table>
                 </div>
-
-                <br/><br/>
-                    <div class="row space-between">
-                        <div class="container-representacao-nome col-4">
-                            <div class="form-group campo-representacao">
-                                <label for="represent-alternativa-nome">Representação</label>
-                                <input type="text" class="form-control campo-representacao" name="representação[]" id="represent-alternativa-nome">
-                            </div>
-                        </div>
-                        <div class="position-btn-plus">
-                            <button type="button" class="btn btn-primary bloco" onclick="adicionarRepresentacaoNome(this)"> <i class="fa fa-plus icon-color"></i> </button>
-                            <button type="button" class="btn btn-primary bloco" onclick="removerRepresentacaoNome(this)"> <i class="fa fa-minus icon-color"></i> </button>
-                        </div>
-                    </div>
-                    <div class="botoes-acoes">
-                        <input class="btn btn-success" type="button" value="Salvar" onclick="" />
-                        <input class="btn btn-warning" type="button" onclick="" value="Cancelar" />
-                    </div>
 
             </form>
         </section>

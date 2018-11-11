@@ -79,6 +79,15 @@ function adicionarNomeNaTabela(){
         8: 'Outro nome (alias)'
     };
 
+    let representacoes = $("input[name='representacao[]']")
+        .map(function(){
+            return $(this).val();
+        })
+        .get();
+    let representTable = "";
+    representacoes.forEach(element => {
+        representTable += element+"<br>";
+    })
 
     var elTr = criarComponenteHtmlDinamico({ tag: "tr", id: nome + sobrenome });
 
@@ -88,6 +97,7 @@ function adicionarNomeNaTabela(){
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", className: "uso", innerHTML: arrayUso[uso]   }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", className: "inicio-uso", innerHTML: inicio }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", className: "fim-uso", innerHTML: fim }));
+    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", className: "", innerHTML: representTable }));
     elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: '<input type="radio" name="preferido" id="">' }));
 
     elTr.addEventListener("dblclick", editarNome);
