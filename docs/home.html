@@ -510,12 +510,7 @@
                         <div class="col ">
                             <label for="uso-nome">Uso</label>
                             <select id="uso-nome" name="uso" class="form-control">
-                                <option value="1">Relatório</option>
-                                <option value="2">Nome de recém-nascido</option>
-                                <option value="3">Nome profissional ou comercial</option>
-                                <option value="4">Nome de solteiro, nome de nascimento ou nome original</option>
-                                <option value="5">Nome registrado (nome legal)</option>
-                                <option value="8">Outro nome (alias)</option>
+
                             </select>
                         </div>
                         <div class="col">
@@ -528,8 +523,10 @@
                         </div>
                     </div>
                     <div class="botoes-acoes">
-                        <input class="btn btn-success" type="button" value="Novo Nome" onclick="acaoBotaoSalvarNome(this)" />
-                        <input class="btn btn-warning" type="button" onclick="" value="Cancelar" />
+                        <input id="btnSalvar" class="btn btn-success" type="button" value="Novo Nome" onclick="acaoBotaoSalvarNome(this)" salvou="true">
+                        <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="acaoBotaoCancelarNome(this)">
+                        <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
+                        <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" onclick="excluirIdentificador()"style="display: none;">
                     </div>
                     <br>
                     <!-- Tabela Identificadores Pacientes-->
@@ -544,6 +541,8 @@
                             <th>Nome</th>
                             <th>Somenome</th>
                             <th>Uso</th>
+                            <th>Inicio</th>
+                            <th>Fim</th>
                             <th>Preferido</th>
                         </tr>
                         </thead>

@@ -1,0 +1,10 @@
+{
+    "Uso":[
+        {"descricao": "Relatório", "codigo": "1"},
+        {"descricao": "Nome de recém-nascido", "codigo": "2"},
+        {"descricao": "Nome profissional ou comercial", "sigla": "3"},
+        {"descricao": "Nome de solteiro, nome de nascimento ou nome original", "codigo": "4"},
+        {"descricao": "Nome registrado (nome legal)", "codigo": "5"},
+        {"descricao": "Outro nome (alias)", "codigo": "8"}
+    ]
+}
