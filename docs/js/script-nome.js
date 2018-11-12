@@ -160,3 +160,47 @@ function excluirNome() {
         $("#regiao-nomes .botoes-acoes #btnExcluir").hide();
     });
 }
+
+function acaoBotaoSalvarNome(el) {
+    let elObrigatorios = $(el).closest("#form-nomes").find(".identificador select,input:required");
+    let inconsistente = false;
+
+
+    for (var i = 0; i < elObrigatorios.length; i++) {
+        if ($(elObrigatorios[i]).val() == "" || $(elObrigatorios[i]).val() == null) {
+            var elementosSuperiores = $(elObrigatorios[i]).parents();
+            var index = 0;
+            for (var j = 0; j < elementosSuperiores.length; j++) {
+                if ($(elementosSuperiores[j]).hasClass("opcional")) {
+                    index = j;
+                    break;
+                }
+            }
+            if (index > 0) {
+                if (elementosSuperiores[index].style.display == "block") {
+                    $(elObrigatorios[i]).css("border-color", "red");
+                    inconsistente = true;
+                }
+            }
+            //else if (index == 0 && ) {
+            else if (index == 0) {
+                $(elObrigatorios[i]).css("border-color", "red");
+                inconsistente = true;
+            }
+        } else {
+            $(elObrigatorios[i]).css("border-color", "#ced4da");
+        }
+    }
+
+    if (!inconsistente) {
+        //$(el).closest(".form-identificadores").find(".identificador input,select").prop("disabled", true);
+        //el.setAttribute("salvou", true);
+        $(".caixa-nome.opcional").hide()
+        //$("#btnNovoIdentificador")[0].style.display = "block";
+        $("#regiao-nomes").hide();
+
+        adicionarNomeNaTabela();
+        $(".container-representacao-nome .campo-representacao:not(:first)").remove()
+    }
+}
+
