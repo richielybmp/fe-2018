@@ -527,7 +527,7 @@
                         <div class="container-representacao-nome col-4">
                             <div class="form-group campo-representacao">
                                 <label for="represent-alternativa-nome">Representações Alternativas</label>
-                                <input type="text" class="form-control campo-representacao" name="representacao[]" id="represent-alternativa-nome">
+                                <input type="text" class="form-control" name="representacao[]" id="represent-alternativa-nome">
                             </div>
                         </div>
                         <div class="position-btn-plus">
@@ -539,12 +539,13 @@
                         <input id="btnSalvar" class="btn btn-success" type="button" value="Gravar Nome" onclick="acaoBotaoSalvarNome(this)" salvou="true">
                         <input id="btnCancelar" class="btn btn-warning" type="button" value="Cancelar" onclick="acaoBotaoCancelarNome(this)">
                         <input id="btnEditar" class="btn btn-primary" type="button" value="Editar" style="display: none;">
-                        <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" onclick="excluirIdentificador()"style="display: none;">
+                        <input id="btnExcluir" class="btn btn-danger" type="button" value="Excluir" onclick="excluirNome()"style="display: none;">
                     </div>
                     <br>
                     <!-- Tabela Identificadores Pacientes-->
                     <!--<input type="hidden" id="chaveIdentificadores" name="chaveIdentificadores">-->
                     </div>
+                <input type="hidden" id="chaveNome" name="chaveNome">
                 <div id="tabelaNomes" style="display:none">
                     <table class="table table-bordered table-hovered">
                         <caption>Nomes de Pacientes</caption>

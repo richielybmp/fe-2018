@@ -821,46 +821,10 @@ function acaoBotaoSalvarNome(el) {
         $("#regiao-nomes").hide();
 
         adicionarNomeNaTabela();
+        $(".container-representacao-nome .campo-representacao:not(:first)").remove()
     }
 }
 
-function adicionarNomeNaTabela() {
-    var bodytabelaIdentificadores = $("#tabelaNomes tbody")[0];
-    var bodytabelaIdentificadoresVinculos = $("#tabelaIdentificadoresVinculos tbody")[0];
-
-    // var tipo = $("#selectTipoDoID")[0].selectedOptions[0].text;
-    // var area = $("#selectArea")[0].selectedOptions[0].text;
-    // var designacao = $("#idDesignacao").val();
-    // var emissor = $("#idEmissor").val();
-    // var dataEmissao = $("#idDataEmissao").val();
-    // var ehVinculo = $("#chkCadastroDeVinculo")[0].checked;
-
-    var nome = $("#nome").val();
-    var sobrenome = $("#sobrenome").val();
-
-    var elTr = criarComponenteHtmlDinamico({ tag: "tr", id: nome + sobrenome });
-
-    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: "ID-" + /*(ehVinculo ? "-V" : "-P" )*/ +id++ }));
-    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: nome }));
-    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: sobrenome }));
-    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: '' }));
-    elTr.appendChild(criarComponenteHtmlDinamico({ tag: "td", innerHTML: '<input type="radio" name="preferido" id="">' }));
-
-    bodytabelaIdentificadores.appendChild(elTr);
-    $("#tabelaNomes").show();
-    $("#btnNovoNome")[0].style.display = "block";
-
-}
-
-function mostrarNovoCadastroDeNome(el) {
-    var options = {
-        el: el,
-        form: $(".form-identificadores"),
-        classForm: "nome",
-        regiao: $("#regiao-nomes")
-    }
-    mostrarNovoCadastroForm(options);
-}
 
 function salvarEndereco(el){
     var valTipoEndereco = $("#selectTipoEndereco").val();
