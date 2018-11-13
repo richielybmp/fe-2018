@@ -52,8 +52,10 @@ function adicionarNomeNaTabela(){
         })
         .get();
     let representTable = "";
-    representacoes.forEach(element => {
-        representTable += element+"<br>";
+    let cont = 1;
+    representacoes.forEach(element => {	    
+        representTable += cont+" - "+element+"<br>";
+        cont++;
     })
 
     var elTr = criarComponenteHtmlDinamico({ tag: "tr", id: nome + sobrenome });
